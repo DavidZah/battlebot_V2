@@ -1,0 +1,5319 @@
+
+battlebot_V2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00001f12  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001ebe  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00001f12  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001f44  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000330  00000000  00000000  00001f88  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001a41  00000000  00000000  000022b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000aff  00000000  00000000  00003cf9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000016a6  00000000  00000000  000047f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000ac4  00000000  00000000  00005ea0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000980  00000000  00000000  00006964  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00001629  00000000  00000000  000072e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000002c0  00000000  00000000  0000890d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+       4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+       8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+       c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+      68:	11 24       	eor	r1, r1
+      6a:	1f be       	out	0x3f, r1	; 63
+      6c:	cf ef       	ldi	r28, 0xFF	; 255
+      6e:	d8 e0       	ldi	r29, 0x08	; 8
+      70:	de bf       	out	0x3e, r29	; 62
+      72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+      74:	21 e0       	ldi	r18, 0x01	; 1
+      76:	a0 e0       	ldi	r26, 0x00	; 0
+      78:	b1 e0       	ldi	r27, 0x01	; 1
+      7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+      7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+      7e:	a0 30       	cpi	r26, 0x00	; 0
+      80:	b2 07       	cpc	r27, r18
+      82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+      84:	0e 94 11 06 	call	0xc22	; 0xc22 <main>
+      88:	0c 94 5d 0f 	jmp	0x1eba	; 0x1eba <_exit>
+
+0000008c <__bad_interrupt>:
+      8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <atmel_start_init>:
+
+/**
+ * Initializes MCU, drivers and middleware in the project
+ **/
+void atmel_start_init(void)
+{
+      90:	cf 93       	push	r28
+      92:	df 93       	push	r29
+      94:	cd b7       	in	r28, 0x3d	; 61
+      96:	de b7       	in	r29, 0x3e	; 62
+	system_init();
+      98:	0e 94 dc 0c 	call	0x19b8	; 0x19b8 <system_init>
+}
+      9c:	00 00       	nop
+      9e:	df 91       	pop	r29
+      a0:	cf 91       	pop	r28
+      a2:	08 95       	ret
+
+000000a4 <PORTB_set_pin_level>:
+ * \param[in] pin       The pin number for device
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
+{
+      a4:	cf 93       	push	r28
+      a6:	df 93       	push	r29
+      a8:	00 d0       	rcall	.+0      	; 0xaa <PORTB_set_pin_level+0x6>
+      aa:	cd b7       	in	r28, 0x3d	; 61
+      ac:	de b7       	in	r29, 0x3e	; 62
+      ae:	89 83       	std	Y+1, r24	; 0x01
+      b0:	6a 83       	std	Y+2, r22	; 0x02
+	if (level) {
+      b2:	8a 81       	ldd	r24, Y+2	; 0x02
+      b4:	88 23       	and	r24, r24
+      b6:	a9 f0       	breq	.+42     	; 0xe2 <PORTB_set_pin_level+0x3e>
+		PORTB |= 1 << pin;
+      b8:	85 e2       	ldi	r24, 0x25	; 37
+      ba:	90 e0       	ldi	r25, 0x00	; 0
+      bc:	25 e2       	ldi	r18, 0x25	; 37
+      be:	30 e0       	ldi	r19, 0x00	; 0
+      c0:	f9 01       	movw	r30, r18
+      c2:	20 81       	ld	r18, Z
+      c4:	62 2f       	mov	r22, r18
+      c6:	29 81       	ldd	r18, Y+1	; 0x01
+      c8:	42 2f       	mov	r20, r18
+      ca:	50 e0       	ldi	r21, 0x00	; 0
+      cc:	21 e0       	ldi	r18, 0x01	; 1
+      ce:	30 e0       	ldi	r19, 0x00	; 0
+      d0:	02 c0       	rjmp	.+4      	; 0xd6 <PORTB_set_pin_level+0x32>
+      d2:	22 0f       	add	r18, r18
+      d4:	33 1f       	adc	r19, r19
+      d6:	4a 95       	dec	r20
+      d8:	e2 f7       	brpl	.-8      	; 0xd2 <PORTB_set_pin_level+0x2e>
+      da:	26 2b       	or	r18, r22
+      dc:	fc 01       	movw	r30, r24
+      de:	20 83       	st	Z, r18
+	} else {
+		PORTB &= ~(1 << pin);
+	}
+}
+      e0:	15 c0       	rjmp	.+42     	; 0x10c <PORTB_set_pin_level+0x68>
+static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTB |= 1 << pin;
+	} else {
+		PORTB &= ~(1 << pin);
+      e2:	85 e2       	ldi	r24, 0x25	; 37
+      e4:	90 e0       	ldi	r25, 0x00	; 0
+      e6:	25 e2       	ldi	r18, 0x25	; 37
+      e8:	30 e0       	ldi	r19, 0x00	; 0
+      ea:	f9 01       	movw	r30, r18
+      ec:	20 81       	ld	r18, Z
+      ee:	62 2f       	mov	r22, r18
+      f0:	29 81       	ldd	r18, Y+1	; 0x01
+      f2:	42 2f       	mov	r20, r18
+      f4:	50 e0       	ldi	r21, 0x00	; 0
+      f6:	21 e0       	ldi	r18, 0x01	; 1
+      f8:	30 e0       	ldi	r19, 0x00	; 0
+      fa:	02 c0       	rjmp	.+4      	; 0x100 <PORTB_set_pin_level+0x5c>
+      fc:	22 0f       	add	r18, r18
+      fe:	33 1f       	adc	r19, r19
+     100:	4a 95       	dec	r20
+     102:	e2 f7       	brpl	.-8      	; 0xfc <PORTB_set_pin_level+0x58>
+     104:	20 95       	com	r18
+     106:	26 23       	and	r18, r22
+     108:	fc 01       	movw	r30, r24
+     10a:	20 83       	st	Z, r18
+	}
+}
+     10c:	00 00       	nop
+     10e:	0f 90       	pop	r0
+     110:	0f 90       	pop	r0
+     112:	df 91       	pop	r29
+     114:	cf 91       	pop	r28
+     116:	08 95       	ret
+
+00000118 <PORTC_set_pin_level>:
+ * \param[in] pin       The pin number for device
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
+{
+     118:	cf 93       	push	r28
+     11a:	df 93       	push	r29
+     11c:	00 d0       	rcall	.+0      	; 0x11e <PORTC_set_pin_level+0x6>
+     11e:	cd b7       	in	r28, 0x3d	; 61
+     120:	de b7       	in	r29, 0x3e	; 62
+     122:	89 83       	std	Y+1, r24	; 0x01
+     124:	6a 83       	std	Y+2, r22	; 0x02
+	if (level) {
+     126:	8a 81       	ldd	r24, Y+2	; 0x02
+     128:	88 23       	and	r24, r24
+     12a:	a9 f0       	breq	.+42     	; 0x156 <PORTC_set_pin_level+0x3e>
+		PORTC |= 1 << pin;
+     12c:	88 e2       	ldi	r24, 0x28	; 40
+     12e:	90 e0       	ldi	r25, 0x00	; 0
+     130:	28 e2       	ldi	r18, 0x28	; 40
+     132:	30 e0       	ldi	r19, 0x00	; 0
+     134:	f9 01       	movw	r30, r18
+     136:	20 81       	ld	r18, Z
+     138:	62 2f       	mov	r22, r18
+     13a:	29 81       	ldd	r18, Y+1	; 0x01
+     13c:	42 2f       	mov	r20, r18
+     13e:	50 e0       	ldi	r21, 0x00	; 0
+     140:	21 e0       	ldi	r18, 0x01	; 1
+     142:	30 e0       	ldi	r19, 0x00	; 0
+     144:	02 c0       	rjmp	.+4      	; 0x14a <PORTC_set_pin_level+0x32>
+     146:	22 0f       	add	r18, r18
+     148:	33 1f       	adc	r19, r19
+     14a:	4a 95       	dec	r20
+     14c:	e2 f7       	brpl	.-8      	; 0x146 <PORTC_set_pin_level+0x2e>
+     14e:	26 2b       	or	r18, r22
+     150:	fc 01       	movw	r30, r24
+     152:	20 83       	st	Z, r18
+	} else {
+		PORTC &= ~(1 << pin);
+	}
+}
+     154:	15 c0       	rjmp	.+42     	; 0x180 <PORTC_set_pin_level+0x68>
+static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTC |= 1 << pin;
+	} else {
+		PORTC &= ~(1 << pin);
+     156:	88 e2       	ldi	r24, 0x28	; 40
+     158:	90 e0       	ldi	r25, 0x00	; 0
+     15a:	28 e2       	ldi	r18, 0x28	; 40
+     15c:	30 e0       	ldi	r19, 0x00	; 0
+     15e:	f9 01       	movw	r30, r18
+     160:	20 81       	ld	r18, Z
+     162:	62 2f       	mov	r22, r18
+     164:	29 81       	ldd	r18, Y+1	; 0x01
+     166:	42 2f       	mov	r20, r18
+     168:	50 e0       	ldi	r21, 0x00	; 0
+     16a:	21 e0       	ldi	r18, 0x01	; 1
+     16c:	30 e0       	ldi	r19, 0x00	; 0
+     16e:	02 c0       	rjmp	.+4      	; 0x174 <PORTC_set_pin_level+0x5c>
+     170:	22 0f       	add	r18, r18
+     172:	33 1f       	adc	r19, r19
+     174:	4a 95       	dec	r20
+     176:	e2 f7       	brpl	.-8      	; 0x170 <PORTC_set_pin_level+0x58>
+     178:	20 95       	com	r18
+     17a:	26 23       	and	r18, r22
+     17c:	fc 01       	movw	r30, r24
+     17e:	20 83       	st	Z, r18
+	}
+}
+     180:	00 00       	nop
+     182:	0f 90       	pop	r0
+     184:	0f 90       	pop	r0
+     186:	df 91       	pop	r29
+     188:	cf 91       	pop	r28
+     18a:	08 95       	ret
+
+0000018c <PORTC_get_pin_level>:
+ * Reads the level on a pin connected to a port
+ *
+ * \param[in] pin       The pin number for device
+ */
+static inline bool PORTC_get_pin_level(const uint8_t pin)
+{
+     18c:	cf 93       	push	r28
+     18e:	df 93       	push	r29
+     190:	1f 92       	push	r1
+     192:	cd b7       	in	r28, 0x3d	; 61
+     194:	de b7       	in	r29, 0x3e	; 62
+     196:	89 83       	std	Y+1, r24	; 0x01
+	return PINC & (1 << pin);
+     198:	86 e2       	ldi	r24, 0x26	; 38
+     19a:	90 e0       	ldi	r25, 0x00	; 0
+     19c:	fc 01       	movw	r30, r24
+     19e:	80 81       	ld	r24, Z
+     1a0:	28 2f       	mov	r18, r24
+     1a2:	30 e0       	ldi	r19, 0x00	; 0
+     1a4:	89 81       	ldd	r24, Y+1	; 0x01
+     1a6:	48 2f       	mov	r20, r24
+     1a8:	50 e0       	ldi	r21, 0x00	; 0
+     1aa:	81 e0       	ldi	r24, 0x01	; 1
+     1ac:	90 e0       	ldi	r25, 0x00	; 0
+     1ae:	02 c0       	rjmp	.+4      	; 0x1b4 <PORTC_get_pin_level+0x28>
+     1b0:	88 0f       	add	r24, r24
+     1b2:	99 1f       	adc	r25, r25
+     1b4:	4a 95       	dec	r20
+     1b6:	e2 f7       	brpl	.-8      	; 0x1b0 <PORTC_get_pin_level+0x24>
+     1b8:	82 23       	and	r24, r18
+     1ba:	93 23       	and	r25, r19
+     1bc:	21 e0       	ldi	r18, 0x01	; 1
+     1be:	89 2b       	or	r24, r25
+     1c0:	09 f4       	brne	.+2      	; 0x1c4 <PORTC_get_pin_level+0x38>
+     1c2:	20 e0       	ldi	r18, 0x00	; 0
+     1c4:	82 2f       	mov	r24, r18
+}
+     1c6:	0f 90       	pop	r0
+     1c8:	df 91       	pop	r29
+     1ca:	cf 91       	pop	r28
+     1cc:	08 95       	ret
+
+000001ce <PORTD_set_pin_level>:
+ * \param[in] pin       The pin number for device
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+     1ce:	cf 93       	push	r28
+     1d0:	df 93       	push	r29
+     1d2:	00 d0       	rcall	.+0      	; 0x1d4 <PORTD_set_pin_level+0x6>
+     1d4:	cd b7       	in	r28, 0x3d	; 61
+     1d6:	de b7       	in	r29, 0x3e	; 62
+     1d8:	89 83       	std	Y+1, r24	; 0x01
+     1da:	6a 83       	std	Y+2, r22	; 0x02
+	if (level) {
+     1dc:	8a 81       	ldd	r24, Y+2	; 0x02
+     1de:	88 23       	and	r24, r24
+     1e0:	a9 f0       	breq	.+42     	; 0x20c <PORTD_set_pin_level+0x3e>
+		PORTD |= 1 << pin;
+     1e2:	8b e2       	ldi	r24, 0x2B	; 43
+     1e4:	90 e0       	ldi	r25, 0x00	; 0
+     1e6:	2b e2       	ldi	r18, 0x2B	; 43
+     1e8:	30 e0       	ldi	r19, 0x00	; 0
+     1ea:	f9 01       	movw	r30, r18
+     1ec:	20 81       	ld	r18, Z
+     1ee:	62 2f       	mov	r22, r18
+     1f0:	29 81       	ldd	r18, Y+1	; 0x01
+     1f2:	42 2f       	mov	r20, r18
+     1f4:	50 e0       	ldi	r21, 0x00	; 0
+     1f6:	21 e0       	ldi	r18, 0x01	; 1
+     1f8:	30 e0       	ldi	r19, 0x00	; 0
+     1fa:	02 c0       	rjmp	.+4      	; 0x200 <PORTD_set_pin_level+0x32>
+     1fc:	22 0f       	add	r18, r18
+     1fe:	33 1f       	adc	r19, r19
+     200:	4a 95       	dec	r20
+     202:	e2 f7       	brpl	.-8      	; 0x1fc <PORTD_set_pin_level+0x2e>
+     204:	26 2b       	or	r18, r22
+     206:	fc 01       	movw	r30, r24
+     208:	20 83       	st	Z, r18
+	} else {
+		PORTD &= ~(1 << pin);
+	}
+}
+     20a:	15 c0       	rjmp	.+42     	; 0x236 <PORTD_set_pin_level+0x68>
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTD |= 1 << pin;
+	} else {
+		PORTD &= ~(1 << pin);
+     20c:	8b e2       	ldi	r24, 0x2B	; 43
+     20e:	90 e0       	ldi	r25, 0x00	; 0
+     210:	2b e2       	ldi	r18, 0x2B	; 43
+     212:	30 e0       	ldi	r19, 0x00	; 0
+     214:	f9 01       	movw	r30, r18
+     216:	20 81       	ld	r18, Z
+     218:	62 2f       	mov	r22, r18
+     21a:	29 81       	ldd	r18, Y+1	; 0x01
+     21c:	42 2f       	mov	r20, r18
+     21e:	50 e0       	ldi	r21, 0x00	; 0
+     220:	21 e0       	ldi	r18, 0x01	; 1
+     222:	30 e0       	ldi	r19, 0x00	; 0
+     224:	02 c0       	rjmp	.+4      	; 0x22a <PORTD_set_pin_level+0x5c>
+     226:	22 0f       	add	r18, r18
+     228:	33 1f       	adc	r19, r19
+     22a:	4a 95       	dec	r20
+     22c:	e2 f7       	brpl	.-8      	; 0x226 <PORTD_set_pin_level+0x58>
+     22e:	20 95       	com	r18
+     230:	26 23       	and	r18, r22
+     232:	fc 01       	movw	r30, r24
+     234:	20 83       	st	Z, r18
+	}
+}
+     236:	00 00       	nop
+     238:	0f 90       	pop	r0
+     23a:	0f 90       	pop	r0
+     23c:	df 91       	pop	r29
+     23e:	cf 91       	pop	r28
+     240:	08 95       	ret
+
+00000242 <PORTD_get_pin_level>:
+ * Reads the level on a pin connected to a port
+ *
+ * \param[in] pin       The pin number for device
+ */
+static inline bool PORTD_get_pin_level(const uint8_t pin)
+{
+     242:	cf 93       	push	r28
+     244:	df 93       	push	r29
+     246:	1f 92       	push	r1
+     248:	cd b7       	in	r28, 0x3d	; 61
+     24a:	de b7       	in	r29, 0x3e	; 62
+     24c:	89 83       	std	Y+1, r24	; 0x01
+	return PIND & (1 << pin);
+     24e:	89 e2       	ldi	r24, 0x29	; 41
+     250:	90 e0       	ldi	r25, 0x00	; 0
+     252:	fc 01       	movw	r30, r24
+     254:	80 81       	ld	r24, Z
+     256:	28 2f       	mov	r18, r24
+     258:	30 e0       	ldi	r19, 0x00	; 0
+     25a:	89 81       	ldd	r24, Y+1	; 0x01
+     25c:	48 2f       	mov	r20, r24
+     25e:	50 e0       	ldi	r21, 0x00	; 0
+     260:	81 e0       	ldi	r24, 0x01	; 1
+     262:	90 e0       	ldi	r25, 0x00	; 0
+     264:	02 c0       	rjmp	.+4      	; 0x26a <PORTD_get_pin_level+0x28>
+     266:	88 0f       	add	r24, r24
+     268:	99 1f       	adc	r25, r25
+     26a:	4a 95       	dec	r20
+     26c:	e2 f7       	brpl	.-8      	; 0x266 <PORTD_get_pin_level+0x24>
+     26e:	82 23       	and	r24, r18
+     270:	93 23       	and	r25, r19
+     272:	21 e0       	ldi	r18, 0x01	; 1
+     274:	89 2b       	or	r24, r25
+     276:	09 f4       	brne	.+2      	; 0x27a <PORTD_get_pin_level+0x38>
+     278:	20 e0       	ldi	r18, 0x00	; 0
+     27a:	82 2f       	mov	r24, r18
+}
+     27c:	0f 90       	pop	r0
+     27e:	df 91       	pop	r29
+     280:	cf 91       	pop	r28
+     282:	08 95       	ret
+
+00000284 <TRIG_F_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void TRIG_F_set_level(const bool level)
+{
+     284:	cf 93       	push	r28
+     286:	df 93       	push	r29
+     288:	1f 92       	push	r1
+     28a:	cd b7       	in	r28, 0x3d	; 61
+     28c:	de b7       	in	r29, 0x3e	; 62
+     28e:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_level(0, level);
+     290:	69 81       	ldd	r22, Y+1	; 0x01
+     292:	80 e0       	ldi	r24, 0x00	; 0
+     294:	0e 94 8c 00 	call	0x118	; 0x118 <PORTC_set_pin_level>
+}
+     298:	00 00       	nop
+     29a:	0f 90       	pop	r0
+     29c:	df 91       	pop	r29
+     29e:	cf 91       	pop	r28
+     2a0:	08 95       	ret
+
+000002a2 <ECHO_F_get_level>:
+ * \brief Get level on ECHO_F
+ *
+ * Reads the level on a pin
+ */
+static inline bool ECHO_F_get_level()
+{
+     2a2:	cf 93       	push	r28
+     2a4:	df 93       	push	r29
+     2a6:	cd b7       	in	r28, 0x3d	; 61
+     2a8:	de b7       	in	r29, 0x3e	; 62
+	return PORTC_get_pin_level(1);
+     2aa:	81 e0       	ldi	r24, 0x01	; 1
+     2ac:	0e 94 c6 00 	call	0x18c	; 0x18c <PORTC_get_pin_level>
+}
+     2b0:	df 91       	pop	r29
+     2b2:	cf 91       	pop	r28
+     2b4:	08 95       	ret
+
+000002b6 <ECHO_L_get_level>:
+ * \brief Get level on ECHO_L
+ *
+ * Reads the level on a pin
+ */
+static inline bool ECHO_L_get_level()
+{
+     2b6:	cf 93       	push	r28
+     2b8:	df 93       	push	r29
+     2ba:	cd b7       	in	r28, 0x3d	; 61
+     2bc:	de b7       	in	r29, 0x3e	; 62
+	return PORTC_get_pin_level(2);
+     2be:	82 e0       	ldi	r24, 0x02	; 2
+     2c0:	0e 94 c6 00 	call	0x18c	; 0x18c <PORTC_get_pin_level>
+}
+     2c4:	df 91       	pop	r29
+     2c6:	cf 91       	pop	r28
+     2c8:	08 95       	ret
+
+000002ca <TRIG_L_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void TRIG_L_set_level(const bool level)
+{
+     2ca:	cf 93       	push	r28
+     2cc:	df 93       	push	r29
+     2ce:	1f 92       	push	r1
+     2d0:	cd b7       	in	r28, 0x3d	; 61
+     2d2:	de b7       	in	r29, 0x3e	; 62
+     2d4:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_level(3, level);
+     2d6:	69 81       	ldd	r22, Y+1	; 0x01
+     2d8:	83 e0       	ldi	r24, 0x03	; 3
+     2da:	0e 94 8c 00 	call	0x118	; 0x118 <PORTC_set_pin_level>
+}
+     2de:	00 00       	nop
+     2e0:	0f 90       	pop	r0
+     2e2:	df 91       	pop	r29
+     2e4:	cf 91       	pop	r28
+     2e6:	08 95       	ret
+
+000002e8 <ECHO_R_get_level>:
+ * \brief Get level on ECHO_R
+ *
+ * Reads the level on a pin
+ */
+static inline bool ECHO_R_get_level()
+{
+     2e8:	cf 93       	push	r28
+     2ea:	df 93       	push	r29
+     2ec:	cd b7       	in	r28, 0x3d	; 61
+     2ee:	de b7       	in	r29, 0x3e	; 62
+	return PORTD_get_pin_level(1);
+     2f0:	81 e0       	ldi	r24, 0x01	; 1
+     2f2:	0e 94 21 01 	call	0x242	; 0x242 <PORTD_get_pin_level>
+}
+     2f6:	df 91       	pop	r29
+     2f8:	cf 91       	pop	r28
+     2fa:	08 95       	ret
+
+000002fc <TRIG_R_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void TRIG_R_set_level(const bool level)
+{
+     2fc:	cf 93       	push	r28
+     2fe:	df 93       	push	r29
+     300:	1f 92       	push	r1
+     302:	cd b7       	in	r28, 0x3d	; 61
+     304:	de b7       	in	r29, 0x3e	; 62
+     306:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(2, level);
+     308:	69 81       	ldd	r22, Y+1	; 0x01
+     30a:	82 e0       	ldi	r24, 0x02	; 2
+     30c:	0e 94 e7 00 	call	0x1ce	; 0x1ce <PORTD_set_pin_level>
+}
+     310:	00 00       	nop
+     312:	0f 90       	pop	r0
+     314:	df 91       	pop	r29
+     316:	cf 91       	pop	r28
+     318:	08 95       	ret
+
+0000031a <IN1_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN1_set_level(const bool level)
+{
+     31a:	cf 93       	push	r28
+     31c:	df 93       	push	r29
+     31e:	1f 92       	push	r1
+     320:	cd b7       	in	r28, 0x3d	; 61
+     322:	de b7       	in	r29, 0x3e	; 62
+     324:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(6, level);
+     326:	69 81       	ldd	r22, Y+1	; 0x01
+     328:	86 e0       	ldi	r24, 0x06	; 6
+     32a:	0e 94 e7 00 	call	0x1ce	; 0x1ce <PORTD_set_pin_level>
+}
+     32e:	00 00       	nop
+     330:	0f 90       	pop	r0
+     332:	df 91       	pop	r29
+     334:	cf 91       	pop	r28
+     336:	08 95       	ret
+
+00000338 <IN2_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN2_set_level(const bool level)
+{
+     338:	cf 93       	push	r28
+     33a:	df 93       	push	r29
+     33c:	1f 92       	push	r1
+     33e:	cd b7       	in	r28, 0x3d	; 61
+     340:	de b7       	in	r29, 0x3e	; 62
+     342:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(7, level);
+     344:	69 81       	ldd	r22, Y+1	; 0x01
+     346:	87 e0       	ldi	r24, 0x07	; 7
+     348:	0e 94 e7 00 	call	0x1ce	; 0x1ce <PORTD_set_pin_level>
+}
+     34c:	00 00       	nop
+     34e:	0f 90       	pop	r0
+     350:	df 91       	pop	r29
+     352:	cf 91       	pop	r28
+     354:	08 95       	ret
+
+00000356 <IN3_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN3_set_level(const bool level)
+{
+     356:	cf 93       	push	r28
+     358:	df 93       	push	r29
+     35a:	1f 92       	push	r1
+     35c:	cd b7       	in	r28, 0x3d	; 61
+     35e:	de b7       	in	r29, 0x3e	; 62
+     360:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_level(1, level);
+     362:	69 81       	ldd	r22, Y+1	; 0x01
+     364:	81 e0       	ldi	r24, 0x01	; 1
+     366:	0e 94 52 00 	call	0xa4	; 0xa4 <PORTB_set_pin_level>
+}
+     36a:	00 00       	nop
+     36c:	0f 90       	pop	r0
+     36e:	df 91       	pop	r29
+     370:	cf 91       	pop	r28
+     372:	08 95       	ret
+
+00000374 <IN4_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN4_set_level(const bool level)
+{
+     374:	cf 93       	push	r28
+     376:	df 93       	push	r29
+     378:	1f 92       	push	r1
+     37a:	cd b7       	in	r28, 0x3d	; 61
+     37c:	de b7       	in	r29, 0x3e	; 62
+     37e:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_level(2, level);
+     380:	69 81       	ldd	r22, Y+1	; 0x01
+     382:	82 e0       	ldi	r24, 0x02	; 2
+     384:	0e 94 52 00 	call	0xa4	; 0xa4 <PORTB_set_pin_level>
+}
+     388:	00 00       	nop
+     38a:	0f 90       	pop	r0
+     38c:	df 91       	pop	r29
+     38e:	cf 91       	pop	r28
+     390:	08 95       	ret
+
+00000392 <scanL>:
+#include <atmel_start.h>
+#include "avr/delay.h"
+
+#define DISTANCE 1500
+
+bool scanL(){
+     392:	cf 93       	push	r28
+     394:	df 93       	push	r29
+     396:	cd b7       	in	r28, 0x3d	; 61
+     398:	de b7       	in	r29, 0x3e	; 62
+     39a:	a2 97       	sbiw	r28, 0x22	; 34
+     39c:	0f b6       	in	r0, 0x3f	; 63
+     39e:	f8 94       	cli
+     3a0:	de bf       	out	0x3e, r29	; 62
+     3a2:	0f be       	out	0x3f, r0	; 63
+     3a4:	cd bf       	out	0x3d, r28	; 61
+	int x = 0; 
+     3a6:	1a 82       	std	Y+2, r1	; 0x02
+     3a8:	19 82       	std	Y+1, r1	; 0x01
+	TRIG_L_set_level(true);
+     3aa:	81 e0       	ldi	r24, 0x01	; 1
+     3ac:	0e 94 65 01 	call	0x2ca	; 0x2ca <TRIG_L_set_level>
+     3b0:	80 e0       	ldi	r24, 0x00	; 0
+     3b2:	90 e0       	ldi	r25, 0x00	; 0
+     3b4:	a0 e7       	ldi	r26, 0x70	; 112
+     3b6:	b1 e4       	ldi	r27, 0x41	; 65
+     3b8:	8b 83       	std	Y+3, r24	; 0x03
+     3ba:	9c 83       	std	Y+4, r25	; 0x04
+     3bc:	ad 83       	std	Y+5, r26	; 0x05
+     3be:	be 83       	std	Y+6, r27	; 0x06
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint8_t __ticks;
+	double __tmp2 ;
+	__tmp = ((F_CPU) / 3e6) * __us;
+     3c0:	2b ea       	ldi	r18, 0xAB	; 171
+     3c2:	3a ea       	ldi	r19, 0xAA	; 170
+     3c4:	4a e2       	ldi	r20, 0x2A	; 42
+     3c6:	50 e4       	ldi	r21, 0x40	; 64
+     3c8:	6b 81       	ldd	r22, Y+3	; 0x03
+     3ca:	7c 81       	ldd	r23, Y+4	; 0x04
+     3cc:	8d 81       	ldd	r24, Y+5	; 0x05
+     3ce:	9e 81       	ldd	r25, Y+6	; 0x06
+     3d0:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     3d4:	dc 01       	movw	r26, r24
+     3d6:	cb 01       	movw	r24, r22
+     3d8:	8f 83       	std	Y+7, r24	; 0x07
+     3da:	98 87       	std	Y+8, r25	; 0x08
+     3dc:	a9 87       	std	Y+9, r26	; 0x09
+     3de:	ba 87       	std	Y+10, r27	; 0x0a
+	__tmp2 = ((F_CPU) / 4e6) * __us;
+     3e0:	8b 81       	ldd	r24, Y+3	; 0x03
+     3e2:	9c 81       	ldd	r25, Y+4	; 0x04
+     3e4:	ad 81       	ldd	r26, Y+5	; 0x05
+     3e6:	be 81       	ldd	r27, Y+6	; 0x06
+     3e8:	9c 01       	movw	r18, r24
+     3ea:	ad 01       	movw	r20, r26
+     3ec:	bc 01       	movw	r22, r24
+     3ee:	cd 01       	movw	r24, r26
+     3f0:	0e 94 64 0d 	call	0x1ac8	; 0x1ac8 <__addsf3>
+     3f4:	dc 01       	movw	r26, r24
+     3f6:	cb 01       	movw	r24, r22
+     3f8:	8b 87       	std	Y+11, r24	; 0x0b
+     3fa:	9c 87       	std	Y+12, r25	; 0x0c
+     3fc:	ad 87       	std	Y+13, r26	; 0x0d
+     3fe:	be 87       	std	Y+14, r27	; 0x0e
+	if (__tmp < 1.0)
+     400:	20 e0       	ldi	r18, 0x00	; 0
+     402:	30 e0       	ldi	r19, 0x00	; 0
+     404:	40 e8       	ldi	r20, 0x80	; 128
+     406:	5f e3       	ldi	r21, 0x3F	; 63
+     408:	6f 81       	ldd	r22, Y+7	; 0x07
+     40a:	78 85       	ldd	r23, Y+8	; 0x08
+     40c:	89 85       	ldd	r24, Y+9	; 0x09
+     40e:	9a 85       	ldd	r25, Y+10	; 0x0a
+     410:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     414:	88 23       	and	r24, r24
+     416:	1c f4       	brge	.+6      	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
+		__ticks = 1;
+     418:	81 e0       	ldi	r24, 0x01	; 1
+     41a:	8f 87       	std	Y+15, r24	; 0x0f
+     41c:	b2 c0       	rjmp	.+356    	; 0x582 <__EEPROM_REGION_LENGTH__+0x182>
+	else if (__tmp2 > 65535)
+     41e:	20 e0       	ldi	r18, 0x00	; 0
+     420:	3f ef       	ldi	r19, 0xFF	; 255
+     422:	4f e7       	ldi	r20, 0x7F	; 127
+     424:	57 e4       	ldi	r21, 0x47	; 71
+     426:	6b 85       	ldd	r22, Y+11	; 0x0b
+     428:	7c 85       	ldd	r23, Y+12	; 0x0c
+     42a:	8d 85       	ldd	r24, Y+13	; 0x0d
+     42c:	9e 85       	ldd	r25, Y+14	; 0x0e
+     42e:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     432:	18 16       	cp	r1, r24
+     434:	0c f0       	brlt	.+2      	; 0x438 <__EEPROM_REGION_LENGTH__+0x38>
+     436:	7b c0       	rjmp	.+246    	; 0x52e <__EEPROM_REGION_LENGTH__+0x12e>
+	{
+		_delay_ms(__us / 1000.0);
+     438:	20 e0       	ldi	r18, 0x00	; 0
+     43a:	30 e0       	ldi	r19, 0x00	; 0
+     43c:	4a e7       	ldi	r20, 0x7A	; 122
+     43e:	54 e4       	ldi	r21, 0x44	; 68
+     440:	6b 81       	ldd	r22, Y+3	; 0x03
+     442:	7c 81       	ldd	r23, Y+4	; 0x04
+     444:	8d 81       	ldd	r24, Y+5	; 0x05
+     446:	9e 81       	ldd	r25, Y+6	; 0x06
+     448:	0e 94 d5 0d 	call	0x1baa	; 0x1baa <__divsf3>
+     44c:	dc 01       	movw	r26, r24
+     44e:	cb 01       	movw	r24, r22
+     450:	88 8b       	std	Y+16, r24	; 0x10
+     452:	99 8b       	std	Y+17, r25	; 0x11
+     454:	aa 8b       	std	Y+18, r26	; 0x12
+     456:	bb 8b       	std	Y+19, r27	; 0x13
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint16_t __ticks;
+	__tmp = ((F_CPU) / 4e3) * __ms;
+     458:	20 e0       	ldi	r18, 0x00	; 0
+     45a:	30 e0       	ldi	r19, 0x00	; 0
+     45c:	4a ef       	ldi	r20, 0xFA	; 250
+     45e:	54 e4       	ldi	r21, 0x44	; 68
+     460:	68 89       	ldd	r22, Y+16	; 0x10
+     462:	79 89       	ldd	r23, Y+17	; 0x11
+     464:	8a 89       	ldd	r24, Y+18	; 0x12
+     466:	9b 89       	ldd	r25, Y+19	; 0x13
+     468:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     46c:	dc 01       	movw	r26, r24
+     46e:	cb 01       	movw	r24, r22
+     470:	8c 8b       	std	Y+20, r24	; 0x14
+     472:	9d 8b       	std	Y+21, r25	; 0x15
+     474:	ae 8b       	std	Y+22, r26	; 0x16
+     476:	bf 8b       	std	Y+23, r27	; 0x17
+	if (__tmp < 1.0)
+     478:	20 e0       	ldi	r18, 0x00	; 0
+     47a:	30 e0       	ldi	r19, 0x00	; 0
+     47c:	40 e8       	ldi	r20, 0x80	; 128
+     47e:	5f e3       	ldi	r21, 0x3F	; 63
+     480:	6c 89       	ldd	r22, Y+20	; 0x14
+     482:	7d 89       	ldd	r23, Y+21	; 0x15
+     484:	8e 89       	ldd	r24, Y+22	; 0x16
+     486:	9f 89       	ldd	r25, Y+23	; 0x17
+     488:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     48c:	88 23       	and	r24, r24
+     48e:	2c f4       	brge	.+10     	; 0x49a <__EEPROM_REGION_LENGTH__+0x9a>
+		__ticks = 1;
+     490:	81 e0       	ldi	r24, 0x01	; 1
+     492:	90 e0       	ldi	r25, 0x00	; 0
+     494:	99 8f       	std	Y+25, r25	; 0x19
+     496:	88 8f       	std	Y+24, r24	; 0x18
+     498:	3f c0       	rjmp	.+126    	; 0x518 <__EEPROM_REGION_LENGTH__+0x118>
+	else if (__tmp > 65535)
+     49a:	20 e0       	ldi	r18, 0x00	; 0
+     49c:	3f ef       	ldi	r19, 0xFF	; 255
+     49e:	4f e7       	ldi	r20, 0x7F	; 127
+     4a0:	57 e4       	ldi	r21, 0x47	; 71
+     4a2:	6c 89       	ldd	r22, Y+20	; 0x14
+     4a4:	7d 89       	ldd	r23, Y+21	; 0x15
+     4a6:	8e 89       	ldd	r24, Y+22	; 0x16
+     4a8:	9f 89       	ldd	r25, Y+23	; 0x17
+     4aa:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     4ae:	18 16       	cp	r1, r24
+     4b0:	4c f5       	brge	.+82     	; 0x504 <__EEPROM_REGION_LENGTH__+0x104>
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+     4b2:	20 e0       	ldi	r18, 0x00	; 0
+     4b4:	30 e0       	ldi	r19, 0x00	; 0
+     4b6:	40 e2       	ldi	r20, 0x20	; 32
+     4b8:	51 e4       	ldi	r21, 0x41	; 65
+     4ba:	68 89       	ldd	r22, Y+16	; 0x10
+     4bc:	79 89       	ldd	r23, Y+17	; 0x11
+     4be:	8a 89       	ldd	r24, Y+18	; 0x12
+     4c0:	9b 89       	ldd	r25, Y+19	; 0x13
+     4c2:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     4c6:	dc 01       	movw	r26, r24
+     4c8:	cb 01       	movw	r24, r22
+     4ca:	bc 01       	movw	r22, r24
+     4cc:	cd 01       	movw	r24, r26
+     4ce:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     4d2:	dc 01       	movw	r26, r24
+     4d4:	cb 01       	movw	r24, r22
+     4d6:	99 8f       	std	Y+25, r25	; 0x19
+     4d8:	88 8f       	std	Y+24, r24	; 0x18
+     4da:	0f c0       	rjmp	.+30     	; 0x4fa <__EEPROM_REGION_LENGTH__+0xfa>
+     4dc:	88 ec       	ldi	r24, 0xC8	; 200
+     4de:	90 e0       	ldi	r25, 0x00	; 0
+     4e0:	9b 8f       	std	Y+27, r25	; 0x1b
+     4e2:	8a 8f       	std	Y+26, r24	; 0x1a
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+     4e4:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     4e6:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     4e8:	01 97       	sbiw	r24, 0x01	; 1
+     4ea:	f1 f7       	brne	.-4      	; 0x4e8 <__EEPROM_REGION_LENGTH__+0xe8>
+     4ec:	9b 8f       	std	Y+27, r25	; 0x1b
+     4ee:	8a 8f       	std	Y+26, r24	; 0x1a
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+     4f0:	88 8d       	ldd	r24, Y+24	; 0x18
+     4f2:	99 8d       	ldd	r25, Y+25	; 0x19
+     4f4:	01 97       	sbiw	r24, 0x01	; 1
+     4f6:	99 8f       	std	Y+25, r25	; 0x19
+     4f8:	88 8f       	std	Y+24, r24	; 0x18
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+     4fa:	88 8d       	ldd	r24, Y+24	; 0x18
+     4fc:	99 8d       	ldd	r25, Y+25	; 0x19
+     4fe:	89 2b       	or	r24, r25
+     500:	69 f7       	brne	.-38     	; 0x4dc <__EEPROM_REGION_LENGTH__+0xdc>
+     502:	3f c0       	rjmp	.+126    	; 0x582 <__EEPROM_REGION_LENGTH__+0x182>
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+     504:	6c 89       	ldd	r22, Y+20	; 0x14
+     506:	7d 89       	ldd	r23, Y+21	; 0x15
+     508:	8e 89       	ldd	r24, Y+22	; 0x16
+     50a:	9f 89       	ldd	r25, Y+23	; 0x17
+     50c:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     510:	dc 01       	movw	r26, r24
+     512:	cb 01       	movw	r24, r22
+     514:	99 8f       	std	Y+25, r25	; 0x19
+     516:	88 8f       	std	Y+24, r24	; 0x18
+     518:	88 8d       	ldd	r24, Y+24	; 0x18
+     51a:	99 8d       	ldd	r25, Y+25	; 0x19
+     51c:	9d 8f       	std	Y+29, r25	; 0x1d
+     51e:	8c 8f       	std	Y+28, r24	; 0x1c
+     520:	8c 8d       	ldd	r24, Y+28	; 0x1c
+     522:	9d 8d       	ldd	r25, Y+29	; 0x1d
+     524:	01 97       	sbiw	r24, 0x01	; 1
+     526:	f1 f7       	brne	.-4      	; 0x524 <__EEPROM_REGION_LENGTH__+0x124>
+     528:	9d 8f       	std	Y+29, r25	; 0x1d
+     52a:	8c 8f       	std	Y+28, r24	; 0x1c
+     52c:	2a c0       	rjmp	.+84     	; 0x582 <__EEPROM_REGION_LENGTH__+0x182>
+		__ticks = 1;
+	else if (__tmp2 > 65535)
+	{
+		_delay_ms(__us / 1000.0);
+	}
+	else if (__tmp > 255)
+     52e:	20 e0       	ldi	r18, 0x00	; 0
+     530:	30 e0       	ldi	r19, 0x00	; 0
+     532:	4f e7       	ldi	r20, 0x7F	; 127
+     534:	53 e4       	ldi	r21, 0x43	; 67
+     536:	6f 81       	ldd	r22, Y+7	; 0x07
+     538:	78 85       	ldd	r23, Y+8	; 0x08
+     53a:	89 85       	ldd	r24, Y+9	; 0x09
+     53c:	9a 85       	ldd	r25, Y+10	; 0x0a
+     53e:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     542:	18 16       	cp	r1, r24
+     544:	ac f4       	brge	.+42     	; 0x570 <__EEPROM_REGION_LENGTH__+0x170>
+	{
+		uint16_t __ticks=(uint16_t)__tmp2;
+     546:	6b 85       	ldd	r22, Y+11	; 0x0b
+     548:	7c 85       	ldd	r23, Y+12	; 0x0c
+     54a:	8d 85       	ldd	r24, Y+13	; 0x0d
+     54c:	9e 85       	ldd	r25, Y+14	; 0x0e
+     54e:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     552:	dc 01       	movw	r26, r24
+     554:	cb 01       	movw	r24, r22
+     556:	9f 8f       	std	Y+31, r25	; 0x1f
+     558:	8e 8f       	std	Y+30, r24	; 0x1e
+     55a:	8e 8d       	ldd	r24, Y+30	; 0x1e
+     55c:	9f 8d       	ldd	r25, Y+31	; 0x1f
+     55e:	99 a3       	std	Y+33, r25	; 0x21
+     560:	88 a3       	std	Y+32, r24	; 0x20
+     562:	88 a1       	ldd	r24, Y+32	; 0x20
+     564:	99 a1       	ldd	r25, Y+33	; 0x21
+     566:	01 97       	sbiw	r24, 0x01	; 1
+     568:	f1 f7       	brne	.-4      	; 0x566 <__EEPROM_REGION_LENGTH__+0x166>
+     56a:	99 a3       	std	Y+33, r25	; 0x21
+     56c:	88 a3       	std	Y+32, r24	; 0x20
+     56e:	0f c0       	rjmp	.+30     	; 0x58e <__EEPROM_REGION_LENGTH__+0x18e>
+		_delay_loop_2(__ticks);
+		return;
+	}
+	else
+		__ticks = (uint8_t)__tmp;
+     570:	6f 81       	ldd	r22, Y+7	; 0x07
+     572:	78 85       	ldd	r23, Y+8	; 0x08
+     574:	89 85       	ldd	r24, Y+9	; 0x09
+     576:	9a 85       	ldd	r25, Y+10	; 0x0a
+     578:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     57c:	dc 01       	movw	r26, r24
+     57e:	cb 01       	movw	r24, r22
+     580:	8f 87       	std	Y+15, r24	; 0x0f
+     582:	8f 85       	ldd	r24, Y+15	; 0x0f
+     584:	8a a3       	std	Y+34, r24	; 0x22
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+     586:	8a a1       	ldd	r24, Y+34	; 0x22
+     588:	8a 95       	dec	r24
+     58a:	f1 f7       	brne	.-4      	; 0x588 <__EEPROM_REGION_LENGTH__+0x188>
+     58c:	8a a3       	std	Y+34, r24	; 0x22
+	_delay_us(15); 
+	TRIG_L_set_level(false);
+     58e:	80 e0       	ldi	r24, 0x00	; 0
+     590:	0e 94 65 01 	call	0x2ca	; 0x2ca <TRIG_L_set_level>
+	
+	while(!ECHO_L_get_level()&&x<5000){
+     594:	05 c0       	rjmp	.+10     	; 0x5a0 <__EEPROM_REGION_LENGTH__+0x1a0>
+		x++;
+     596:	89 81       	ldd	r24, Y+1	; 0x01
+     598:	9a 81       	ldd	r25, Y+2	; 0x02
+     59a:	01 96       	adiw	r24, 0x01	; 1
+     59c:	9a 83       	std	Y+2, r25	; 0x02
+     59e:	89 83       	std	Y+1, r24	; 0x01
+	int x = 0; 
+	TRIG_L_set_level(true);
+	_delay_us(15); 
+	TRIG_L_set_level(false);
+	
+	while(!ECHO_L_get_level()&&x<5000){
+     5a0:	0e 94 5b 01 	call	0x2b6	; 0x2b6 <ECHO_L_get_level>
+     5a4:	98 2f       	mov	r25, r24
+     5a6:	81 e0       	ldi	r24, 0x01	; 1
+     5a8:	89 27       	eor	r24, r25
+     5aa:	88 23       	and	r24, r24
+     5ac:	59 f0       	breq	.+22     	; 0x5c4 <__EEPROM_REGION_LENGTH__+0x1c4>
+     5ae:	89 81       	ldd	r24, Y+1	; 0x01
+     5b0:	9a 81       	ldd	r25, Y+2	; 0x02
+     5b2:	88 38       	cpi	r24, 0x88	; 136
+     5b4:	93 41       	sbci	r25, 0x13	; 19
+     5b6:	7c f3       	brlt	.-34     	; 0x596 <__EEPROM_REGION_LENGTH__+0x196>
+		x++;
+	}
+	while(ECHO_L_get_level()&&x<5000)
+     5b8:	05 c0       	rjmp	.+10     	; 0x5c4 <__EEPROM_REGION_LENGTH__+0x1c4>
+	{
+		x++; 
+     5ba:	89 81       	ldd	r24, Y+1	; 0x01
+     5bc:	9a 81       	ldd	r25, Y+2	; 0x02
+     5be:	01 96       	adiw	r24, 0x01	; 1
+     5c0:	9a 83       	std	Y+2, r25	; 0x02
+     5c2:	89 83       	std	Y+1, r24	; 0x01
+	TRIG_L_set_level(false);
+	
+	while(!ECHO_L_get_level()&&x<5000){
+		x++;
+	}
+	while(ECHO_L_get_level()&&x<5000)
+     5c4:	0e 94 5b 01 	call	0x2b6	; 0x2b6 <ECHO_L_get_level>
+     5c8:	88 23       	and	r24, r24
+     5ca:	29 f0       	breq	.+10     	; 0x5d6 <__EEPROM_REGION_LENGTH__+0x1d6>
+     5cc:	89 81       	ldd	r24, Y+1	; 0x01
+     5ce:	9a 81       	ldd	r25, Y+2	; 0x02
+     5d0:	88 38       	cpi	r24, 0x88	; 136
+     5d2:	93 41       	sbci	r25, 0x13	; 19
+     5d4:	94 f3       	brlt	.-28     	; 0x5ba <__EEPROM_REGION_LENGTH__+0x1ba>
+	{
+		x++; 
+	}
+	if(x<DISTANCE){
+     5d6:	89 81       	ldd	r24, Y+1	; 0x01
+     5d8:	9a 81       	ldd	r25, Y+2	; 0x02
+     5da:	8c 3d       	cpi	r24, 0xDC	; 220
+     5dc:	95 40       	sbci	r25, 0x05	; 5
+     5de:	14 f4       	brge	.+4      	; 0x5e4 <__EEPROM_REGION_LENGTH__+0x1e4>
+		return true; 
+     5e0:	81 e0       	ldi	r24, 0x01	; 1
+     5e2:	01 c0       	rjmp	.+2      	; 0x5e6 <__EEPROM_REGION_LENGTH__+0x1e6>
+	}
+	return false; 
+     5e4:	80 e0       	ldi	r24, 0x00	; 0
+}
+     5e6:	a2 96       	adiw	r28, 0x22	; 34
+     5e8:	0f b6       	in	r0, 0x3f	; 63
+     5ea:	f8 94       	cli
+     5ec:	de bf       	out	0x3e, r29	; 62
+     5ee:	0f be       	out	0x3f, r0	; 63
+     5f0:	cd bf       	out	0x3d, r28	; 61
+     5f2:	df 91       	pop	r29
+     5f4:	cf 91       	pop	r28
+     5f6:	08 95       	ret
+
+000005f8 <scanR>:
+bool scanR(){
+     5f8:	cf 93       	push	r28
+     5fa:	df 93       	push	r29
+     5fc:	cd b7       	in	r28, 0x3d	; 61
+     5fe:	de b7       	in	r29, 0x3e	; 62
+     600:	a3 97       	sbiw	r28, 0x23	; 35
+     602:	0f b6       	in	r0, 0x3f	; 63
+     604:	f8 94       	cli
+     606:	de bf       	out	0x3e, r29	; 62
+     608:	0f be       	out	0x3f, r0	; 63
+     60a:	cd bf       	out	0x3d, r28	; 61
+	int x = 0;
+     60c:	1a 82       	std	Y+2, r1	; 0x02
+     60e:	19 82       	std	Y+1, r1	; 0x01
+	bool y = false; 
+     610:	1b 82       	std	Y+3, r1	; 0x03
+	TRIG_R_set_level(true);
+     612:	81 e0       	ldi	r24, 0x01	; 1
+     614:	0e 94 7e 01 	call	0x2fc	; 0x2fc <TRIG_R_set_level>
+     618:	80 e0       	ldi	r24, 0x00	; 0
+     61a:	90 e0       	ldi	r25, 0x00	; 0
+     61c:	a0 e7       	ldi	r26, 0x70	; 112
+     61e:	b1 e4       	ldi	r27, 0x41	; 65
+     620:	8c 83       	std	Y+4, r24	; 0x04
+     622:	9d 83       	std	Y+5, r25	; 0x05
+     624:	ae 83       	std	Y+6, r26	; 0x06
+     626:	bf 83       	std	Y+7, r27	; 0x07
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint8_t __ticks;
+	double __tmp2 ;
+	__tmp = ((F_CPU) / 3e6) * __us;
+     628:	2b ea       	ldi	r18, 0xAB	; 171
+     62a:	3a ea       	ldi	r19, 0xAA	; 170
+     62c:	4a e2       	ldi	r20, 0x2A	; 42
+     62e:	50 e4       	ldi	r21, 0x40	; 64
+     630:	6c 81       	ldd	r22, Y+4	; 0x04
+     632:	7d 81       	ldd	r23, Y+5	; 0x05
+     634:	8e 81       	ldd	r24, Y+6	; 0x06
+     636:	9f 81       	ldd	r25, Y+7	; 0x07
+     638:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     63c:	dc 01       	movw	r26, r24
+     63e:	cb 01       	movw	r24, r22
+     640:	88 87       	std	Y+8, r24	; 0x08
+     642:	99 87       	std	Y+9, r25	; 0x09
+     644:	aa 87       	std	Y+10, r26	; 0x0a
+     646:	bb 87       	std	Y+11, r27	; 0x0b
+	__tmp2 = ((F_CPU) / 4e6) * __us;
+     648:	8c 81       	ldd	r24, Y+4	; 0x04
+     64a:	9d 81       	ldd	r25, Y+5	; 0x05
+     64c:	ae 81       	ldd	r26, Y+6	; 0x06
+     64e:	bf 81       	ldd	r27, Y+7	; 0x07
+     650:	9c 01       	movw	r18, r24
+     652:	ad 01       	movw	r20, r26
+     654:	bc 01       	movw	r22, r24
+     656:	cd 01       	movw	r24, r26
+     658:	0e 94 64 0d 	call	0x1ac8	; 0x1ac8 <__addsf3>
+     65c:	dc 01       	movw	r26, r24
+     65e:	cb 01       	movw	r24, r22
+     660:	8c 87       	std	Y+12, r24	; 0x0c
+     662:	9d 87       	std	Y+13, r25	; 0x0d
+     664:	ae 87       	std	Y+14, r26	; 0x0e
+     666:	bf 87       	std	Y+15, r27	; 0x0f
+	if (__tmp < 1.0)
+     668:	20 e0       	ldi	r18, 0x00	; 0
+     66a:	30 e0       	ldi	r19, 0x00	; 0
+     66c:	40 e8       	ldi	r20, 0x80	; 128
+     66e:	5f e3       	ldi	r21, 0x3F	; 63
+     670:	68 85       	ldd	r22, Y+8	; 0x08
+     672:	79 85       	ldd	r23, Y+9	; 0x09
+     674:	8a 85       	ldd	r24, Y+10	; 0x0a
+     676:	9b 85       	ldd	r25, Y+11	; 0x0b
+     678:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     67c:	88 23       	and	r24, r24
+     67e:	1c f4       	brge	.+6      	; 0x686 <scanR+0x8e>
+		__ticks = 1;
+     680:	81 e0       	ldi	r24, 0x01	; 1
+     682:	88 8b       	std	Y+16, r24	; 0x10
+     684:	b2 c0       	rjmp	.+356    	; 0x7ea <scanR+0x1f2>
+	else if (__tmp2 > 65535)
+     686:	20 e0       	ldi	r18, 0x00	; 0
+     688:	3f ef       	ldi	r19, 0xFF	; 255
+     68a:	4f e7       	ldi	r20, 0x7F	; 127
+     68c:	57 e4       	ldi	r21, 0x47	; 71
+     68e:	6c 85       	ldd	r22, Y+12	; 0x0c
+     690:	7d 85       	ldd	r23, Y+13	; 0x0d
+     692:	8e 85       	ldd	r24, Y+14	; 0x0e
+     694:	9f 85       	ldd	r25, Y+15	; 0x0f
+     696:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     69a:	18 16       	cp	r1, r24
+     69c:	0c f0       	brlt	.+2      	; 0x6a0 <scanR+0xa8>
+     69e:	7b c0       	rjmp	.+246    	; 0x796 <scanR+0x19e>
+	{
+		_delay_ms(__us / 1000.0);
+     6a0:	20 e0       	ldi	r18, 0x00	; 0
+     6a2:	30 e0       	ldi	r19, 0x00	; 0
+     6a4:	4a e7       	ldi	r20, 0x7A	; 122
+     6a6:	54 e4       	ldi	r21, 0x44	; 68
+     6a8:	6c 81       	ldd	r22, Y+4	; 0x04
+     6aa:	7d 81       	ldd	r23, Y+5	; 0x05
+     6ac:	8e 81       	ldd	r24, Y+6	; 0x06
+     6ae:	9f 81       	ldd	r25, Y+7	; 0x07
+     6b0:	0e 94 d5 0d 	call	0x1baa	; 0x1baa <__divsf3>
+     6b4:	dc 01       	movw	r26, r24
+     6b6:	cb 01       	movw	r24, r22
+     6b8:	89 8b       	std	Y+17, r24	; 0x11
+     6ba:	9a 8b       	std	Y+18, r25	; 0x12
+     6bc:	ab 8b       	std	Y+19, r26	; 0x13
+     6be:	bc 8b       	std	Y+20, r27	; 0x14
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint16_t __ticks;
+	__tmp = ((F_CPU) / 4e3) * __ms;
+     6c0:	20 e0       	ldi	r18, 0x00	; 0
+     6c2:	30 e0       	ldi	r19, 0x00	; 0
+     6c4:	4a ef       	ldi	r20, 0xFA	; 250
+     6c6:	54 e4       	ldi	r21, 0x44	; 68
+     6c8:	69 89       	ldd	r22, Y+17	; 0x11
+     6ca:	7a 89       	ldd	r23, Y+18	; 0x12
+     6cc:	8b 89       	ldd	r24, Y+19	; 0x13
+     6ce:	9c 89       	ldd	r25, Y+20	; 0x14
+     6d0:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     6d4:	dc 01       	movw	r26, r24
+     6d6:	cb 01       	movw	r24, r22
+     6d8:	8d 8b       	std	Y+21, r24	; 0x15
+     6da:	9e 8b       	std	Y+22, r25	; 0x16
+     6dc:	af 8b       	std	Y+23, r26	; 0x17
+     6de:	b8 8f       	std	Y+24, r27	; 0x18
+	if (__tmp < 1.0)
+     6e0:	20 e0       	ldi	r18, 0x00	; 0
+     6e2:	30 e0       	ldi	r19, 0x00	; 0
+     6e4:	40 e8       	ldi	r20, 0x80	; 128
+     6e6:	5f e3       	ldi	r21, 0x3F	; 63
+     6e8:	6d 89       	ldd	r22, Y+21	; 0x15
+     6ea:	7e 89       	ldd	r23, Y+22	; 0x16
+     6ec:	8f 89       	ldd	r24, Y+23	; 0x17
+     6ee:	98 8d       	ldd	r25, Y+24	; 0x18
+     6f0:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     6f4:	88 23       	and	r24, r24
+     6f6:	2c f4       	brge	.+10     	; 0x702 <scanR+0x10a>
+		__ticks = 1;
+     6f8:	81 e0       	ldi	r24, 0x01	; 1
+     6fa:	90 e0       	ldi	r25, 0x00	; 0
+     6fc:	9a 8f       	std	Y+26, r25	; 0x1a
+     6fe:	89 8f       	std	Y+25, r24	; 0x19
+     700:	3f c0       	rjmp	.+126    	; 0x780 <scanR+0x188>
+	else if (__tmp > 65535)
+     702:	20 e0       	ldi	r18, 0x00	; 0
+     704:	3f ef       	ldi	r19, 0xFF	; 255
+     706:	4f e7       	ldi	r20, 0x7F	; 127
+     708:	57 e4       	ldi	r21, 0x47	; 71
+     70a:	6d 89       	ldd	r22, Y+21	; 0x15
+     70c:	7e 89       	ldd	r23, Y+22	; 0x16
+     70e:	8f 89       	ldd	r24, Y+23	; 0x17
+     710:	98 8d       	ldd	r25, Y+24	; 0x18
+     712:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     716:	18 16       	cp	r1, r24
+     718:	4c f5       	brge	.+82     	; 0x76c <scanR+0x174>
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+     71a:	20 e0       	ldi	r18, 0x00	; 0
+     71c:	30 e0       	ldi	r19, 0x00	; 0
+     71e:	40 e2       	ldi	r20, 0x20	; 32
+     720:	51 e4       	ldi	r21, 0x41	; 65
+     722:	69 89       	ldd	r22, Y+17	; 0x11
+     724:	7a 89       	ldd	r23, Y+18	; 0x12
+     726:	8b 89       	ldd	r24, Y+19	; 0x13
+     728:	9c 89       	ldd	r25, Y+20	; 0x14
+     72a:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     72e:	dc 01       	movw	r26, r24
+     730:	cb 01       	movw	r24, r22
+     732:	bc 01       	movw	r22, r24
+     734:	cd 01       	movw	r24, r26
+     736:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     73a:	dc 01       	movw	r26, r24
+     73c:	cb 01       	movw	r24, r22
+     73e:	9a 8f       	std	Y+26, r25	; 0x1a
+     740:	89 8f       	std	Y+25, r24	; 0x19
+     742:	0f c0       	rjmp	.+30     	; 0x762 <scanR+0x16a>
+     744:	88 ec       	ldi	r24, 0xC8	; 200
+     746:	90 e0       	ldi	r25, 0x00	; 0
+     748:	9c 8f       	std	Y+28, r25	; 0x1c
+     74a:	8b 8f       	std	Y+27, r24	; 0x1b
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+     74c:	8b 8d       	ldd	r24, Y+27	; 0x1b
+     74e:	9c 8d       	ldd	r25, Y+28	; 0x1c
+     750:	01 97       	sbiw	r24, 0x01	; 1
+     752:	f1 f7       	brne	.-4      	; 0x750 <scanR+0x158>
+     754:	9c 8f       	std	Y+28, r25	; 0x1c
+     756:	8b 8f       	std	Y+27, r24	; 0x1b
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+     758:	89 8d       	ldd	r24, Y+25	; 0x19
+     75a:	9a 8d       	ldd	r25, Y+26	; 0x1a
+     75c:	01 97       	sbiw	r24, 0x01	; 1
+     75e:	9a 8f       	std	Y+26, r25	; 0x1a
+     760:	89 8f       	std	Y+25, r24	; 0x19
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+     762:	89 8d       	ldd	r24, Y+25	; 0x19
+     764:	9a 8d       	ldd	r25, Y+26	; 0x1a
+     766:	89 2b       	or	r24, r25
+     768:	69 f7       	brne	.-38     	; 0x744 <scanR+0x14c>
+     76a:	3f c0       	rjmp	.+126    	; 0x7ea <scanR+0x1f2>
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+     76c:	6d 89       	ldd	r22, Y+21	; 0x15
+     76e:	7e 89       	ldd	r23, Y+22	; 0x16
+     770:	8f 89       	ldd	r24, Y+23	; 0x17
+     772:	98 8d       	ldd	r25, Y+24	; 0x18
+     774:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     778:	dc 01       	movw	r26, r24
+     77a:	cb 01       	movw	r24, r22
+     77c:	9a 8f       	std	Y+26, r25	; 0x1a
+     77e:	89 8f       	std	Y+25, r24	; 0x19
+     780:	89 8d       	ldd	r24, Y+25	; 0x19
+     782:	9a 8d       	ldd	r25, Y+26	; 0x1a
+     784:	9e 8f       	std	Y+30, r25	; 0x1e
+     786:	8d 8f       	std	Y+29, r24	; 0x1d
+     788:	8d 8d       	ldd	r24, Y+29	; 0x1d
+     78a:	9e 8d       	ldd	r25, Y+30	; 0x1e
+     78c:	01 97       	sbiw	r24, 0x01	; 1
+     78e:	f1 f7       	brne	.-4      	; 0x78c <scanR+0x194>
+     790:	9e 8f       	std	Y+30, r25	; 0x1e
+     792:	8d 8f       	std	Y+29, r24	; 0x1d
+     794:	2a c0       	rjmp	.+84     	; 0x7ea <scanR+0x1f2>
+		__ticks = 1;
+	else if (__tmp2 > 65535)
+	{
+		_delay_ms(__us / 1000.0);
+	}
+	else if (__tmp > 255)
+     796:	20 e0       	ldi	r18, 0x00	; 0
+     798:	30 e0       	ldi	r19, 0x00	; 0
+     79a:	4f e7       	ldi	r20, 0x7F	; 127
+     79c:	53 e4       	ldi	r21, 0x43	; 67
+     79e:	68 85       	ldd	r22, Y+8	; 0x08
+     7a0:	79 85       	ldd	r23, Y+9	; 0x09
+     7a2:	8a 85       	ldd	r24, Y+10	; 0x0a
+     7a4:	9b 85       	ldd	r25, Y+11	; 0x0b
+     7a6:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     7aa:	18 16       	cp	r1, r24
+     7ac:	ac f4       	brge	.+42     	; 0x7d8 <scanR+0x1e0>
+	{
+		uint16_t __ticks=(uint16_t)__tmp2;
+     7ae:	6c 85       	ldd	r22, Y+12	; 0x0c
+     7b0:	7d 85       	ldd	r23, Y+13	; 0x0d
+     7b2:	8e 85       	ldd	r24, Y+14	; 0x0e
+     7b4:	9f 85       	ldd	r25, Y+15	; 0x0f
+     7b6:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     7ba:	dc 01       	movw	r26, r24
+     7bc:	cb 01       	movw	r24, r22
+     7be:	98 a3       	std	Y+32, r25	; 0x20
+     7c0:	8f 8f       	std	Y+31, r24	; 0x1f
+     7c2:	8f 8d       	ldd	r24, Y+31	; 0x1f
+     7c4:	98 a1       	ldd	r25, Y+32	; 0x20
+     7c6:	9a a3       	std	Y+34, r25	; 0x22
+     7c8:	89 a3       	std	Y+33, r24	; 0x21
+     7ca:	89 a1       	ldd	r24, Y+33	; 0x21
+     7cc:	9a a1       	ldd	r25, Y+34	; 0x22
+     7ce:	01 97       	sbiw	r24, 0x01	; 1
+     7d0:	f1 f7       	brne	.-4      	; 0x7ce <scanR+0x1d6>
+     7d2:	9a a3       	std	Y+34, r25	; 0x22
+     7d4:	89 a3       	std	Y+33, r24	; 0x21
+     7d6:	0f c0       	rjmp	.+30     	; 0x7f6 <scanR+0x1fe>
+		_delay_loop_2(__ticks);
+		return;
+	}
+	else
+		__ticks = (uint8_t)__tmp;
+     7d8:	68 85       	ldd	r22, Y+8	; 0x08
+     7da:	79 85       	ldd	r23, Y+9	; 0x09
+     7dc:	8a 85       	ldd	r24, Y+10	; 0x0a
+     7de:	9b 85       	ldd	r25, Y+11	; 0x0b
+     7e0:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     7e4:	dc 01       	movw	r26, r24
+     7e6:	cb 01       	movw	r24, r22
+     7e8:	88 8b       	std	Y+16, r24	; 0x10
+     7ea:	88 89       	ldd	r24, Y+16	; 0x10
+     7ec:	8b a3       	std	Y+35, r24	; 0x23
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+     7ee:	8b a1       	ldd	r24, Y+35	; 0x23
+     7f0:	8a 95       	dec	r24
+     7f2:	f1 f7       	brne	.-4      	; 0x7f0 <scanR+0x1f8>
+     7f4:	8b a3       	std	Y+35, r24	; 0x23
+	_delay_us(15); 
+	TRIG_R_set_level(false);
+     7f6:	80 e0       	ldi	r24, 0x00	; 0
+     7f8:	0e 94 7e 01 	call	0x2fc	; 0x2fc <TRIG_R_set_level>
+	
+	while(!ECHO_R_get_level()&&x<5000){
+     7fc:	05 c0       	rjmp	.+10     	; 0x808 <__DATA_REGION_LENGTH__+0x8>
+		x++;
+     7fe:	89 81       	ldd	r24, Y+1	; 0x01
+     800:	9a 81       	ldd	r25, Y+2	; 0x02
+     802:	01 96       	adiw	r24, 0x01	; 1
+     804:	9a 83       	std	Y+2, r25	; 0x02
+     806:	89 83       	std	Y+1, r24	; 0x01
+	bool y = false; 
+	TRIG_R_set_level(true);
+	_delay_us(15); 
+	TRIG_R_set_level(false);
+	
+	while(!ECHO_R_get_level()&&x<5000){
+     808:	0e 94 74 01 	call	0x2e8	; 0x2e8 <ECHO_R_get_level>
+     80c:	98 2f       	mov	r25, r24
+     80e:	81 e0       	ldi	r24, 0x01	; 1
+     810:	89 27       	eor	r24, r25
+     812:	88 23       	and	r24, r24
+     814:	59 f0       	breq	.+22     	; 0x82c <__DATA_REGION_LENGTH__+0x2c>
+     816:	89 81       	ldd	r24, Y+1	; 0x01
+     818:	9a 81       	ldd	r25, Y+2	; 0x02
+     81a:	88 38       	cpi	r24, 0x88	; 136
+     81c:	93 41       	sbci	r25, 0x13	; 19
+     81e:	7c f3       	brlt	.-34     	; 0x7fe <scanR+0x206>
+		x++;
+	}
+	while(ECHO_R_get_level()&&x<5000)
+     820:	05 c0       	rjmp	.+10     	; 0x82c <__DATA_REGION_LENGTH__+0x2c>
+	{
+		x++; 
+     822:	89 81       	ldd	r24, Y+1	; 0x01
+     824:	9a 81       	ldd	r25, Y+2	; 0x02
+     826:	01 96       	adiw	r24, 0x01	; 1
+     828:	9a 83       	std	Y+2, r25	; 0x02
+     82a:	89 83       	std	Y+1, r24	; 0x01
+	TRIG_R_set_level(false);
+	
+	while(!ECHO_R_get_level()&&x<5000){
+		x++;
+	}
+	while(ECHO_R_get_level()&&x<5000)
+     82c:	0e 94 74 01 	call	0x2e8	; 0x2e8 <ECHO_R_get_level>
+     830:	88 23       	and	r24, r24
+     832:	29 f0       	breq	.+10     	; 0x83e <__DATA_REGION_LENGTH__+0x3e>
+     834:	89 81       	ldd	r24, Y+1	; 0x01
+     836:	9a 81       	ldd	r25, Y+2	; 0x02
+     838:	88 38       	cpi	r24, 0x88	; 136
+     83a:	93 41       	sbci	r25, 0x13	; 19
+     83c:	94 f3       	brlt	.-28     	; 0x822 <__DATA_REGION_LENGTH__+0x22>
+	{
+		x++; 
+	}
+	if(x<DISTANCE){
+     83e:	89 81       	ldd	r24, Y+1	; 0x01
+     840:	9a 81       	ldd	r25, Y+2	; 0x02
+     842:	8c 3d       	cpi	r24, 0xDC	; 220
+     844:	95 40       	sbci	r25, 0x05	; 5
+     846:	14 f4       	brge	.+4      	; 0x84c <__DATA_REGION_LENGTH__+0x4c>
+		y = true; 
+     848:	81 e0       	ldi	r24, 0x01	; 1
+     84a:	8b 83       	std	Y+3, r24	; 0x03
+	}
+	return y; 
+     84c:	8b 81       	ldd	r24, Y+3	; 0x03
+}
+     84e:	a3 96       	adiw	r28, 0x23	; 35
+     850:	0f b6       	in	r0, 0x3f	; 63
+     852:	f8 94       	cli
+     854:	de bf       	out	0x3e, r29	; 62
+     856:	0f be       	out	0x3f, r0	; 63
+     858:	cd bf       	out	0x3d, r28	; 61
+     85a:	df 91       	pop	r29
+     85c:	cf 91       	pop	r28
+     85e:	08 95       	ret
+
+00000860 <scanF>:
+bool scanF(){
+     860:	cf 93       	push	r28
+     862:	df 93       	push	r29
+     864:	cd b7       	in	r28, 0x3d	; 61
+     866:	de b7       	in	r29, 0x3e	; 62
+     868:	a2 97       	sbiw	r28, 0x22	; 34
+     86a:	0f b6       	in	r0, 0x3f	; 63
+     86c:	f8 94       	cli
+     86e:	de bf       	out	0x3e, r29	; 62
+     870:	0f be       	out	0x3f, r0	; 63
+     872:	cd bf       	out	0x3d, r28	; 61
+	int x = 0; 
+     874:	1a 82       	std	Y+2, r1	; 0x02
+     876:	19 82       	std	Y+1, r1	; 0x01
+	TRIG_F_set_level(true);
+     878:	81 e0       	ldi	r24, 0x01	; 1
+     87a:	0e 94 42 01 	call	0x284	; 0x284 <TRIG_F_set_level>
+     87e:	80 e0       	ldi	r24, 0x00	; 0
+     880:	90 e0       	ldi	r25, 0x00	; 0
+     882:	a0 e7       	ldi	r26, 0x70	; 112
+     884:	b1 e4       	ldi	r27, 0x41	; 65
+     886:	8b 83       	std	Y+3, r24	; 0x03
+     888:	9c 83       	std	Y+4, r25	; 0x04
+     88a:	ad 83       	std	Y+5, r26	; 0x05
+     88c:	be 83       	std	Y+6, r27	; 0x06
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint8_t __ticks;
+	double __tmp2 ;
+	__tmp = ((F_CPU) / 3e6) * __us;
+     88e:	2b ea       	ldi	r18, 0xAB	; 171
+     890:	3a ea       	ldi	r19, 0xAA	; 170
+     892:	4a e2       	ldi	r20, 0x2A	; 42
+     894:	50 e4       	ldi	r21, 0x40	; 64
+     896:	6b 81       	ldd	r22, Y+3	; 0x03
+     898:	7c 81       	ldd	r23, Y+4	; 0x04
+     89a:	8d 81       	ldd	r24, Y+5	; 0x05
+     89c:	9e 81       	ldd	r25, Y+6	; 0x06
+     89e:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     8a2:	dc 01       	movw	r26, r24
+     8a4:	cb 01       	movw	r24, r22
+     8a6:	8f 83       	std	Y+7, r24	; 0x07
+     8a8:	98 87       	std	Y+8, r25	; 0x08
+     8aa:	a9 87       	std	Y+9, r26	; 0x09
+     8ac:	ba 87       	std	Y+10, r27	; 0x0a
+	__tmp2 = ((F_CPU) / 4e6) * __us;
+     8ae:	8b 81       	ldd	r24, Y+3	; 0x03
+     8b0:	9c 81       	ldd	r25, Y+4	; 0x04
+     8b2:	ad 81       	ldd	r26, Y+5	; 0x05
+     8b4:	be 81       	ldd	r27, Y+6	; 0x06
+     8b6:	9c 01       	movw	r18, r24
+     8b8:	ad 01       	movw	r20, r26
+     8ba:	bc 01       	movw	r22, r24
+     8bc:	cd 01       	movw	r24, r26
+     8be:	0e 94 64 0d 	call	0x1ac8	; 0x1ac8 <__addsf3>
+     8c2:	dc 01       	movw	r26, r24
+     8c4:	cb 01       	movw	r24, r22
+     8c6:	8b 87       	std	Y+11, r24	; 0x0b
+     8c8:	9c 87       	std	Y+12, r25	; 0x0c
+     8ca:	ad 87       	std	Y+13, r26	; 0x0d
+     8cc:	be 87       	std	Y+14, r27	; 0x0e
+	if (__tmp < 1.0)
+     8ce:	20 e0       	ldi	r18, 0x00	; 0
+     8d0:	30 e0       	ldi	r19, 0x00	; 0
+     8d2:	40 e8       	ldi	r20, 0x80	; 128
+     8d4:	5f e3       	ldi	r21, 0x3F	; 63
+     8d6:	6f 81       	ldd	r22, Y+7	; 0x07
+     8d8:	78 85       	ldd	r23, Y+8	; 0x08
+     8da:	89 85       	ldd	r24, Y+9	; 0x09
+     8dc:	9a 85       	ldd	r25, Y+10	; 0x0a
+     8de:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     8e2:	88 23       	and	r24, r24
+     8e4:	1c f4       	brge	.+6      	; 0x8ec <scanF+0x8c>
+		__ticks = 1;
+     8e6:	81 e0       	ldi	r24, 0x01	; 1
+     8e8:	8f 87       	std	Y+15, r24	; 0x0f
+     8ea:	b2 c0       	rjmp	.+356    	; 0xa50 <__stack+0x151>
+	else if (__tmp2 > 65535)
+     8ec:	20 e0       	ldi	r18, 0x00	; 0
+     8ee:	3f ef       	ldi	r19, 0xFF	; 255
+     8f0:	4f e7       	ldi	r20, 0x7F	; 127
+     8f2:	57 e4       	ldi	r21, 0x47	; 71
+     8f4:	6b 85       	ldd	r22, Y+11	; 0x0b
+     8f6:	7c 85       	ldd	r23, Y+12	; 0x0c
+     8f8:	8d 85       	ldd	r24, Y+13	; 0x0d
+     8fa:	9e 85       	ldd	r25, Y+14	; 0x0e
+     8fc:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     900:	18 16       	cp	r1, r24
+     902:	0c f0       	brlt	.+2      	; 0x906 <__stack+0x7>
+     904:	7b c0       	rjmp	.+246    	; 0x9fc <__stack+0xfd>
+	{
+		_delay_ms(__us / 1000.0);
+     906:	20 e0       	ldi	r18, 0x00	; 0
+     908:	30 e0       	ldi	r19, 0x00	; 0
+     90a:	4a e7       	ldi	r20, 0x7A	; 122
+     90c:	54 e4       	ldi	r21, 0x44	; 68
+     90e:	6b 81       	ldd	r22, Y+3	; 0x03
+     910:	7c 81       	ldd	r23, Y+4	; 0x04
+     912:	8d 81       	ldd	r24, Y+5	; 0x05
+     914:	9e 81       	ldd	r25, Y+6	; 0x06
+     916:	0e 94 d5 0d 	call	0x1baa	; 0x1baa <__divsf3>
+     91a:	dc 01       	movw	r26, r24
+     91c:	cb 01       	movw	r24, r22
+     91e:	88 8b       	std	Y+16, r24	; 0x10
+     920:	99 8b       	std	Y+17, r25	; 0x11
+     922:	aa 8b       	std	Y+18, r26	; 0x12
+     924:	bb 8b       	std	Y+19, r27	; 0x13
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint16_t __ticks;
+	__tmp = ((F_CPU) / 4e3) * __ms;
+     926:	20 e0       	ldi	r18, 0x00	; 0
+     928:	30 e0       	ldi	r19, 0x00	; 0
+     92a:	4a ef       	ldi	r20, 0xFA	; 250
+     92c:	54 e4       	ldi	r21, 0x44	; 68
+     92e:	68 89       	ldd	r22, Y+16	; 0x10
+     930:	79 89       	ldd	r23, Y+17	; 0x11
+     932:	8a 89       	ldd	r24, Y+18	; 0x12
+     934:	9b 89       	ldd	r25, Y+19	; 0x13
+     936:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     93a:	dc 01       	movw	r26, r24
+     93c:	cb 01       	movw	r24, r22
+     93e:	8c 8b       	std	Y+20, r24	; 0x14
+     940:	9d 8b       	std	Y+21, r25	; 0x15
+     942:	ae 8b       	std	Y+22, r26	; 0x16
+     944:	bf 8b       	std	Y+23, r27	; 0x17
+	if (__tmp < 1.0)
+     946:	20 e0       	ldi	r18, 0x00	; 0
+     948:	30 e0       	ldi	r19, 0x00	; 0
+     94a:	40 e8       	ldi	r20, 0x80	; 128
+     94c:	5f e3       	ldi	r21, 0x3F	; 63
+     94e:	6c 89       	ldd	r22, Y+20	; 0x14
+     950:	7d 89       	ldd	r23, Y+21	; 0x15
+     952:	8e 89       	ldd	r24, Y+22	; 0x16
+     954:	9f 89       	ldd	r25, Y+23	; 0x17
+     956:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     95a:	88 23       	and	r24, r24
+     95c:	2c f4       	brge	.+10     	; 0x968 <__stack+0x69>
+		__ticks = 1;
+     95e:	81 e0       	ldi	r24, 0x01	; 1
+     960:	90 e0       	ldi	r25, 0x00	; 0
+     962:	99 8f       	std	Y+25, r25	; 0x19
+     964:	88 8f       	std	Y+24, r24	; 0x18
+     966:	3f c0       	rjmp	.+126    	; 0x9e6 <__stack+0xe7>
+	else if (__tmp > 65535)
+     968:	20 e0       	ldi	r18, 0x00	; 0
+     96a:	3f ef       	ldi	r19, 0xFF	; 255
+     96c:	4f e7       	ldi	r20, 0x7F	; 127
+     96e:	57 e4       	ldi	r21, 0x47	; 71
+     970:	6c 89       	ldd	r22, Y+20	; 0x14
+     972:	7d 89       	ldd	r23, Y+21	; 0x15
+     974:	8e 89       	ldd	r24, Y+22	; 0x16
+     976:	9f 89       	ldd	r25, Y+23	; 0x17
+     978:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     97c:	18 16       	cp	r1, r24
+     97e:	4c f5       	brge	.+82     	; 0x9d2 <__stack+0xd3>
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+     980:	20 e0       	ldi	r18, 0x00	; 0
+     982:	30 e0       	ldi	r19, 0x00	; 0
+     984:	40 e2       	ldi	r20, 0x20	; 32
+     986:	51 e4       	ldi	r21, 0x41	; 65
+     988:	68 89       	ldd	r22, Y+16	; 0x10
+     98a:	79 89       	ldd	r23, Y+17	; 0x11
+     98c:	8a 89       	ldd	r24, Y+18	; 0x12
+     98e:	9b 89       	ldd	r25, Y+19	; 0x13
+     990:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     994:	dc 01       	movw	r26, r24
+     996:	cb 01       	movw	r24, r22
+     998:	bc 01       	movw	r22, r24
+     99a:	cd 01       	movw	r24, r26
+     99c:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     9a0:	dc 01       	movw	r26, r24
+     9a2:	cb 01       	movw	r24, r22
+     9a4:	99 8f       	std	Y+25, r25	; 0x19
+     9a6:	88 8f       	std	Y+24, r24	; 0x18
+     9a8:	0f c0       	rjmp	.+30     	; 0x9c8 <__stack+0xc9>
+     9aa:	88 ec       	ldi	r24, 0xC8	; 200
+     9ac:	90 e0       	ldi	r25, 0x00	; 0
+     9ae:	9b 8f       	std	Y+27, r25	; 0x1b
+     9b0:	8a 8f       	std	Y+26, r24	; 0x1a
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+     9b2:	8a 8d       	ldd	r24, Y+26	; 0x1a
+     9b4:	9b 8d       	ldd	r25, Y+27	; 0x1b
+     9b6:	01 97       	sbiw	r24, 0x01	; 1
+     9b8:	f1 f7       	brne	.-4      	; 0x9b6 <__stack+0xb7>
+     9ba:	9b 8f       	std	Y+27, r25	; 0x1b
+     9bc:	8a 8f       	std	Y+26, r24	; 0x1a
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+     9be:	88 8d       	ldd	r24, Y+24	; 0x18
+     9c0:	99 8d       	ldd	r25, Y+25	; 0x19
+     9c2:	01 97       	sbiw	r24, 0x01	; 1
+     9c4:	99 8f       	std	Y+25, r25	; 0x19
+     9c6:	88 8f       	std	Y+24, r24	; 0x18
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+     9c8:	88 8d       	ldd	r24, Y+24	; 0x18
+     9ca:	99 8d       	ldd	r25, Y+25	; 0x19
+     9cc:	89 2b       	or	r24, r25
+     9ce:	69 f7       	brne	.-38     	; 0x9aa <__stack+0xab>
+     9d0:	3f c0       	rjmp	.+126    	; 0xa50 <__stack+0x151>
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+     9d2:	6c 89       	ldd	r22, Y+20	; 0x14
+     9d4:	7d 89       	ldd	r23, Y+21	; 0x15
+     9d6:	8e 89       	ldd	r24, Y+22	; 0x16
+     9d8:	9f 89       	ldd	r25, Y+23	; 0x17
+     9da:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     9de:	dc 01       	movw	r26, r24
+     9e0:	cb 01       	movw	r24, r22
+     9e2:	99 8f       	std	Y+25, r25	; 0x19
+     9e4:	88 8f       	std	Y+24, r24	; 0x18
+     9e6:	88 8d       	ldd	r24, Y+24	; 0x18
+     9e8:	99 8d       	ldd	r25, Y+25	; 0x19
+     9ea:	9d 8f       	std	Y+29, r25	; 0x1d
+     9ec:	8c 8f       	std	Y+28, r24	; 0x1c
+     9ee:	8c 8d       	ldd	r24, Y+28	; 0x1c
+     9f0:	9d 8d       	ldd	r25, Y+29	; 0x1d
+     9f2:	01 97       	sbiw	r24, 0x01	; 1
+     9f4:	f1 f7       	brne	.-4      	; 0x9f2 <__stack+0xf3>
+     9f6:	9d 8f       	std	Y+29, r25	; 0x1d
+     9f8:	8c 8f       	std	Y+28, r24	; 0x1c
+     9fa:	2a c0       	rjmp	.+84     	; 0xa50 <__stack+0x151>
+		__ticks = 1;
+	else if (__tmp2 > 65535)
+	{
+		_delay_ms(__us / 1000.0);
+	}
+	else if (__tmp > 255)
+     9fc:	20 e0       	ldi	r18, 0x00	; 0
+     9fe:	30 e0       	ldi	r19, 0x00	; 0
+     a00:	4f e7       	ldi	r20, 0x7F	; 127
+     a02:	53 e4       	ldi	r21, 0x43	; 67
+     a04:	6f 81       	ldd	r22, Y+7	; 0x07
+     a06:	78 85       	ldd	r23, Y+8	; 0x08
+     a08:	89 85       	ldd	r24, Y+9	; 0x09
+     a0a:	9a 85       	ldd	r25, Y+10	; 0x0a
+     a0c:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     a10:	18 16       	cp	r1, r24
+     a12:	ac f4       	brge	.+42     	; 0xa3e <__stack+0x13f>
+	{
+		uint16_t __ticks=(uint16_t)__tmp2;
+     a14:	6b 85       	ldd	r22, Y+11	; 0x0b
+     a16:	7c 85       	ldd	r23, Y+12	; 0x0c
+     a18:	8d 85       	ldd	r24, Y+13	; 0x0d
+     a1a:	9e 85       	ldd	r25, Y+14	; 0x0e
+     a1c:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     a20:	dc 01       	movw	r26, r24
+     a22:	cb 01       	movw	r24, r22
+     a24:	9f 8f       	std	Y+31, r25	; 0x1f
+     a26:	8e 8f       	std	Y+30, r24	; 0x1e
+     a28:	8e 8d       	ldd	r24, Y+30	; 0x1e
+     a2a:	9f 8d       	ldd	r25, Y+31	; 0x1f
+     a2c:	99 a3       	std	Y+33, r25	; 0x21
+     a2e:	88 a3       	std	Y+32, r24	; 0x20
+     a30:	88 a1       	ldd	r24, Y+32	; 0x20
+     a32:	99 a1       	ldd	r25, Y+33	; 0x21
+     a34:	01 97       	sbiw	r24, 0x01	; 1
+     a36:	f1 f7       	brne	.-4      	; 0xa34 <__stack+0x135>
+     a38:	99 a3       	std	Y+33, r25	; 0x21
+     a3a:	88 a3       	std	Y+32, r24	; 0x20
+     a3c:	0f c0       	rjmp	.+30     	; 0xa5c <__stack+0x15d>
+		_delay_loop_2(__ticks);
+		return;
+	}
+	else
+		__ticks = (uint8_t)__tmp;
+     a3e:	6f 81       	ldd	r22, Y+7	; 0x07
+     a40:	78 85       	ldd	r23, Y+8	; 0x08
+     a42:	89 85       	ldd	r24, Y+9	; 0x09
+     a44:	9a 85       	ldd	r25, Y+10	; 0x0a
+     a46:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     a4a:	dc 01       	movw	r26, r24
+     a4c:	cb 01       	movw	r24, r22
+     a4e:	8f 87       	std	Y+15, r24	; 0x0f
+     a50:	8f 85       	ldd	r24, Y+15	; 0x0f
+     a52:	8a a3       	std	Y+34, r24	; 0x22
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+     a54:	8a a1       	ldd	r24, Y+34	; 0x22
+     a56:	8a 95       	dec	r24
+     a58:	f1 f7       	brne	.-4      	; 0xa56 <__stack+0x157>
+     a5a:	8a a3       	std	Y+34, r24	; 0x22
+	_delay_us(15); 
+	TRIG_F_set_level(false);
+     a5c:	80 e0       	ldi	r24, 0x00	; 0
+     a5e:	0e 94 42 01 	call	0x284	; 0x284 <TRIG_F_set_level>
+	
+	while(!ECHO_F_get_level()&&x<5000){
+     a62:	05 c0       	rjmp	.+10     	; 0xa6e <__stack+0x16f>
+		x++;
+     a64:	89 81       	ldd	r24, Y+1	; 0x01
+     a66:	9a 81       	ldd	r25, Y+2	; 0x02
+     a68:	01 96       	adiw	r24, 0x01	; 1
+     a6a:	9a 83       	std	Y+2, r25	; 0x02
+     a6c:	89 83       	std	Y+1, r24	; 0x01
+	int x = 0; 
+	TRIG_F_set_level(true);
+	_delay_us(15); 
+	TRIG_F_set_level(false);
+	
+	while(!ECHO_F_get_level()&&x<5000){
+     a6e:	0e 94 51 01 	call	0x2a2	; 0x2a2 <ECHO_F_get_level>
+     a72:	98 2f       	mov	r25, r24
+     a74:	81 e0       	ldi	r24, 0x01	; 1
+     a76:	89 27       	eor	r24, r25
+     a78:	88 23       	and	r24, r24
+     a7a:	59 f0       	breq	.+22     	; 0xa92 <__stack+0x193>
+     a7c:	89 81       	ldd	r24, Y+1	; 0x01
+     a7e:	9a 81       	ldd	r25, Y+2	; 0x02
+     a80:	88 38       	cpi	r24, 0x88	; 136
+     a82:	93 41       	sbci	r25, 0x13	; 19
+     a84:	7c f3       	brlt	.-34     	; 0xa64 <__stack+0x165>
+		x++;
+	}
+	while(ECHO_F_get_level()&&x<5000)
+     a86:	05 c0       	rjmp	.+10     	; 0xa92 <__stack+0x193>
+	{
+		x++; 
+     a88:	89 81       	ldd	r24, Y+1	; 0x01
+     a8a:	9a 81       	ldd	r25, Y+2	; 0x02
+     a8c:	01 96       	adiw	r24, 0x01	; 1
+     a8e:	9a 83       	std	Y+2, r25	; 0x02
+     a90:	89 83       	std	Y+1, r24	; 0x01
+	TRIG_F_set_level(false);
+	
+	while(!ECHO_F_get_level()&&x<5000){
+		x++;
+	}
+	while(ECHO_F_get_level()&&x<5000)
+     a92:	0e 94 51 01 	call	0x2a2	; 0x2a2 <ECHO_F_get_level>
+     a96:	88 23       	and	r24, r24
+     a98:	29 f0       	breq	.+10     	; 0xaa4 <__stack+0x1a5>
+     a9a:	89 81       	ldd	r24, Y+1	; 0x01
+     a9c:	9a 81       	ldd	r25, Y+2	; 0x02
+     a9e:	88 38       	cpi	r24, 0x88	; 136
+     aa0:	93 41       	sbci	r25, 0x13	; 19
+     aa2:	94 f3       	brlt	.-28     	; 0xa88 <__stack+0x189>
+	{
+		x++; 
+	}
+	if(x<DISTANCE){
+     aa4:	89 81       	ldd	r24, Y+1	; 0x01
+     aa6:	9a 81       	ldd	r25, Y+2	; 0x02
+     aa8:	8c 3d       	cpi	r24, 0xDC	; 220
+     aaa:	95 40       	sbci	r25, 0x05	; 5
+     aac:	14 f4       	brge	.+4      	; 0xab2 <__stack+0x1b3>
+		return true; 
+     aae:	81 e0       	ldi	r24, 0x01	; 1
+     ab0:	01 c0       	rjmp	.+2      	; 0xab4 <__stack+0x1b5>
+			}	return false; 
+     ab2:	80 e0       	ldi	r24, 0x00	; 0
+}
+     ab4:	a2 96       	adiw	r28, 0x22	; 34
+     ab6:	0f b6       	in	r0, 0x3f	; 63
+     ab8:	f8 94       	cli
+     aba:	de bf       	out	0x3e, r29	; 62
+     abc:	0f be       	out	0x3f, r0	; 63
+     abe:	cd bf       	out	0x3d, r28	; 61
+     ac0:	df 91       	pop	r29
+     ac2:	cf 91       	pop	r28
+     ac4:	08 95       	ret
+
+00000ac6 <setSpeed>:
+
+void setSpeed(int left,int right){
+     ac6:	cf 93       	push	r28
+     ac8:	df 93       	push	r29
+     aca:	00 d0       	rcall	.+0      	; 0xacc <setSpeed+0x6>
+     acc:	00 d0       	rcall	.+0      	; 0xace <setSpeed+0x8>
+     ace:	cd b7       	in	r28, 0x3d	; 61
+     ad0:	de b7       	in	r29, 0x3e	; 62
+     ad2:	9a 83       	std	Y+2, r25	; 0x02
+     ad4:	89 83       	std	Y+1, r24	; 0x01
+     ad6:	7c 83       	std	Y+4, r23	; 0x04
+     ad8:	6b 83       	std	Y+3, r22	; 0x03
+	 if(left < 256){
+     ada:	89 81       	ldd	r24, Y+1	; 0x01
+     adc:	9a 81       	ldd	r25, Y+2	; 0x02
+     ade:	8f 3f       	cpi	r24, 0xFF	; 255
+     ae0:	91 05       	cpc	r25, r1
+     ae2:	09 f0       	breq	.+2      	; 0xae6 <setSpeed+0x20>
+     ae4:	5c f4       	brge	.+22     	; 0xafc <setSpeed+0x36>
+		 IN1_set_level(true);
+     ae6:	81 e0       	ldi	r24, 0x01	; 1
+     ae8:	0e 94 8d 01 	call	0x31a	; 0x31a <IN1_set_level>
+		 IN2_set_level(false);
+     aec:	80 e0       	ldi	r24, 0x00	; 0
+     aee:	0e 94 9c 01 	call	0x338	; 0x338 <IN2_set_level>
+		 OCR2A = left;
+     af2:	83 eb       	ldi	r24, 0xB3	; 179
+     af4:	90 e0       	ldi	r25, 0x00	; 0
+     af6:	29 81       	ldd	r18, Y+1	; 0x01
+     af8:	fc 01       	movw	r30, r24
+     afa:	20 83       	st	Z, r18
+	 }
+	 if(left > 256){
+     afc:	89 81       	ldd	r24, Y+1	; 0x01
+     afe:	9a 81       	ldd	r25, Y+2	; 0x02
+     b00:	81 30       	cpi	r24, 0x01	; 1
+     b02:	91 40       	sbci	r25, 0x01	; 1
+     b04:	64 f0       	brlt	.+24     	; 0xb1e <setSpeed+0x58>
+		 IN1_set_level(false);
+     b06:	80 e0       	ldi	r24, 0x00	; 0
+     b08:	0e 94 8d 01 	call	0x31a	; 0x31a <IN1_set_level>
+		 IN2_set_level(true);
+     b0c:	81 e0       	ldi	r24, 0x01	; 1
+     b0e:	0e 94 9c 01 	call	0x338	; 0x338 <IN2_set_level>
+		 OCR2A = left-255;
+     b12:	83 eb       	ldi	r24, 0xB3	; 179
+     b14:	90 e0       	ldi	r25, 0x00	; 0
+     b16:	29 81       	ldd	r18, Y+1	; 0x01
+     b18:	2f 5f       	subi	r18, 0xFF	; 255
+     b1a:	fc 01       	movw	r30, r24
+     b1c:	20 83       	st	Z, r18
+	 }
+	 if(left == 256){
+     b1e:	89 81       	ldd	r24, Y+1	; 0x01
+     b20:	9a 81       	ldd	r25, Y+2	; 0x02
+     b22:	81 15       	cp	r24, r1
+     b24:	91 40       	sbci	r25, 0x01	; 1
+     b26:	21 f4       	brne	.+8      	; 0xb30 <setSpeed+0x6a>
+		 OCR2A = 0;
+     b28:	83 eb       	ldi	r24, 0xB3	; 179
+     b2a:	90 e0       	ldi	r25, 0x00	; 0
+     b2c:	fc 01       	movw	r30, r24
+     b2e:	10 82       	st	Z, r1
+	 }
+	 
+	 if(right < 256){
+     b30:	8b 81       	ldd	r24, Y+3	; 0x03
+     b32:	9c 81       	ldd	r25, Y+4	; 0x04
+     b34:	8f 3f       	cpi	r24, 0xFF	; 255
+     b36:	91 05       	cpc	r25, r1
+     b38:	09 f0       	breq	.+2      	; 0xb3c <setSpeed+0x76>
+     b3a:	5c f4       	brge	.+22     	; 0xb52 <setSpeed+0x8c>
+		 
+		 IN3_set_level(false);
+     b3c:	80 e0       	ldi	r24, 0x00	; 0
+     b3e:	0e 94 ab 01 	call	0x356	; 0x356 <IN3_set_level>
+		 IN4_set_level(true);
+     b42:	81 e0       	ldi	r24, 0x01	; 1
+     b44:	0e 94 ba 01 	call	0x374	; 0x374 <IN4_set_level>
+		 OCR2B = right;
+     b48:	84 eb       	ldi	r24, 0xB4	; 180
+     b4a:	90 e0       	ldi	r25, 0x00	; 0
+     b4c:	2b 81       	ldd	r18, Y+3	; 0x03
+     b4e:	fc 01       	movw	r30, r24
+     b50:	20 83       	st	Z, r18
+	 }
+	 if(right > 256){
+     b52:	8b 81       	ldd	r24, Y+3	; 0x03
+     b54:	9c 81       	ldd	r25, Y+4	; 0x04
+     b56:	81 30       	cpi	r24, 0x01	; 1
+     b58:	91 40       	sbci	r25, 0x01	; 1
+     b5a:	64 f0       	brlt	.+24     	; 0xb74 <setSpeed+0xae>
+		 IN3_set_level(true);
+     b5c:	81 e0       	ldi	r24, 0x01	; 1
+     b5e:	0e 94 ab 01 	call	0x356	; 0x356 <IN3_set_level>
+		 IN4_set_level(false);
+     b62:	80 e0       	ldi	r24, 0x00	; 0
+     b64:	0e 94 ba 01 	call	0x374	; 0x374 <IN4_set_level>
+		 OCR2B = right-255;
+     b68:	84 eb       	ldi	r24, 0xB4	; 180
+     b6a:	90 e0       	ldi	r25, 0x00	; 0
+     b6c:	2b 81       	ldd	r18, Y+3	; 0x03
+     b6e:	2f 5f       	subi	r18, 0xFF	; 255
+     b70:	fc 01       	movw	r30, r24
+     b72:	20 83       	st	Z, r18
+	 }
+	 if(right == 256){
+     b74:	8b 81       	ldd	r24, Y+3	; 0x03
+     b76:	9c 81       	ldd	r25, Y+4	; 0x04
+     b78:	81 15       	cp	r24, r1
+     b7a:	91 40       	sbci	r25, 0x01	; 1
+     b7c:	21 f4       	brne	.+8      	; 0xb86 <setSpeed+0xc0>
+		 OCR2B = 0; 
+     b7e:	84 eb       	ldi	r24, 0xB4	; 180
+     b80:	90 e0       	ldi	r25, 0x00	; 0
+     b82:	fc 01       	movw	r30, r24
+     b84:	10 82       	st	Z, r1
+	 }
+}
+     b86:	00 00       	nop
+     b88:	0f 90       	pop	r0
+     b8a:	0f 90       	pop	r0
+     b8c:	0f 90       	pop	r0
+     b8e:	0f 90       	pop	r0
+     b90:	df 91       	pop	r29
+     b92:	cf 91       	pop	r28
+     b94:	08 95       	ret
+
+00000b96 <on_line>:
+
+bool on_line(){
+     b96:	cf 93       	push	r28
+     b98:	df 93       	push	r29
+     b9a:	00 d0       	rcall	.+0      	; 0xb9c <on_line+0x6>
+     b9c:	00 d0       	rcall	.+0      	; 0xb9e <on_line+0x8>
+     b9e:	cd b7       	in	r28, 0x3d	; 61
+     ba0:	de b7       	in	r29, 0x3e	; 62
+	int x[2] = {0,0}; 
+     ba2:	1a 82       	std	Y+2, r1	; 0x02
+     ba4:	19 82       	std	Y+1, r1	; 0x01
+     ba6:	1c 82       	std	Y+4, r1	; 0x04
+     ba8:	1b 82       	std	Y+3, r1	; 0x03
+	x[0] = ADC_0_get_conversion(5);
+     baa:	85 e0       	ldi	r24, 0x05	; 5
+     bac:	0e 94 72 07 	call	0xee4	; 0xee4 <ADC_0_get_conversion>
+     bb0:	9a 83       	std	Y+2, r25	; 0x02
+     bb2:	89 83       	std	Y+1, r24	; 0x01
+	x[1] = ADC_0_get_conversion(4);
+     bb4:	84 e0       	ldi	r24, 0x04	; 4
+     bb6:	0e 94 72 07 	call	0xee4	; 0xee4 <ADC_0_get_conversion>
+     bba:	9c 83       	std	Y+4, r25	; 0x04
+     bbc:	8b 83       	std	Y+3, r24	; 0x03
+	if(x[0] > 500 && x[1] > 500){
+     bbe:	89 81       	ldd	r24, Y+1	; 0x01
+     bc0:	9a 81       	ldd	r25, Y+2	; 0x02
+     bc2:	85 3f       	cpi	r24, 0xF5	; 245
+     bc4:	91 40       	sbci	r25, 0x01	; 1
+     bc6:	3c f0       	brlt	.+14     	; 0xbd6 <on_line+0x40>
+     bc8:	8b 81       	ldd	r24, Y+3	; 0x03
+     bca:	9c 81       	ldd	r25, Y+4	; 0x04
+     bcc:	85 3f       	cpi	r24, 0xF5	; 245
+     bce:	91 40       	sbci	r25, 0x01	; 1
+     bd0:	14 f0       	brlt	.+4      	; 0xbd6 <on_line+0x40>
+		return true;
+     bd2:	81 e0       	ldi	r24, 0x01	; 1
+     bd4:	01 c0       	rjmp	.+2      	; 0xbd8 <on_line+0x42>
+	}
+	return false; 
+     bd6:	80 e0       	ldi	r24, 0x00	; 0
+}
+     bd8:	0f 90       	pop	r0
+     bda:	0f 90       	pop	r0
+     bdc:	0f 90       	pop	r0
+     bde:	0f 90       	pop	r0
+     be0:	df 91       	pop	r29
+     be2:	cf 91       	pop	r28
+     be4:	08 95       	ret
+
+00000be6 <scan_all>:
+int scan_all(){
+     be6:	cf 93       	push	r28
+     be8:	df 93       	push	r29
+     bea:	cd b7       	in	r28, 0x3d	; 61
+     bec:	de b7       	in	r29, 0x3e	; 62
+	if (scanF())
+     bee:	0e 94 30 04 	call	0x860	; 0x860 <scanF>
+     bf2:	88 23       	and	r24, r24
+     bf4:	19 f0       	breq	.+6      	; 0xbfc <scan_all+0x16>
+	{
+		return 1; 
+     bf6:	81 e0       	ldi	r24, 0x01	; 1
+     bf8:	90 e0       	ldi	r25, 0x00	; 0
+     bfa:	10 c0       	rjmp	.+32     	; 0xc1c <scan_all+0x36>
+	}
+	if (scanR())
+     bfc:	0e 94 fc 02 	call	0x5f8	; 0x5f8 <scanR>
+     c00:	88 23       	and	r24, r24
+     c02:	19 f0       	breq	.+6      	; 0xc0a <scan_all+0x24>
+	{
+		return 2; 
+     c04:	82 e0       	ldi	r24, 0x02	; 2
+     c06:	90 e0       	ldi	r25, 0x00	; 0
+     c08:	09 c0       	rjmp	.+18     	; 0xc1c <scan_all+0x36>
+	}
+	if (scanL())
+     c0a:	0e 94 c9 01 	call	0x392	; 0x392 <scanL>
+     c0e:	88 23       	and	r24, r24
+     c10:	19 f0       	breq	.+6      	; 0xc18 <scan_all+0x32>
+	{
+		return 3; 
+     c12:	83 e0       	ldi	r24, 0x03	; 3
+     c14:	90 e0       	ldi	r25, 0x00	; 0
+     c16:	02 c0       	rjmp	.+4      	; 0xc1c <scan_all+0x36>
+	}
+	return 0;  
+     c18:	80 e0       	ldi	r24, 0x00	; 0
+     c1a:	90 e0       	ldi	r25, 0x00	; 0
+}
+     c1c:	df 91       	pop	r29
+     c1e:	cf 91       	pop	r28
+     c20:	08 95       	ret
+
+00000c22 <main>:
+
+# define F_CPU 100000UL
+
+int main(void)
+{
+     c22:	cf 93       	push	r28
+     c24:	df 93       	push	r29
+     c26:	cd b7       	in	r28, 0x3d	; 61
+     c28:	de b7       	in	r29, 0x3e	; 62
+     c2a:	65 97       	sbiw	r28, 0x15	; 21
+     c2c:	0f b6       	in	r0, 0x3f	; 63
+     c2e:	f8 94       	cli
+     c30:	de bf       	out	0x3e, r29	; 62
+     c32:	0f be       	out	0x3f, r0	; 63
+     c34:	cd bf       	out	0x3d, r28	; 61
+	
+	/* Initializes MCU, drivers and middleware */
+	
+	atmel_start_init();
+     c36:	0e 94 48 00 	call	0x90	; 0x90 <atmel_start_init>
+	for (long i=0;i<2500000;i++)
+     c3a:	19 82       	std	Y+1, r1	; 0x01
+     c3c:	1a 82       	std	Y+2, r1	; 0x02
+     c3e:	1b 82       	std	Y+3, r1	; 0x03
+     c40:	1c 82       	std	Y+4, r1	; 0x04
+     c42:	0b c0       	rjmp	.+22     	; 0xc5a <main+0x38>
+     c44:	89 81       	ldd	r24, Y+1	; 0x01
+     c46:	9a 81       	ldd	r25, Y+2	; 0x02
+     c48:	ab 81       	ldd	r26, Y+3	; 0x03
+     c4a:	bc 81       	ldd	r27, Y+4	; 0x04
+     c4c:	01 96       	adiw	r24, 0x01	; 1
+     c4e:	a1 1d       	adc	r26, r1
+     c50:	b1 1d       	adc	r27, r1
+     c52:	89 83       	std	Y+1, r24	; 0x01
+     c54:	9a 83       	std	Y+2, r25	; 0x02
+     c56:	ab 83       	std	Y+3, r26	; 0x03
+     c58:	bc 83       	std	Y+4, r27	; 0x04
+     c5a:	89 81       	ldd	r24, Y+1	; 0x01
+     c5c:	9a 81       	ldd	r25, Y+2	; 0x02
+     c5e:	ab 81       	ldd	r26, Y+3	; 0x03
+     c60:	bc 81       	ldd	r27, Y+4	; 0x04
+     c62:	80 3a       	cpi	r24, 0xA0	; 160
+     c64:	95 42       	sbci	r25, 0x25	; 37
+     c66:	a6 42       	sbci	r26, 0x26	; 38
+     c68:	b1 05       	cpc	r27, r1
+     c6a:	64 f3       	brlt	.-40     	; 0xc44 <main+0x22>
+	{
+		 
+	}
+	setSpeed(400,250); 
+     c6c:	6a ef       	ldi	r22, 0xFA	; 250
+     c6e:	70 e0       	ldi	r23, 0x00	; 0
+     c70:	80 e9       	ldi	r24, 0x90	; 144
+     c72:	91 e0       	ldi	r25, 0x01	; 1
+     c74:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+	/* Replace with your application code */
+	while (1) {
+		int x = scan_all();
+     c78:	0e 94 f3 05 	call	0xbe6	; 0xbe6 <scan_all>
+     c7c:	9e 83       	std	Y+6, r25	; 0x06
+     c7e:	8d 83       	std	Y+5, r24	; 0x05
+		
+		bool y = on_line(); 
+     c80:	0e 94 cb 05 	call	0xb96	; 0xb96 <on_line>
+     c84:	8f 83       	std	Y+7, r24	; 0x07
+		if (x == 0&& y)
+     c86:	8d 81       	ldd	r24, Y+5	; 0x05
+     c88:	9e 81       	ldd	r25, Y+6	; 0x06
+     c8a:	89 2b       	or	r24, r25
+     c8c:	49 f4       	brne	.+18     	; 0xca0 <main+0x7e>
+     c8e:	8f 81       	ldd	r24, Y+7	; 0x07
+     c90:	88 23       	and	r24, r24
+     c92:	31 f0       	breq	.+12     	; 0xca0 <main+0x7e>
+		{
+			setSpeed(0,0);
+     c94:	60 e0       	ldi	r22, 0x00	; 0
+     c96:	70 e0       	ldi	r23, 0x00	; 0
+     c98:	80 e0       	ldi	r24, 0x00	; 0
+     c9a:	90 e0       	ldi	r25, 0x00	; 0
+     c9c:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+		}
+		if(x == 2&& y){
+     ca0:	8d 81       	ldd	r24, Y+5	; 0x05
+     ca2:	9e 81       	ldd	r25, Y+6	; 0x06
+     ca4:	02 97       	sbiw	r24, 0x02	; 2
+     ca6:	49 f4       	brne	.+18     	; 0xcba <main+0x98>
+     ca8:	8f 81       	ldd	r24, Y+7	; 0x07
+     caa:	88 23       	and	r24, r24
+     cac:	31 f0       	breq	.+12     	; 0xcba <main+0x98>
+			setSpeed(450,0);
+     cae:	60 e0       	ldi	r22, 0x00	; 0
+     cb0:	70 e0       	ldi	r23, 0x00	; 0
+     cb2:	82 ec       	ldi	r24, 0xC2	; 194
+     cb4:	91 e0       	ldi	r25, 0x01	; 1
+     cb6:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+		}
+		if(x == 3&& y){
+     cba:	8d 81       	ldd	r24, Y+5	; 0x05
+     cbc:	9e 81       	ldd	r25, Y+6	; 0x06
+     cbe:	03 97       	sbiw	r24, 0x03	; 3
+     cc0:	49 f4       	brne	.+18     	; 0xcd4 <main+0xb2>
+     cc2:	8f 81       	ldd	r24, Y+7	; 0x07
+     cc4:	88 23       	and	r24, r24
+     cc6:	31 f0       	breq	.+12     	; 0xcd4 <main+0xb2>
+			setSpeed(0,450);
+     cc8:	62 ec       	ldi	r22, 0xC2	; 194
+     cca:	71 e0       	ldi	r23, 0x01	; 1
+     ccc:	80 e0       	ldi	r24, 0x00	; 0
+     cce:	90 e0       	ldi	r25, 0x00	; 0
+     cd0:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+		}
+		if(x == 1&& y){
+     cd4:	8d 81       	ldd	r24, Y+5	; 0x05
+     cd6:	9e 81       	ldd	r25, Y+6	; 0x06
+     cd8:	01 97       	sbiw	r24, 0x01	; 1
+     cda:	49 f4       	brne	.+18     	; 0xcee <main+0xcc>
+     cdc:	8f 81       	ldd	r24, Y+7	; 0x07
+     cde:	88 23       	and	r24, r24
+     ce0:	31 f0       	breq	.+12     	; 0xcee <main+0xcc>
+			setSpeed(510,510);
+     ce2:	6e ef       	ldi	r22, 0xFE	; 254
+     ce4:	71 e0       	ldi	r23, 0x01	; 1
+     ce6:	8e ef       	ldi	r24, 0xFE	; 254
+     ce8:	91 e0       	ldi	r25, 0x01	; 1
+     cea:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+		}
+		
+	
+		if (!y)
+     cee:	9f 81       	ldd	r25, Y+7	; 0x07
+     cf0:	81 e0       	ldi	r24, 0x01	; 1
+     cf2:	89 27       	eor	r24, r25
+     cf4:	88 23       	and	r24, r24
+     cf6:	09 f4       	brne	.+2      	; 0xcfa <main+0xd8>
+     cf8:	bf cf       	rjmp	.-130    	; 0xc78 <main+0x56>
+		{
+			setSpeed(250,250);
+     cfa:	6a ef       	ldi	r22, 0xFA	; 250
+     cfc:	70 e0       	ldi	r23, 0x00	; 0
+     cfe:	8a ef       	ldi	r24, 0xFA	; 250
+     d00:	90 e0       	ldi	r25, 0x00	; 0
+     d02:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+     d06:	80 e0       	ldi	r24, 0x00	; 0
+     d08:	90 e0       	ldi	r25, 0x00	; 0
+     d0a:	aa ef       	ldi	r26, 0xFA	; 250
+     d0c:	b4 e4       	ldi	r27, 0x44	; 68
+     d0e:	88 87       	std	Y+8, r24	; 0x08
+     d10:	99 87       	std	Y+9, r25	; 0x09
+     d12:	aa 87       	std	Y+10, r26	; 0x0a
+     d14:	bb 87       	std	Y+11, r27	; 0x0b
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+
+#else
+	uint16_t __ticks;
+	__tmp = ((F_CPU) / 4e3) * __ms;
+     d16:	20 e0       	ldi	r18, 0x00	; 0
+     d18:	30 e0       	ldi	r19, 0x00	; 0
+     d1a:	4a ef       	ldi	r20, 0xFA	; 250
+     d1c:	54 e4       	ldi	r21, 0x44	; 68
+     d1e:	68 85       	ldd	r22, Y+8	; 0x08
+     d20:	79 85       	ldd	r23, Y+9	; 0x09
+     d22:	8a 85       	ldd	r24, Y+10	; 0x0a
+     d24:	9b 85       	ldd	r25, Y+11	; 0x0b
+     d26:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     d2a:	dc 01       	movw	r26, r24
+     d2c:	cb 01       	movw	r24, r22
+     d2e:	8c 87       	std	Y+12, r24	; 0x0c
+     d30:	9d 87       	std	Y+13, r25	; 0x0d
+     d32:	ae 87       	std	Y+14, r26	; 0x0e
+     d34:	bf 87       	std	Y+15, r27	; 0x0f
+	if (__tmp < 1.0)
+     d36:	20 e0       	ldi	r18, 0x00	; 0
+     d38:	30 e0       	ldi	r19, 0x00	; 0
+     d3a:	40 e8       	ldi	r20, 0x80	; 128
+     d3c:	5f e3       	ldi	r21, 0x3F	; 63
+     d3e:	6c 85       	ldd	r22, Y+12	; 0x0c
+     d40:	7d 85       	ldd	r23, Y+13	; 0x0d
+     d42:	8e 85       	ldd	r24, Y+14	; 0x0e
+     d44:	9f 85       	ldd	r25, Y+15	; 0x0f
+     d46:	0e 94 d0 0d 	call	0x1ba0	; 0x1ba0 <__cmpsf2>
+     d4a:	88 23       	and	r24, r24
+     d4c:	2c f4       	brge	.+10     	; 0xd58 <main+0x136>
+		__ticks = 1;
+     d4e:	81 e0       	ldi	r24, 0x01	; 1
+     d50:	90 e0       	ldi	r25, 0x00	; 0
+     d52:	99 8b       	std	Y+17, r25	; 0x11
+     d54:	88 8b       	std	Y+16, r24	; 0x10
+     d56:	3f c0       	rjmp	.+126    	; 0xdd6 <main+0x1b4>
+	else if (__tmp > 65535)
+     d58:	20 e0       	ldi	r18, 0x00	; 0
+     d5a:	3f ef       	ldi	r19, 0xFF	; 255
+     d5c:	4f e7       	ldi	r20, 0x7F	; 127
+     d5e:	57 e4       	ldi	r21, 0x47	; 71
+     d60:	6c 85       	ldd	r22, Y+12	; 0x0c
+     d62:	7d 85       	ldd	r23, Y+13	; 0x0d
+     d64:	8e 85       	ldd	r24, Y+14	; 0x0e
+     d66:	9f 85       	ldd	r25, Y+15	; 0x0f
+     d68:	0e 94 eb 0e 	call	0x1dd6	; 0x1dd6 <__gesf2>
+     d6c:	18 16       	cp	r1, r24
+     d6e:	4c f5       	brge	.+82     	; 0xdc2 <main+0x1a0>
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+     d70:	20 e0       	ldi	r18, 0x00	; 0
+     d72:	30 e0       	ldi	r19, 0x00	; 0
+     d74:	40 e2       	ldi	r20, 0x20	; 32
+     d76:	51 e4       	ldi	r21, 0x41	; 65
+     d78:	68 85       	ldd	r22, Y+8	; 0x08
+     d7a:	79 85       	ldd	r23, Y+9	; 0x09
+     d7c:	8a 85       	ldd	r24, Y+10	; 0x0a
+     d7e:	9b 85       	ldd	r25, Y+11	; 0x0b
+     d80:	0e 94 f0 0e 	call	0x1de0	; 0x1de0 <__mulsf3>
+     d84:	dc 01       	movw	r26, r24
+     d86:	cb 01       	movw	r24, r22
+     d88:	bc 01       	movw	r22, r24
+     d8a:	cd 01       	movw	r24, r26
+     d8c:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     d90:	dc 01       	movw	r26, r24
+     d92:	cb 01       	movw	r24, r22
+     d94:	99 8b       	std	Y+17, r25	; 0x11
+     d96:	88 8b       	std	Y+16, r24	; 0x10
+     d98:	0f c0       	rjmp	.+30     	; 0xdb8 <main+0x196>
+     d9a:	88 ec       	ldi	r24, 0xC8	; 200
+     d9c:	90 e0       	ldi	r25, 0x00	; 0
+     d9e:	9b 8b       	std	Y+19, r25	; 0x13
+     da0:	8a 8b       	std	Y+18, r24	; 0x12
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+     da2:	8a 89       	ldd	r24, Y+18	; 0x12
+     da4:	9b 89       	ldd	r25, Y+19	; 0x13
+     da6:	01 97       	sbiw	r24, 0x01	; 1
+     da8:	f1 f7       	brne	.-4      	; 0xda6 <main+0x184>
+     daa:	9b 8b       	std	Y+19, r25	; 0x13
+     dac:	8a 8b       	std	Y+18, r24	; 0x12
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+     dae:	88 89       	ldd	r24, Y+16	; 0x10
+     db0:	99 89       	ldd	r25, Y+17	; 0x11
+     db2:	01 97       	sbiw	r24, 0x01	; 1
+     db4:	99 8b       	std	Y+17, r25	; 0x11
+     db6:	88 8b       	std	Y+16, r24	; 0x10
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+     db8:	88 89       	ldd	r24, Y+16	; 0x10
+     dba:	99 89       	ldd	r25, Y+17	; 0x11
+     dbc:	89 2b       	or	r24, r25
+     dbe:	69 f7       	brne	.-38     	; 0xd9a <main+0x178>
+     dc0:	14 c0       	rjmp	.+40     	; 0xdea <main+0x1c8>
+			__ticks --;
+		}
+		return;
+	}
+	else
+		__ticks = (uint16_t)__tmp;
+     dc2:	6c 85       	ldd	r22, Y+12	; 0x0c
+     dc4:	7d 85       	ldd	r23, Y+13	; 0x0d
+     dc6:	8e 85       	ldd	r24, Y+14	; 0x0e
+     dc8:	9f 85       	ldd	r25, Y+15	; 0x0f
+     dca:	0e 94 47 0e 	call	0x1c8e	; 0x1c8e <__fixunssfsi>
+     dce:	dc 01       	movw	r26, r24
+     dd0:	cb 01       	movw	r24, r22
+     dd2:	99 8b       	std	Y+17, r25	; 0x11
+     dd4:	88 8b       	std	Y+16, r24	; 0x10
+     dd6:	88 89       	ldd	r24, Y+16	; 0x10
+     dd8:	99 89       	ldd	r25, Y+17	; 0x11
+     dda:	9d 8b       	std	Y+21, r25	; 0x15
+     ddc:	8c 8b       	std	Y+20, r24	; 0x14
+     dde:	8c 89       	ldd	r24, Y+20	; 0x14
+     de0:	9d 89       	ldd	r25, Y+21	; 0x15
+     de2:	01 97       	sbiw	r24, 0x01	; 1
+     de4:	f1 f7       	brne	.-4      	; 0xde2 <main+0x1c0>
+     de6:	9d 8b       	std	Y+21, r25	; 0x15
+     de8:	8c 8b       	std	Y+20, r24	; 0x14
+			_delay_ms(2000);  
+			setSpeed(0,0);
+     dea:	60 e0       	ldi	r22, 0x00	; 0
+     dec:	70 e0       	ldi	r23, 0x00	; 0
+     dee:	80 e0       	ldi	r24, 0x00	; 0
+     df0:	90 e0       	ldi	r25, 0x00	; 0
+     df2:	0e 94 63 05 	call	0xac6	; 0xac6 <setSpeed>
+		}
+		
+	}
+     df6:	40 cf       	rjmp	.-384    	; 0xc78 <main+0x56>
+
+00000df8 <ADC_0_init>:
+ * \return Nothing
+ */
+void ADC_0_disable()
+{
+	ADCSRA &= ~(1 << ADEN);
+}
+     df8:	cf 93       	push	r28
+     dfa:	df 93       	push	r29
+     dfc:	cd b7       	in	r28, 0x3d	; 61
+     dfe:	de b7       	in	r29, 0x3e	; 62
+     e00:	84 e6       	ldi	r24, 0x64	; 100
+     e02:	90 e0       	ldi	r25, 0x00	; 0
+     e04:	24 e6       	ldi	r18, 0x64	; 100
+     e06:	30 e0       	ldi	r19, 0x00	; 0
+     e08:	f9 01       	movw	r30, r18
+     e0a:	20 81       	ld	r18, Z
+     e0c:	2e 7f       	andi	r18, 0xFE	; 254
+     e0e:	fc 01       	movw	r30, r24
+     e10:	20 83       	st	Z, r18
+     e12:	8c e7       	ldi	r24, 0x7C	; 124
+     e14:	90 e0       	ldi	r25, 0x00	; 0
+     e16:	24 e4       	ldi	r18, 0x44	; 68
+     e18:	fc 01       	movw	r30, r24
+     e1a:	20 83       	st	Z, r18
+     e1c:	8a e7       	ldi	r24, 0x7A	; 122
+     e1e:	90 e0       	ldi	r25, 0x00	; 0
+     e20:	22 e8       	ldi	r18, 0x82	; 130
+     e22:	fc 01       	movw	r30, r24
+     e24:	20 83       	st	Z, r18
+     e26:	8b e7       	ldi	r24, 0x7B	; 123
+     e28:	90 e0       	ldi	r25, 0x00	; 0
+     e2a:	fc 01       	movw	r30, r24
+     e2c:	10 82       	st	Z, r1
+     e2e:	8e e7       	ldi	r24, 0x7E	; 126
+     e30:	90 e0       	ldi	r25, 0x00	; 0
+     e32:	20 e3       	ldi	r18, 0x30	; 48
+     e34:	fc 01       	movw	r30, r24
+     e36:	20 83       	st	Z, r18
+     e38:	80 e0       	ldi	r24, 0x00	; 0
+     e3a:	df 91       	pop	r29
+     e3c:	cf 91       	pop	r28
+     e3e:	08 95       	ret
+
+00000e40 <ADC_0_start_conversion>:
+ * \param[in] channel The ADC channel to start conversion on
+ *
+ * \return Nothing
+ */
+void ADC_0_start_conversion(adc_0_channel_t channel)
+{
+     e40:	cf 93       	push	r28
+     e42:	df 93       	push	r29
+     e44:	1f 92       	push	r1
+     e46:	cd b7       	in	r28, 0x3d	; 61
+     e48:	de b7       	in	r29, 0x3e	; 62
+     e4a:	89 83       	std	Y+1, r24	; 0x01
+	ADMUX &= ~0x0f;
+     e4c:	8c e7       	ldi	r24, 0x7C	; 124
+     e4e:	90 e0       	ldi	r25, 0x00	; 0
+     e50:	2c e7       	ldi	r18, 0x7C	; 124
+     e52:	30 e0       	ldi	r19, 0x00	; 0
+     e54:	f9 01       	movw	r30, r18
+     e56:	20 81       	ld	r18, Z
+     e58:	20 7f       	andi	r18, 0xF0	; 240
+     e5a:	fc 01       	movw	r30, r24
+     e5c:	20 83       	st	Z, r18
+	ADMUX |= channel;
+     e5e:	8c e7       	ldi	r24, 0x7C	; 124
+     e60:	90 e0       	ldi	r25, 0x00	; 0
+     e62:	2c e7       	ldi	r18, 0x7C	; 124
+     e64:	30 e0       	ldi	r19, 0x00	; 0
+     e66:	f9 01       	movw	r30, r18
+     e68:	30 81       	ld	r19, Z
+     e6a:	29 81       	ldd	r18, Y+1	; 0x01
+     e6c:	23 2b       	or	r18, r19
+     e6e:	fc 01       	movw	r30, r24
+     e70:	20 83       	st	Z, r18
+	ADCSRA |= (1 << ADSC);
+     e72:	8a e7       	ldi	r24, 0x7A	; 122
+     e74:	90 e0       	ldi	r25, 0x00	; 0
+     e76:	2a e7       	ldi	r18, 0x7A	; 122
+     e78:	30 e0       	ldi	r19, 0x00	; 0
+     e7a:	f9 01       	movw	r30, r18
+     e7c:	20 81       	ld	r18, Z
+     e7e:	20 64       	ori	r18, 0x40	; 64
+     e80:	fc 01       	movw	r30, r24
+     e82:	20 83       	st	Z, r18
+}
+     e84:	00 00       	nop
+     e86:	0f 90       	pop	r0
+     e88:	df 91       	pop	r29
+     e8a:	cf 91       	pop	r28
+     e8c:	08 95       	ret
+
+00000e8e <ADC_0_is_conversion_done>:
+ * \return The status of ADC converison done check
+ * \retval true The ADC conversion is done
+ * \retval false The ADC converison is not done
+ */
+bool ADC_0_is_conversion_done()
+{
+     e8e:	cf 93       	push	r28
+     e90:	df 93       	push	r29
+     e92:	cd b7       	in	r28, 0x3d	; 61
+     e94:	de b7       	in	r29, 0x3e	; 62
+	return ((ADCSRA & (1 << ADIF)));
+     e96:	8a e7       	ldi	r24, 0x7A	; 122
+     e98:	90 e0       	ldi	r25, 0x00	; 0
+     e9a:	fc 01       	movw	r30, r24
+     e9c:	80 81       	ld	r24, Z
+     e9e:	88 2f       	mov	r24, r24
+     ea0:	90 e0       	ldi	r25, 0x00	; 0
+     ea2:	80 71       	andi	r24, 0x10	; 16
+     ea4:	99 27       	eor	r25, r25
+     ea6:	21 e0       	ldi	r18, 0x01	; 1
+     ea8:	89 2b       	or	r24, r25
+     eaa:	09 f4       	brne	.+2      	; 0xeae <ADC_0_is_conversion_done+0x20>
+     eac:	20 e0       	ldi	r18, 0x00	; 0
+     eae:	82 2f       	mov	r24, r18
+}
+     eb0:	df 91       	pop	r29
+     eb2:	cf 91       	pop	r28
+     eb4:	08 95       	ret
+
+00000eb6 <ADC_0_get_conversion_result>:
+ * \brief Read a conversion result from ADC_0
+ *
+ * \return Conversion result read from the ADC_0 ADC module
+ */
+adc_result_t ADC_0_get_conversion_result(void)
+{
+     eb6:	cf 93       	push	r28
+     eb8:	df 93       	push	r29
+     eba:	cd b7       	in	r28, 0x3d	; 61
+     ebc:	de b7       	in	r29, 0x3e	; 62
+	return (ADCL | ADCH << 8);
+     ebe:	88 e7       	ldi	r24, 0x78	; 120
+     ec0:	90 e0       	ldi	r25, 0x00	; 0
+     ec2:	fc 01       	movw	r30, r24
+     ec4:	80 81       	ld	r24, Z
+     ec6:	28 2f       	mov	r18, r24
+     ec8:	30 e0       	ldi	r19, 0x00	; 0
+     eca:	89 e7       	ldi	r24, 0x79	; 121
+     ecc:	90 e0       	ldi	r25, 0x00	; 0
+     ece:	fc 01       	movw	r30, r24
+     ed0:	80 81       	ld	r24, Z
+     ed2:	88 2f       	mov	r24, r24
+     ed4:	90 e0       	ldi	r25, 0x00	; 0
+     ed6:	98 2f       	mov	r25, r24
+     ed8:	88 27       	eor	r24, r24
+     eda:	82 2b       	or	r24, r18
+     edc:	93 2b       	or	r25, r19
+}
+     ede:	df 91       	pop	r29
+     ee0:	cf 91       	pop	r28
+     ee2:	08 95       	ret
+
+00000ee4 <ADC_0_get_conversion>:
+ * \brief Start a conversion, wait until ready, and return the conversion result
+ *
+ * \return Conversion result read from the ADC_0 ADC module
+ */
+adc_result_t ADC_0_get_conversion(adc_0_channel_t channel)
+{
+     ee4:	cf 93       	push	r28
+     ee6:	df 93       	push	r29
+     ee8:	00 d0       	rcall	.+0      	; 0xeea <ADC_0_get_conversion+0x6>
+     eea:	1f 92       	push	r1
+     eec:	cd b7       	in	r28, 0x3d	; 61
+     eee:	de b7       	in	r29, 0x3e	; 62
+     ef0:	8b 83       	std	Y+3, r24	; 0x03
+	adc_result_t res;
+
+	ADC_0_start_conversion(channel);
+     ef2:	8b 81       	ldd	r24, Y+3	; 0x03
+     ef4:	0e 94 20 07 	call	0xe40	; 0xe40 <ADC_0_start_conversion>
+	while (!ADC_0_is_conversion_done())
+     ef8:	00 00       	nop
+     efa:	0e 94 47 07 	call	0xe8e	; 0xe8e <ADC_0_is_conversion_done>
+     efe:	98 2f       	mov	r25, r24
+     f00:	81 e0       	ldi	r24, 0x01	; 1
+     f02:	89 27       	eor	r24, r25
+     f04:	88 23       	and	r24, r24
+     f06:	c9 f7       	brne	.-14     	; 0xefa <ADC_0_get_conversion+0x16>
+		;
+	res = ADC_0_get_conversion_result();
+     f08:	0e 94 5b 07 	call	0xeb6	; 0xeb6 <ADC_0_get_conversion_result>
+     f0c:	9a 83       	std	Y+2, r25	; 0x02
+     f0e:	89 83       	std	Y+1, r24	; 0x01
+	ADCSRA |= (1 << ADIF);
+     f10:	8a e7       	ldi	r24, 0x7A	; 122
+     f12:	90 e0       	ldi	r25, 0x00	; 0
+     f14:	2a e7       	ldi	r18, 0x7A	; 122
+     f16:	30 e0       	ldi	r19, 0x00	; 0
+     f18:	f9 01       	movw	r30, r18
+     f1a:	20 81       	ld	r18, Z
+     f1c:	20 61       	ori	r18, 0x10	; 16
+     f1e:	fc 01       	movw	r30, r24
+     f20:	20 83       	st	Z, r18
+	return res;
+     f22:	89 81       	ldd	r24, Y+1	; 0x01
+     f24:	9a 81       	ldd	r25, Y+2	; 0x02
+}
+     f26:	0f 90       	pop	r0
+     f28:	0f 90       	pop	r0
+     f2a:	0f 90       	pop	r0
+     f2c:	df 91       	pop	r29
+     f2e:	cf 91       	pop	r28
+     f30:	08 95       	ret
+
+00000f32 <PORTB_set_port_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PORTB_set_port_dir(const uint8_t mask, const enum port_dir direction)
+{
+     f32:	cf 93       	push	r28
+     f34:	df 93       	push	r29
+     f36:	00 d0       	rcall	.+0      	; 0xf38 <PORTB_set_port_dir+0x6>
+     f38:	cd b7       	in	r28, 0x3d	; 61
+     f3a:	de b7       	in	r29, 0x3e	; 62
+     f3c:	89 83       	std	Y+1, r24	; 0x01
+     f3e:	6a 83       	std	Y+2, r22	; 0x02
+	switch (direction) {
+     f40:	8a 81       	ldd	r24, Y+2	; 0x02
+     f42:	88 2f       	mov	r24, r24
+     f44:	90 e0       	ldi	r25, 0x00	; 0
+     f46:	81 30       	cpi	r24, 0x01	; 1
+     f48:	91 05       	cpc	r25, r1
+     f4a:	99 f0       	breq	.+38     	; 0xf72 <PORTB_set_port_dir+0x40>
+     f4c:	82 30       	cpi	r24, 0x02	; 2
+     f4e:	91 05       	cpc	r25, r1
+     f50:	d9 f0       	breq	.+54     	; 0xf88 <PORTB_set_port_dir+0x56>
+     f52:	89 2b       	or	r24, r25
+     f54:	09 f0       	breq	.+2      	; 0xf58 <PORTB_set_port_dir+0x26>
+		DDRB &= ~mask;
+
+		PORTB |= mask;
+		break;
+	default:
+		break;
+     f56:	2f c0       	rjmp	.+94     	; 0xfb6 <PORTB_set_port_dir+0x84>
+ */
+static inline void PORTB_set_port_dir(const uint8_t mask, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRB &= ~mask;
+     f58:	84 e2       	ldi	r24, 0x24	; 36
+     f5a:	90 e0       	ldi	r25, 0x00	; 0
+     f5c:	24 e2       	ldi	r18, 0x24	; 36
+     f5e:	30 e0       	ldi	r19, 0x00	; 0
+     f60:	f9 01       	movw	r30, r18
+     f62:	20 81       	ld	r18, Z
+     f64:	32 2f       	mov	r19, r18
+     f66:	29 81       	ldd	r18, Y+1	; 0x01
+     f68:	20 95       	com	r18
+     f6a:	23 23       	and	r18, r19
+     f6c:	fc 01       	movw	r30, r24
+     f6e:	20 83       	st	Z, r18
+		break;
+     f70:	22 c0       	rjmp	.+68     	; 0xfb6 <PORTB_set_port_dir+0x84>
+	case PORT_DIR_OUT:
+		DDRB |= mask;
+     f72:	84 e2       	ldi	r24, 0x24	; 36
+     f74:	90 e0       	ldi	r25, 0x00	; 0
+     f76:	24 e2       	ldi	r18, 0x24	; 36
+     f78:	30 e0       	ldi	r19, 0x00	; 0
+     f7a:	f9 01       	movw	r30, r18
+     f7c:	30 81       	ld	r19, Z
+     f7e:	29 81       	ldd	r18, Y+1	; 0x01
+     f80:	23 2b       	or	r18, r19
+     f82:	fc 01       	movw	r30, r24
+     f84:	20 83       	st	Z, r18
+		break;
+     f86:	17 c0       	rjmp	.+46     	; 0xfb6 <PORTB_set_port_dir+0x84>
+	case PORT_DIR_OFF:
+		DDRB &= ~mask;
+     f88:	84 e2       	ldi	r24, 0x24	; 36
+     f8a:	90 e0       	ldi	r25, 0x00	; 0
+     f8c:	24 e2       	ldi	r18, 0x24	; 36
+     f8e:	30 e0       	ldi	r19, 0x00	; 0
+     f90:	f9 01       	movw	r30, r18
+     f92:	20 81       	ld	r18, Z
+     f94:	32 2f       	mov	r19, r18
+     f96:	29 81       	ldd	r18, Y+1	; 0x01
+     f98:	20 95       	com	r18
+     f9a:	23 23       	and	r18, r19
+     f9c:	fc 01       	movw	r30, r24
+     f9e:	20 83       	st	Z, r18
+
+		PORTB |= mask;
+     fa0:	85 e2       	ldi	r24, 0x25	; 37
+     fa2:	90 e0       	ldi	r25, 0x00	; 0
+     fa4:	25 e2       	ldi	r18, 0x25	; 37
+     fa6:	30 e0       	ldi	r19, 0x00	; 0
+     fa8:	f9 01       	movw	r30, r18
+     faa:	30 81       	ld	r19, Z
+     fac:	29 81       	ldd	r18, Y+1	; 0x01
+     fae:	23 2b       	or	r18, r19
+     fb0:	fc 01       	movw	r30, r24
+     fb2:	20 83       	st	Z, r18
+		break;
+     fb4:	00 00       	nop
+	default:
+		break;
+	}
+}
+     fb6:	00 00       	nop
+     fb8:	0f 90       	pop	r0
+     fba:	0f 90       	pop	r0
+     fbc:	df 91       	pop	r29
+     fbe:	cf 91       	pop	r28
+     fc0:	08 95       	ret
+
+00000fc2 <PORTB_set_pin_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+     fc2:	cf 93       	push	r28
+     fc4:	df 93       	push	r29
+     fc6:	00 d0       	rcall	.+0      	; 0xfc8 <PORTB_set_pin_dir+0x6>
+     fc8:	cd b7       	in	r28, 0x3d	; 61
+     fca:	de b7       	in	r29, 0x3e	; 62
+     fcc:	89 83       	std	Y+1, r24	; 0x01
+     fce:	6a 83       	std	Y+2, r22	; 0x02
+	switch (direction) {
+     fd0:	8a 81       	ldd	r24, Y+2	; 0x02
+     fd2:	88 2f       	mov	r24, r24
+     fd4:	90 e0       	ldi	r25, 0x00	; 0
+     fd6:	81 30       	cpi	r24, 0x01	; 1
+     fd8:	91 05       	cpc	r25, r1
+     fda:	e1 f0       	breq	.+56     	; 0x1014 <PORTB_set_pin_dir+0x52>
+     fdc:	82 30       	cpi	r24, 0x02	; 2
+     fde:	91 05       	cpc	r25, r1
+     fe0:	71 f1       	breq	.+92     	; 0x103e <PORTB_set_pin_dir+0x7c>
+     fe2:	89 2b       	or	r24, r25
+     fe4:	09 f0       	breq	.+2      	; 0xfe8 <PORTB_set_pin_dir+0x26>
+		DDRB &= ~(1 << pin);
+
+		PORTB |= 1 << pin;
+		break;
+	default:
+		break;
+     fe6:	55 c0       	rjmp	.+170    	; 0x1092 <PORTB_set_pin_dir+0xd0>
+ */
+static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRB &= ~(1 << pin);
+     fe8:	84 e2       	ldi	r24, 0x24	; 36
+     fea:	90 e0       	ldi	r25, 0x00	; 0
+     fec:	24 e2       	ldi	r18, 0x24	; 36
+     fee:	30 e0       	ldi	r19, 0x00	; 0
+     ff0:	f9 01       	movw	r30, r18
+     ff2:	20 81       	ld	r18, Z
+     ff4:	62 2f       	mov	r22, r18
+     ff6:	29 81       	ldd	r18, Y+1	; 0x01
+     ff8:	42 2f       	mov	r20, r18
+     ffa:	50 e0       	ldi	r21, 0x00	; 0
+     ffc:	21 e0       	ldi	r18, 0x01	; 1
+     ffe:	30 e0       	ldi	r19, 0x00	; 0
+    1000:	02 c0       	rjmp	.+4      	; 0x1006 <PORTB_set_pin_dir+0x44>
+    1002:	22 0f       	add	r18, r18
+    1004:	33 1f       	adc	r19, r19
+    1006:	4a 95       	dec	r20
+    1008:	e2 f7       	brpl	.-8      	; 0x1002 <PORTB_set_pin_dir+0x40>
+    100a:	20 95       	com	r18
+    100c:	26 23       	and	r18, r22
+    100e:	fc 01       	movw	r30, r24
+    1010:	20 83       	st	Z, r18
+		break;
+    1012:	3f c0       	rjmp	.+126    	; 0x1092 <PORTB_set_pin_dir+0xd0>
+	case PORT_DIR_OUT:
+		DDRB |= 1 << pin;
+    1014:	84 e2       	ldi	r24, 0x24	; 36
+    1016:	90 e0       	ldi	r25, 0x00	; 0
+    1018:	24 e2       	ldi	r18, 0x24	; 36
+    101a:	30 e0       	ldi	r19, 0x00	; 0
+    101c:	f9 01       	movw	r30, r18
+    101e:	20 81       	ld	r18, Z
+    1020:	62 2f       	mov	r22, r18
+    1022:	29 81       	ldd	r18, Y+1	; 0x01
+    1024:	42 2f       	mov	r20, r18
+    1026:	50 e0       	ldi	r21, 0x00	; 0
+    1028:	21 e0       	ldi	r18, 0x01	; 1
+    102a:	30 e0       	ldi	r19, 0x00	; 0
+    102c:	02 c0       	rjmp	.+4      	; 0x1032 <PORTB_set_pin_dir+0x70>
+    102e:	22 0f       	add	r18, r18
+    1030:	33 1f       	adc	r19, r19
+    1032:	4a 95       	dec	r20
+    1034:	e2 f7       	brpl	.-8      	; 0x102e <PORTB_set_pin_dir+0x6c>
+    1036:	26 2b       	or	r18, r22
+    1038:	fc 01       	movw	r30, r24
+    103a:	20 83       	st	Z, r18
+		break;
+    103c:	2a c0       	rjmp	.+84     	; 0x1092 <PORTB_set_pin_dir+0xd0>
+	case PORT_DIR_OFF:
+		DDRB &= ~(1 << pin);
+    103e:	84 e2       	ldi	r24, 0x24	; 36
+    1040:	90 e0       	ldi	r25, 0x00	; 0
+    1042:	24 e2       	ldi	r18, 0x24	; 36
+    1044:	30 e0       	ldi	r19, 0x00	; 0
+    1046:	f9 01       	movw	r30, r18
+    1048:	20 81       	ld	r18, Z
+    104a:	62 2f       	mov	r22, r18
+    104c:	29 81       	ldd	r18, Y+1	; 0x01
+    104e:	42 2f       	mov	r20, r18
+    1050:	50 e0       	ldi	r21, 0x00	; 0
+    1052:	21 e0       	ldi	r18, 0x01	; 1
+    1054:	30 e0       	ldi	r19, 0x00	; 0
+    1056:	02 c0       	rjmp	.+4      	; 0x105c <PORTB_set_pin_dir+0x9a>
+    1058:	22 0f       	add	r18, r18
+    105a:	33 1f       	adc	r19, r19
+    105c:	4a 95       	dec	r20
+    105e:	e2 f7       	brpl	.-8      	; 0x1058 <PORTB_set_pin_dir+0x96>
+    1060:	20 95       	com	r18
+    1062:	26 23       	and	r18, r22
+    1064:	fc 01       	movw	r30, r24
+    1066:	20 83       	st	Z, r18
+
+		PORTB |= 1 << pin;
+    1068:	85 e2       	ldi	r24, 0x25	; 37
+    106a:	90 e0       	ldi	r25, 0x00	; 0
+    106c:	25 e2       	ldi	r18, 0x25	; 37
+    106e:	30 e0       	ldi	r19, 0x00	; 0
+    1070:	f9 01       	movw	r30, r18
+    1072:	20 81       	ld	r18, Z
+    1074:	62 2f       	mov	r22, r18
+    1076:	29 81       	ldd	r18, Y+1	; 0x01
+    1078:	42 2f       	mov	r20, r18
+    107a:	50 e0       	ldi	r21, 0x00	; 0
+    107c:	21 e0       	ldi	r18, 0x01	; 1
+    107e:	30 e0       	ldi	r19, 0x00	; 0
+    1080:	02 c0       	rjmp	.+4      	; 0x1086 <PORTB_set_pin_dir+0xc4>
+    1082:	22 0f       	add	r18, r18
+    1084:	33 1f       	adc	r19, r19
+    1086:	4a 95       	dec	r20
+    1088:	e2 f7       	brpl	.-8      	; 0x1082 <PORTB_set_pin_dir+0xc0>
+    108a:	26 2b       	or	r18, r22
+    108c:	fc 01       	movw	r30, r24
+    108e:	20 83       	st	Z, r18
+		break;
+    1090:	00 00       	nop
+	default:
+		break;
+	}
+}
+    1092:	00 00       	nop
+    1094:	0f 90       	pop	r0
+    1096:	0f 90       	pop	r0
+    1098:	df 91       	pop	r29
+    109a:	cf 91       	pop	r28
+    109c:	08 95       	ret
+
+0000109e <PORTB_set_pin_level>:
+ * \param[in] pin       The pin number for device
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
+{
+    109e:	cf 93       	push	r28
+    10a0:	df 93       	push	r29
+    10a2:	00 d0       	rcall	.+0      	; 0x10a4 <PORTB_set_pin_level+0x6>
+    10a4:	cd b7       	in	r28, 0x3d	; 61
+    10a6:	de b7       	in	r29, 0x3e	; 62
+    10a8:	89 83       	std	Y+1, r24	; 0x01
+    10aa:	6a 83       	std	Y+2, r22	; 0x02
+	if (level) {
+    10ac:	8a 81       	ldd	r24, Y+2	; 0x02
+    10ae:	88 23       	and	r24, r24
+    10b0:	a9 f0       	breq	.+42     	; 0x10dc <PORTB_set_pin_level+0x3e>
+		PORTB |= 1 << pin;
+    10b2:	85 e2       	ldi	r24, 0x25	; 37
+    10b4:	90 e0       	ldi	r25, 0x00	; 0
+    10b6:	25 e2       	ldi	r18, 0x25	; 37
+    10b8:	30 e0       	ldi	r19, 0x00	; 0
+    10ba:	f9 01       	movw	r30, r18
+    10bc:	20 81       	ld	r18, Z
+    10be:	62 2f       	mov	r22, r18
+    10c0:	29 81       	ldd	r18, Y+1	; 0x01
+    10c2:	42 2f       	mov	r20, r18
+    10c4:	50 e0       	ldi	r21, 0x00	; 0
+    10c6:	21 e0       	ldi	r18, 0x01	; 1
+    10c8:	30 e0       	ldi	r19, 0x00	; 0
+    10ca:	02 c0       	rjmp	.+4      	; 0x10d0 <PORTB_set_pin_level+0x32>
+    10cc:	22 0f       	add	r18, r18
+    10ce:	33 1f       	adc	r19, r19
+    10d0:	4a 95       	dec	r20
+    10d2:	e2 f7       	brpl	.-8      	; 0x10cc <PORTB_set_pin_level+0x2e>
+    10d4:	26 2b       	or	r18, r22
+    10d6:	fc 01       	movw	r30, r24
+    10d8:	20 83       	st	Z, r18
+	} else {
+		PORTB &= ~(1 << pin);
+	}
+}
+    10da:	15 c0       	rjmp	.+42     	; 0x1106 <PORTB_set_pin_level+0x68>
+static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTB |= 1 << pin;
+	} else {
+		PORTB &= ~(1 << pin);
+    10dc:	85 e2       	ldi	r24, 0x25	; 37
+    10de:	90 e0       	ldi	r25, 0x00	; 0
+    10e0:	25 e2       	ldi	r18, 0x25	; 37
+    10e2:	30 e0       	ldi	r19, 0x00	; 0
+    10e4:	f9 01       	movw	r30, r18
+    10e6:	20 81       	ld	r18, Z
+    10e8:	62 2f       	mov	r22, r18
+    10ea:	29 81       	ldd	r18, Y+1	; 0x01
+    10ec:	42 2f       	mov	r20, r18
+    10ee:	50 e0       	ldi	r21, 0x00	; 0
+    10f0:	21 e0       	ldi	r18, 0x01	; 1
+    10f2:	30 e0       	ldi	r19, 0x00	; 0
+    10f4:	02 c0       	rjmp	.+4      	; 0x10fa <PORTB_set_pin_level+0x5c>
+    10f6:	22 0f       	add	r18, r18
+    10f8:	33 1f       	adc	r19, r19
+    10fa:	4a 95       	dec	r20
+    10fc:	e2 f7       	brpl	.-8      	; 0x10f6 <PORTB_set_pin_level+0x58>
+    10fe:	20 95       	com	r18
+    1100:	26 23       	and	r18, r22
+    1102:	fc 01       	movw	r30, r24
+    1104:	20 83       	st	Z, r18
+	}
+}
+    1106:	00 00       	nop
+    1108:	0f 90       	pop	r0
+    110a:	0f 90       	pop	r0
+    110c:	df 91       	pop	r29
+    110e:	cf 91       	pop	r28
+    1110:	08 95       	ret
+
+00001112 <PORTC_set_pin_pull_mode>:
+ *
+ * \param[in] pin       The pin number in PORTC
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void PORTC_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+    1112:	cf 93       	push	r28
+    1114:	df 93       	push	r29
+    1116:	00 d0       	rcall	.+0      	; 0x1118 <PORTC_set_pin_pull_mode+0x6>
+    1118:	cd b7       	in	r28, 0x3d	; 61
+    111a:	de b7       	in	r29, 0x3e	; 62
+    111c:	89 83       	std	Y+1, r24	; 0x01
+    111e:	6a 83       	std	Y+2, r22	; 0x02
+
+	if (pull_mode == PORT_PULL_UP) {
+    1120:	8a 81       	ldd	r24, Y+2	; 0x02
+    1122:	81 30       	cpi	r24, 0x01	; 1
+    1124:	51 f5       	brne	.+84     	; 0x117a <PORTC_set_pin_pull_mode+0x68>
+
+		DDRC &= ~(1 << pin);
+    1126:	87 e2       	ldi	r24, 0x27	; 39
+    1128:	90 e0       	ldi	r25, 0x00	; 0
+    112a:	27 e2       	ldi	r18, 0x27	; 39
+    112c:	30 e0       	ldi	r19, 0x00	; 0
+    112e:	f9 01       	movw	r30, r18
+    1130:	20 81       	ld	r18, Z
+    1132:	62 2f       	mov	r22, r18
+    1134:	29 81       	ldd	r18, Y+1	; 0x01
+    1136:	42 2f       	mov	r20, r18
+    1138:	50 e0       	ldi	r21, 0x00	; 0
+    113a:	21 e0       	ldi	r18, 0x01	; 1
+    113c:	30 e0       	ldi	r19, 0x00	; 0
+    113e:	02 c0       	rjmp	.+4      	; 0x1144 <PORTC_set_pin_pull_mode+0x32>
+    1140:	22 0f       	add	r18, r18
+    1142:	33 1f       	adc	r19, r19
+    1144:	4a 95       	dec	r20
+    1146:	e2 f7       	brpl	.-8      	; 0x1140 <PORTC_set_pin_pull_mode+0x2e>
+    1148:	20 95       	com	r18
+    114a:	26 23       	and	r18, r22
+    114c:	fc 01       	movw	r30, r24
+    114e:	20 83       	st	Z, r18
+
+		PORTC |= 1 << pin;
+    1150:	88 e2       	ldi	r24, 0x28	; 40
+    1152:	90 e0       	ldi	r25, 0x00	; 0
+    1154:	28 e2       	ldi	r18, 0x28	; 40
+    1156:	30 e0       	ldi	r19, 0x00	; 0
+    1158:	f9 01       	movw	r30, r18
+    115a:	20 81       	ld	r18, Z
+    115c:	62 2f       	mov	r22, r18
+    115e:	29 81       	ldd	r18, Y+1	; 0x01
+    1160:	42 2f       	mov	r20, r18
+    1162:	50 e0       	ldi	r21, 0x00	; 0
+    1164:	21 e0       	ldi	r18, 0x01	; 1
+    1166:	30 e0       	ldi	r19, 0x00	; 0
+    1168:	02 c0       	rjmp	.+4      	; 0x116e <PORTC_set_pin_pull_mode+0x5c>
+    116a:	22 0f       	add	r18, r18
+    116c:	33 1f       	adc	r19, r19
+    116e:	4a 95       	dec	r20
+    1170:	e2 f7       	brpl	.-8      	; 0x116a <PORTC_set_pin_pull_mode+0x58>
+    1172:	26 2b       	or	r18, r22
+    1174:	fc 01       	movw	r30, r24
+    1176:	20 83       	st	Z, r18
+	} else if (pull_mode == PORT_PULL_OFF) {
+
+		PORTC &= ~(1 << pin);
+	}
+}
+    1178:	18 c0       	rjmp	.+48     	; 0x11aa <PORTC_set_pin_pull_mode+0x98>
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRC &= ~(1 << pin);
+
+		PORTC |= 1 << pin;
+	} else if (pull_mode == PORT_PULL_OFF) {
+    117a:	8a 81       	ldd	r24, Y+2	; 0x02
+    117c:	88 23       	and	r24, r24
+    117e:	a9 f4       	brne	.+42     	; 0x11aa <PORTC_set_pin_pull_mode+0x98>
+
+		PORTC &= ~(1 << pin);
+    1180:	88 e2       	ldi	r24, 0x28	; 40
+    1182:	90 e0       	ldi	r25, 0x00	; 0
+    1184:	28 e2       	ldi	r18, 0x28	; 40
+    1186:	30 e0       	ldi	r19, 0x00	; 0
+    1188:	f9 01       	movw	r30, r18
+    118a:	20 81       	ld	r18, Z
+    118c:	62 2f       	mov	r22, r18
+    118e:	29 81       	ldd	r18, Y+1	; 0x01
+    1190:	42 2f       	mov	r20, r18
+    1192:	50 e0       	ldi	r21, 0x00	; 0
+    1194:	21 e0       	ldi	r18, 0x01	; 1
+    1196:	30 e0       	ldi	r19, 0x00	; 0
+    1198:	02 c0       	rjmp	.+4      	; 0x119e <PORTC_set_pin_pull_mode+0x8c>
+    119a:	22 0f       	add	r18, r18
+    119c:	33 1f       	adc	r19, r19
+    119e:	4a 95       	dec	r20
+    11a0:	e2 f7       	brpl	.-8      	; 0x119a <PORTC_set_pin_pull_mode+0x88>
+    11a2:	20 95       	com	r18
+    11a4:	26 23       	and	r18, r22
+    11a6:	fc 01       	movw	r30, r24
+    11a8:	20 83       	st	Z, r18
+	}
+}
+    11aa:	00 00       	nop
+    11ac:	0f 90       	pop	r0
+    11ae:	0f 90       	pop	r0
+    11b0:	df 91       	pop	r29
+    11b2:	cf 91       	pop	r28
+    11b4:	08 95       	ret
+
+000011b6 <PORTC_set_port_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PORTC_set_port_dir(const uint8_t mask, const enum port_dir direction)
+{
+    11b6:	cf 93       	push	r28
+    11b8:	df 93       	push	r29
+    11ba:	00 d0       	rcall	.+0      	; 0x11bc <PORTC_set_port_dir+0x6>
+    11bc:	cd b7       	in	r28, 0x3d	; 61
+    11be:	de b7       	in	r29, 0x3e	; 62
+    11c0:	89 83       	std	Y+1, r24	; 0x01
+    11c2:	6a 83       	std	Y+2, r22	; 0x02
+	switch (direction) {
+    11c4:	8a 81       	ldd	r24, Y+2	; 0x02
+    11c6:	88 2f       	mov	r24, r24
+    11c8:	90 e0       	ldi	r25, 0x00	; 0
+    11ca:	81 30       	cpi	r24, 0x01	; 1
+    11cc:	91 05       	cpc	r25, r1
+    11ce:	99 f0       	breq	.+38     	; 0x11f6 <PORTC_set_port_dir+0x40>
+    11d0:	82 30       	cpi	r24, 0x02	; 2
+    11d2:	91 05       	cpc	r25, r1
+    11d4:	d9 f0       	breq	.+54     	; 0x120c <PORTC_set_port_dir+0x56>
+    11d6:	89 2b       	or	r24, r25
+    11d8:	09 f0       	breq	.+2      	; 0x11dc <PORTC_set_port_dir+0x26>
+		DDRC &= ~mask;
+
+		PORTC |= mask;
+		break;
+	default:
+		break;
+    11da:	2f c0       	rjmp	.+94     	; 0x123a <PORTC_set_port_dir+0x84>
+ */
+static inline void PORTC_set_port_dir(const uint8_t mask, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRC &= ~mask;
+    11dc:	87 e2       	ldi	r24, 0x27	; 39
+    11de:	90 e0       	ldi	r25, 0x00	; 0
+    11e0:	27 e2       	ldi	r18, 0x27	; 39
+    11e2:	30 e0       	ldi	r19, 0x00	; 0
+    11e4:	f9 01       	movw	r30, r18
+    11e6:	20 81       	ld	r18, Z
+    11e8:	32 2f       	mov	r19, r18
+    11ea:	29 81       	ldd	r18, Y+1	; 0x01
+    11ec:	20 95       	com	r18
+    11ee:	23 23       	and	r18, r19
+    11f0:	fc 01       	movw	r30, r24
+    11f2:	20 83       	st	Z, r18
+		break;
+    11f4:	22 c0       	rjmp	.+68     	; 0x123a <PORTC_set_port_dir+0x84>
+	case PORT_DIR_OUT:
+		DDRC |= mask;
+    11f6:	87 e2       	ldi	r24, 0x27	; 39
+    11f8:	90 e0       	ldi	r25, 0x00	; 0
+    11fa:	27 e2       	ldi	r18, 0x27	; 39
+    11fc:	30 e0       	ldi	r19, 0x00	; 0
+    11fe:	f9 01       	movw	r30, r18
+    1200:	30 81       	ld	r19, Z
+    1202:	29 81       	ldd	r18, Y+1	; 0x01
+    1204:	23 2b       	or	r18, r19
+    1206:	fc 01       	movw	r30, r24
+    1208:	20 83       	st	Z, r18
+		break;
+    120a:	17 c0       	rjmp	.+46     	; 0x123a <PORTC_set_port_dir+0x84>
+	case PORT_DIR_OFF:
+		DDRC &= ~mask;
+    120c:	87 e2       	ldi	r24, 0x27	; 39
+    120e:	90 e0       	ldi	r25, 0x00	; 0
+    1210:	27 e2       	ldi	r18, 0x27	; 39
+    1212:	30 e0       	ldi	r19, 0x00	; 0
+    1214:	f9 01       	movw	r30, r18
+    1216:	20 81       	ld	r18, Z
+    1218:	32 2f       	mov	r19, r18
+    121a:	29 81       	ldd	r18, Y+1	; 0x01
+    121c:	20 95       	com	r18
+    121e:	23 23       	and	r18, r19
+    1220:	fc 01       	movw	r30, r24
+    1222:	20 83       	st	Z, r18
+
+		PORTC |= mask;
+    1224:	88 e2       	ldi	r24, 0x28	; 40
+    1226:	90 e0       	ldi	r25, 0x00	; 0
+    1228:	28 e2       	ldi	r18, 0x28	; 40
+    122a:	30 e0       	ldi	r19, 0x00	; 0
+    122c:	f9 01       	movw	r30, r18
+    122e:	30 81       	ld	r19, Z
+    1230:	29 81       	ldd	r18, Y+1	; 0x01
+    1232:	23 2b       	or	r18, r19
+    1234:	fc 01       	movw	r30, r24
+    1236:	20 83       	st	Z, r18
+		break;
+    1238:	00 00       	nop
+	default:
+		break;
+	}
+}
+    123a:	00 00       	nop
+    123c:	0f 90       	pop	r0
+    123e:	0f 90       	pop	r0
+    1240:	df 91       	pop	r29
+    1242:	cf 91       	pop	r28
+    1244:	08 95       	ret
+
+00001246 <PORTC_set_pin_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PORTC_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+    1246:	cf 93       	push	r28
+    1248:	df 93       	push	r29
+    124a:	00 d0       	rcall	.+0      	; 0x124c <PORTC_set_pin_dir+0x6>
+    124c:	cd b7       	in	r28, 0x3d	; 61
+    124e:	de b7       	in	r29, 0x3e	; 62
+    1250:	89 83       	std	Y+1, r24	; 0x01
+    1252:	6a 83       	std	Y+2, r22	; 0x02
+	switch (direction) {
+    1254:	8a 81       	ldd	r24, Y+2	; 0x02
+    1256:	88 2f       	mov	r24, r24
+    1258:	90 e0       	ldi	r25, 0x00	; 0
+    125a:	81 30       	cpi	r24, 0x01	; 1
+    125c:	91 05       	cpc	r25, r1
+    125e:	e1 f0       	breq	.+56     	; 0x1298 <PORTC_set_pin_dir+0x52>
+    1260:	82 30       	cpi	r24, 0x02	; 2
+    1262:	91 05       	cpc	r25, r1
+    1264:	71 f1       	breq	.+92     	; 0x12c2 <PORTC_set_pin_dir+0x7c>
+    1266:	89 2b       	or	r24, r25
+    1268:	09 f0       	breq	.+2      	; 0x126c <PORTC_set_pin_dir+0x26>
+		DDRC &= ~(1 << pin);
+
+		PORTC |= 1 << pin;
+		break;
+	default:
+		break;
+    126a:	55 c0       	rjmp	.+170    	; 0x1316 <PORTC_set_pin_dir+0xd0>
+ */
+static inline void PORTC_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRC &= ~(1 << pin);
+    126c:	87 e2       	ldi	r24, 0x27	; 39
+    126e:	90 e0       	ldi	r25, 0x00	; 0
+    1270:	27 e2       	ldi	r18, 0x27	; 39
+    1272:	30 e0       	ldi	r19, 0x00	; 0
+    1274:	f9 01       	movw	r30, r18
+    1276:	20 81       	ld	r18, Z
+    1278:	62 2f       	mov	r22, r18
+    127a:	29 81       	ldd	r18, Y+1	; 0x01
+    127c:	42 2f       	mov	r20, r18
+    127e:	50 e0       	ldi	r21, 0x00	; 0
+    1280:	21 e0       	ldi	r18, 0x01	; 1
+    1282:	30 e0       	ldi	r19, 0x00	; 0
+    1284:	02 c0       	rjmp	.+4      	; 0x128a <PORTC_set_pin_dir+0x44>
+    1286:	22 0f       	add	r18, r18
+    1288:	33 1f       	adc	r19, r19
+    128a:	4a 95       	dec	r20
+    128c:	e2 f7       	brpl	.-8      	; 0x1286 <PORTC_set_pin_dir+0x40>
+    128e:	20 95       	com	r18
+    1290:	26 23       	and	r18, r22
+    1292:	fc 01       	movw	r30, r24
+    1294:	20 83       	st	Z, r18
+		break;
+    1296:	3f c0       	rjmp	.+126    	; 0x1316 <PORTC_set_pin_dir+0xd0>
+	case PORT_DIR_OUT:
+		DDRC |= 1 << pin;
+    1298:	87 e2       	ldi	r24, 0x27	; 39
+    129a:	90 e0       	ldi	r25, 0x00	; 0
+    129c:	27 e2       	ldi	r18, 0x27	; 39
+    129e:	30 e0       	ldi	r19, 0x00	; 0
+    12a0:	f9 01       	movw	r30, r18
+    12a2:	20 81       	ld	r18, Z
+    12a4:	62 2f       	mov	r22, r18
+    12a6:	29 81       	ldd	r18, Y+1	; 0x01
+    12a8:	42 2f       	mov	r20, r18
+    12aa:	50 e0       	ldi	r21, 0x00	; 0
+    12ac:	21 e0       	ldi	r18, 0x01	; 1
+    12ae:	30 e0       	ldi	r19, 0x00	; 0
+    12b0:	02 c0       	rjmp	.+4      	; 0x12b6 <PORTC_set_pin_dir+0x70>
+    12b2:	22 0f       	add	r18, r18
+    12b4:	33 1f       	adc	r19, r19
+    12b6:	4a 95       	dec	r20
+    12b8:	e2 f7       	brpl	.-8      	; 0x12b2 <PORTC_set_pin_dir+0x6c>
+    12ba:	26 2b       	or	r18, r22
+    12bc:	fc 01       	movw	r30, r24
+    12be:	20 83       	st	Z, r18
+		break;
+    12c0:	2a c0       	rjmp	.+84     	; 0x1316 <PORTC_set_pin_dir+0xd0>
+	case PORT_DIR_OFF:
+		DDRC &= ~(1 << pin);
+    12c2:	87 e2       	ldi	r24, 0x27	; 39
+    12c4:	90 e0       	ldi	r25, 0x00	; 0
+    12c6:	27 e2       	ldi	r18, 0x27	; 39
+    12c8:	30 e0       	ldi	r19, 0x00	; 0
+    12ca:	f9 01       	movw	r30, r18
+    12cc:	20 81       	ld	r18, Z
+    12ce:	62 2f       	mov	r22, r18
+    12d0:	29 81       	ldd	r18, Y+1	; 0x01
+    12d2:	42 2f       	mov	r20, r18
+    12d4:	50 e0       	ldi	r21, 0x00	; 0
+    12d6:	21 e0       	ldi	r18, 0x01	; 1
+    12d8:	30 e0       	ldi	r19, 0x00	; 0
+    12da:	02 c0       	rjmp	.+4      	; 0x12e0 <PORTC_set_pin_dir+0x9a>
+    12dc:	22 0f       	add	r18, r18
+    12de:	33 1f       	adc	r19, r19
+    12e0:	4a 95       	dec	r20
+    12e2:	e2 f7       	brpl	.-8      	; 0x12dc <PORTC_set_pin_dir+0x96>
+    12e4:	20 95       	com	r18
+    12e6:	26 23       	and	r18, r22
+    12e8:	fc 01       	movw	r30, r24
+    12ea:	20 83       	st	Z, r18
+
+		PORTC |= 1 << pin;
+    12ec:	88 e2       	ldi	r24, 0x28	; 40
+    12ee:	90 e0       	ldi	r25, 0x00	; 0
+    12f0:	28 e2       	ldi	r18, 0x28	; 40
+    12f2:	30 e0       	ldi	r19, 0x00	; 0
+    12f4:	f9 01       	movw	r30, r18
+    12f6:	20 81       	ld	r18, Z
+    12f8:	62 2f       	mov	r22, r18
+    12fa:	29 81       	ldd	r18, Y+1	; 0x01
+    12fc:	42 2f       	mov	r20, r18
+    12fe:	50 e0       	ldi	r21, 0x00	; 0
+    1300:	21 e0       	ldi	r18, 0x01	; 1
+    1302:	30 e0       	ldi	r19, 0x00	; 0
+    1304:	02 c0       	rjmp	.+4      	; 0x130a <PORTC_set_pin_dir+0xc4>
+    1306:	22 0f       	add	r18, r18
+    1308:	33 1f       	adc	r19, r19
+    130a:	4a 95       	dec	r20
+    130c:	e2 f7       	brpl	.-8      	; 0x1306 <PORTC_set_pin_dir+0xc0>
+    130e:	26 2b       	or	r18, r22
+    1310:	fc 01       	movw	r30, r24
+    1312:	20 83       	st	Z, r18
+		break;
+    1314:	00 00       	nop
+	default:
+		break;
+	}
+}
+    1316:	00 00       	nop
+    1318:	0f 90       	pop	r0
+    131a:	0f 90       	pop	r0
+    131c:	df 91       	pop	r29
+    131e:	cf 91       	pop	r28
+    1320:	08 95       	ret
+
+00001322 <PORTC_set_pin_level>:
+ * \param[in] pin       The pin number for device
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
+{
+    1322:	cf 93       	push	r28
+    1324:	df 93       	push	r29
+    1326:	00 d0       	rcall	.+0      	; 0x1328 <PORTC_set_pin_level+0x6>
+    1328:	cd b7       	in	r28, 0x3d	; 61
+    132a:	de b7       	in	r29, 0x3e	; 62
+    132c:	89 83       	std	Y+1, r24	; 0x01
+    132e:	6a 83       	std	Y+2, r22	; 0x02
+	if (level) {
+    1330:	8a 81       	ldd	r24, Y+2	; 0x02
+    1332:	88 23       	and	r24, r24
+    1334:	a9 f0       	breq	.+42     	; 0x1360 <PORTC_set_pin_level+0x3e>
+		PORTC |= 1 << pin;
+    1336:	88 e2       	ldi	r24, 0x28	; 40
+    1338:	90 e0       	ldi	r25, 0x00	; 0
+    133a:	28 e2       	ldi	r18, 0x28	; 40
+    133c:	30 e0       	ldi	r19, 0x00	; 0
+    133e:	f9 01       	movw	r30, r18
+    1340:	20 81       	ld	r18, Z
+    1342:	62 2f       	mov	r22, r18
+    1344:	29 81       	ldd	r18, Y+1	; 0x01
+    1346:	42 2f       	mov	r20, r18
+    1348:	50 e0       	ldi	r21, 0x00	; 0
+    134a:	21 e0       	ldi	r18, 0x01	; 1
+    134c:	30 e0       	ldi	r19, 0x00	; 0
+    134e:	02 c0       	rjmp	.+4      	; 0x1354 <PORTC_set_pin_level+0x32>
+    1350:	22 0f       	add	r18, r18
+    1352:	33 1f       	adc	r19, r19
+    1354:	4a 95       	dec	r20
+    1356:	e2 f7       	brpl	.-8      	; 0x1350 <PORTC_set_pin_level+0x2e>
+    1358:	26 2b       	or	r18, r22
+    135a:	fc 01       	movw	r30, r24
+    135c:	20 83       	st	Z, r18
+	} else {
+		PORTC &= ~(1 << pin);
+	}
+}
+    135e:	15 c0       	rjmp	.+42     	; 0x138a <PORTC_set_pin_level+0x68>
+static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTC |= 1 << pin;
+	} else {
+		PORTC &= ~(1 << pin);
+    1360:	88 e2       	ldi	r24, 0x28	; 40
+    1362:	90 e0       	ldi	r25, 0x00	; 0
+    1364:	28 e2       	ldi	r18, 0x28	; 40
+    1366:	30 e0       	ldi	r19, 0x00	; 0
+    1368:	f9 01       	movw	r30, r18
+    136a:	20 81       	ld	r18, Z
+    136c:	62 2f       	mov	r22, r18
+    136e:	29 81       	ldd	r18, Y+1	; 0x01
+    1370:	42 2f       	mov	r20, r18
+    1372:	50 e0       	ldi	r21, 0x00	; 0
+    1374:	21 e0       	ldi	r18, 0x01	; 1
+    1376:	30 e0       	ldi	r19, 0x00	; 0
+    1378:	02 c0       	rjmp	.+4      	; 0x137e <PORTC_set_pin_level+0x5c>
+    137a:	22 0f       	add	r18, r18
+    137c:	33 1f       	adc	r19, r19
+    137e:	4a 95       	dec	r20
+    1380:	e2 f7       	brpl	.-8      	; 0x137a <PORTC_set_pin_level+0x58>
+    1382:	20 95       	com	r18
+    1384:	26 23       	and	r18, r22
+    1386:	fc 01       	movw	r30, r24
+    1388:	20 83       	st	Z, r18
+	}
+}
+    138a:	00 00       	nop
+    138c:	0f 90       	pop	r0
+    138e:	0f 90       	pop	r0
+    1390:	df 91       	pop	r29
+    1392:	cf 91       	pop	r28
+    1394:	08 95       	ret
+
+00001396 <PORTD_set_pin_pull_mode>:
+ *
+ * \param[in] pin       The pin number in PORTD
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
+{
+    1396:	cf 93       	push	r28
+    1398:	df 93       	push	r29
+    139a:	00 d0       	rcall	.+0      	; 0x139c <PORTD_set_pin_pull_mode+0x6>
+    139c:	cd b7       	in	r28, 0x3d	; 61
+    139e:	de b7       	in	r29, 0x3e	; 62
+    13a0:	89 83       	std	Y+1, r24	; 0x01
+    13a2:	6a 83       	std	Y+2, r22	; 0x02
+
+	if (pull_mode == PORT_PULL_UP) {
+    13a4:	8a 81       	ldd	r24, Y+2	; 0x02
+    13a6:	81 30       	cpi	r24, 0x01	; 1
+    13a8:	51 f5       	brne	.+84     	; 0x13fe <PORTD_set_pin_pull_mode+0x68>
+
+		DDRD &= ~(1 << pin);
+    13aa:	8a e2       	ldi	r24, 0x2A	; 42
+    13ac:	90 e0       	ldi	r25, 0x00	; 0
+    13ae:	2a e2       	ldi	r18, 0x2A	; 42
+    13b0:	30 e0       	ldi	r19, 0x00	; 0
+    13b2:	f9 01       	movw	r30, r18
+    13b4:	20 81       	ld	r18, Z
+    13b6:	62 2f       	mov	r22, r18
+    13b8:	29 81       	ldd	r18, Y+1	; 0x01
+    13ba:	42 2f       	mov	r20, r18
+    13bc:	50 e0       	ldi	r21, 0x00	; 0
+    13be:	21 e0       	ldi	r18, 0x01	; 1
+    13c0:	30 e0       	ldi	r19, 0x00	; 0
+    13c2:	02 c0       	rjmp	.+4      	; 0x13c8 <PORTD_set_pin_pull_mode+0x32>
+    13c4:	22 0f       	add	r18, r18
+    13c6:	33 1f       	adc	r19, r19
+    13c8:	4a 95       	dec	r20
+    13ca:	e2 f7       	brpl	.-8      	; 0x13c4 <PORTD_set_pin_pull_mode+0x2e>
+    13cc:	20 95       	com	r18
+    13ce:	26 23       	and	r18, r22
+    13d0:	fc 01       	movw	r30, r24
+    13d2:	20 83       	st	Z, r18
+
+		PORTD |= 1 << pin;
+    13d4:	8b e2       	ldi	r24, 0x2B	; 43
+    13d6:	90 e0       	ldi	r25, 0x00	; 0
+    13d8:	2b e2       	ldi	r18, 0x2B	; 43
+    13da:	30 e0       	ldi	r19, 0x00	; 0
+    13dc:	f9 01       	movw	r30, r18
+    13de:	20 81       	ld	r18, Z
+    13e0:	62 2f       	mov	r22, r18
+    13e2:	29 81       	ldd	r18, Y+1	; 0x01
+    13e4:	42 2f       	mov	r20, r18
+    13e6:	50 e0       	ldi	r21, 0x00	; 0
+    13e8:	21 e0       	ldi	r18, 0x01	; 1
+    13ea:	30 e0       	ldi	r19, 0x00	; 0
+    13ec:	02 c0       	rjmp	.+4      	; 0x13f2 <PORTD_set_pin_pull_mode+0x5c>
+    13ee:	22 0f       	add	r18, r18
+    13f0:	33 1f       	adc	r19, r19
+    13f2:	4a 95       	dec	r20
+    13f4:	e2 f7       	brpl	.-8      	; 0x13ee <PORTD_set_pin_pull_mode+0x58>
+    13f6:	26 2b       	or	r18, r22
+    13f8:	fc 01       	movw	r30, r24
+    13fa:	20 83       	st	Z, r18
+	} else if (pull_mode == PORT_PULL_OFF) {
+
+		PORTD &= ~(1 << pin);
+	}
+}
+    13fc:	18 c0       	rjmp	.+48     	; 0x142e <PORTD_set_pin_pull_mode+0x98>
+	if (pull_mode == PORT_PULL_UP) {
+
+		DDRD &= ~(1 << pin);
+
+		PORTD |= 1 << pin;
+	} else if (pull_mode == PORT_PULL_OFF) {
+    13fe:	8a 81       	ldd	r24, Y+2	; 0x02
+    1400:	88 23       	and	r24, r24
+    1402:	a9 f4       	brne	.+42     	; 0x142e <PORTD_set_pin_pull_mode+0x98>
+
+		PORTD &= ~(1 << pin);
+    1404:	8b e2       	ldi	r24, 0x2B	; 43
+    1406:	90 e0       	ldi	r25, 0x00	; 0
+    1408:	2b e2       	ldi	r18, 0x2B	; 43
+    140a:	30 e0       	ldi	r19, 0x00	; 0
+    140c:	f9 01       	movw	r30, r18
+    140e:	20 81       	ld	r18, Z
+    1410:	62 2f       	mov	r22, r18
+    1412:	29 81       	ldd	r18, Y+1	; 0x01
+    1414:	42 2f       	mov	r20, r18
+    1416:	50 e0       	ldi	r21, 0x00	; 0
+    1418:	21 e0       	ldi	r18, 0x01	; 1
+    141a:	30 e0       	ldi	r19, 0x00	; 0
+    141c:	02 c0       	rjmp	.+4      	; 0x1422 <PORTD_set_pin_pull_mode+0x8c>
+    141e:	22 0f       	add	r18, r18
+    1420:	33 1f       	adc	r19, r19
+    1422:	4a 95       	dec	r20
+    1424:	e2 f7       	brpl	.-8      	; 0x141e <PORTD_set_pin_pull_mode+0x88>
+    1426:	20 95       	com	r18
+    1428:	26 23       	and	r18, r22
+    142a:	fc 01       	movw	r30, r24
+    142c:	20 83       	st	Z, r18
+	}
+}
+    142e:	00 00       	nop
+    1430:	0f 90       	pop	r0
+    1432:	0f 90       	pop	r0
+    1434:	df 91       	pop	r29
+    1436:	cf 91       	pop	r28
+    1438:	08 95       	ret
+
+0000143a <PORTD_set_port_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PORTD_set_port_dir(const uint8_t mask, const enum port_dir direction)
+{
+    143a:	cf 93       	push	r28
+    143c:	df 93       	push	r29
+    143e:	00 d0       	rcall	.+0      	; 0x1440 <PORTD_set_port_dir+0x6>
+    1440:	cd b7       	in	r28, 0x3d	; 61
+    1442:	de b7       	in	r29, 0x3e	; 62
+    1444:	89 83       	std	Y+1, r24	; 0x01
+    1446:	6a 83       	std	Y+2, r22	; 0x02
+	switch (direction) {
+    1448:	8a 81       	ldd	r24, Y+2	; 0x02
+    144a:	88 2f       	mov	r24, r24
+    144c:	90 e0       	ldi	r25, 0x00	; 0
+    144e:	81 30       	cpi	r24, 0x01	; 1
+    1450:	91 05       	cpc	r25, r1
+    1452:	99 f0       	breq	.+38     	; 0x147a <PORTD_set_port_dir+0x40>
+    1454:	82 30       	cpi	r24, 0x02	; 2
+    1456:	91 05       	cpc	r25, r1
+    1458:	d9 f0       	breq	.+54     	; 0x1490 <PORTD_set_port_dir+0x56>
+    145a:	89 2b       	or	r24, r25
+    145c:	09 f0       	breq	.+2      	; 0x1460 <PORTD_set_port_dir+0x26>
+		DDRD &= ~mask;
+
+		PORTD |= mask;
+		break;
+	default:
+		break;
+    145e:	2f c0       	rjmp	.+94     	; 0x14be <PORTD_set_port_dir+0x84>
+ */
+static inline void PORTD_set_port_dir(const uint8_t mask, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~mask;
+    1460:	8a e2       	ldi	r24, 0x2A	; 42
+    1462:	90 e0       	ldi	r25, 0x00	; 0
+    1464:	2a e2       	ldi	r18, 0x2A	; 42
+    1466:	30 e0       	ldi	r19, 0x00	; 0
+    1468:	f9 01       	movw	r30, r18
+    146a:	20 81       	ld	r18, Z
+    146c:	32 2f       	mov	r19, r18
+    146e:	29 81       	ldd	r18, Y+1	; 0x01
+    1470:	20 95       	com	r18
+    1472:	23 23       	and	r18, r19
+    1474:	fc 01       	movw	r30, r24
+    1476:	20 83       	st	Z, r18
+		break;
+    1478:	22 c0       	rjmp	.+68     	; 0x14be <PORTD_set_port_dir+0x84>
+	case PORT_DIR_OUT:
+		DDRD |= mask;
+    147a:	8a e2       	ldi	r24, 0x2A	; 42
+    147c:	90 e0       	ldi	r25, 0x00	; 0
+    147e:	2a e2       	ldi	r18, 0x2A	; 42
+    1480:	30 e0       	ldi	r19, 0x00	; 0
+    1482:	f9 01       	movw	r30, r18
+    1484:	30 81       	ld	r19, Z
+    1486:	29 81       	ldd	r18, Y+1	; 0x01
+    1488:	23 2b       	or	r18, r19
+    148a:	fc 01       	movw	r30, r24
+    148c:	20 83       	st	Z, r18
+		break;
+    148e:	17 c0       	rjmp	.+46     	; 0x14be <PORTD_set_port_dir+0x84>
+	case PORT_DIR_OFF:
+		DDRD &= ~mask;
+    1490:	8a e2       	ldi	r24, 0x2A	; 42
+    1492:	90 e0       	ldi	r25, 0x00	; 0
+    1494:	2a e2       	ldi	r18, 0x2A	; 42
+    1496:	30 e0       	ldi	r19, 0x00	; 0
+    1498:	f9 01       	movw	r30, r18
+    149a:	20 81       	ld	r18, Z
+    149c:	32 2f       	mov	r19, r18
+    149e:	29 81       	ldd	r18, Y+1	; 0x01
+    14a0:	20 95       	com	r18
+    14a2:	23 23       	and	r18, r19
+    14a4:	fc 01       	movw	r30, r24
+    14a6:	20 83       	st	Z, r18
+
+		PORTD |= mask;
+    14a8:	8b e2       	ldi	r24, 0x2B	; 43
+    14aa:	90 e0       	ldi	r25, 0x00	; 0
+    14ac:	2b e2       	ldi	r18, 0x2B	; 43
+    14ae:	30 e0       	ldi	r19, 0x00	; 0
+    14b0:	f9 01       	movw	r30, r18
+    14b2:	30 81       	ld	r19, Z
+    14b4:	29 81       	ldd	r18, Y+1	; 0x01
+    14b6:	23 2b       	or	r18, r19
+    14b8:	fc 01       	movw	r30, r24
+    14ba:	20 83       	st	Z, r18
+		break;
+    14bc:	00 00       	nop
+	default:
+		break;
+	}
+}
+    14be:	00 00       	nop
+    14c0:	0f 90       	pop	r0
+    14c2:	0f 90       	pop	r0
+    14c4:	df 91       	pop	r29
+    14c6:	cf 91       	pop	r28
+    14c8:	08 95       	ret
+
+000014ca <PORTD_set_pin_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+    14ca:	cf 93       	push	r28
+    14cc:	df 93       	push	r29
+    14ce:	00 d0       	rcall	.+0      	; 0x14d0 <PORTD_set_pin_dir+0x6>
+    14d0:	cd b7       	in	r28, 0x3d	; 61
+    14d2:	de b7       	in	r29, 0x3e	; 62
+    14d4:	89 83       	std	Y+1, r24	; 0x01
+    14d6:	6a 83       	std	Y+2, r22	; 0x02
+	switch (direction) {
+    14d8:	8a 81       	ldd	r24, Y+2	; 0x02
+    14da:	88 2f       	mov	r24, r24
+    14dc:	90 e0       	ldi	r25, 0x00	; 0
+    14de:	81 30       	cpi	r24, 0x01	; 1
+    14e0:	91 05       	cpc	r25, r1
+    14e2:	e1 f0       	breq	.+56     	; 0x151c <PORTD_set_pin_dir+0x52>
+    14e4:	82 30       	cpi	r24, 0x02	; 2
+    14e6:	91 05       	cpc	r25, r1
+    14e8:	71 f1       	breq	.+92     	; 0x1546 <PORTD_set_pin_dir+0x7c>
+    14ea:	89 2b       	or	r24, r25
+    14ec:	09 f0       	breq	.+2      	; 0x14f0 <PORTD_set_pin_dir+0x26>
+		DDRD &= ~(1 << pin);
+
+		PORTD |= 1 << pin;
+		break;
+	default:
+		break;
+    14ee:	55 c0       	rjmp	.+170    	; 0x159a <PORTD_set_pin_dir+0xd0>
+ */
+static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRD &= ~(1 << pin);
+    14f0:	8a e2       	ldi	r24, 0x2A	; 42
+    14f2:	90 e0       	ldi	r25, 0x00	; 0
+    14f4:	2a e2       	ldi	r18, 0x2A	; 42
+    14f6:	30 e0       	ldi	r19, 0x00	; 0
+    14f8:	f9 01       	movw	r30, r18
+    14fa:	20 81       	ld	r18, Z
+    14fc:	62 2f       	mov	r22, r18
+    14fe:	29 81       	ldd	r18, Y+1	; 0x01
+    1500:	42 2f       	mov	r20, r18
+    1502:	50 e0       	ldi	r21, 0x00	; 0
+    1504:	21 e0       	ldi	r18, 0x01	; 1
+    1506:	30 e0       	ldi	r19, 0x00	; 0
+    1508:	02 c0       	rjmp	.+4      	; 0x150e <PORTD_set_pin_dir+0x44>
+    150a:	22 0f       	add	r18, r18
+    150c:	33 1f       	adc	r19, r19
+    150e:	4a 95       	dec	r20
+    1510:	e2 f7       	brpl	.-8      	; 0x150a <PORTD_set_pin_dir+0x40>
+    1512:	20 95       	com	r18
+    1514:	26 23       	and	r18, r22
+    1516:	fc 01       	movw	r30, r24
+    1518:	20 83       	st	Z, r18
+		break;
+    151a:	3f c0       	rjmp	.+126    	; 0x159a <PORTD_set_pin_dir+0xd0>
+	case PORT_DIR_OUT:
+		DDRD |= 1 << pin;
+    151c:	8a e2       	ldi	r24, 0x2A	; 42
+    151e:	90 e0       	ldi	r25, 0x00	; 0
+    1520:	2a e2       	ldi	r18, 0x2A	; 42
+    1522:	30 e0       	ldi	r19, 0x00	; 0
+    1524:	f9 01       	movw	r30, r18
+    1526:	20 81       	ld	r18, Z
+    1528:	62 2f       	mov	r22, r18
+    152a:	29 81       	ldd	r18, Y+1	; 0x01
+    152c:	42 2f       	mov	r20, r18
+    152e:	50 e0       	ldi	r21, 0x00	; 0
+    1530:	21 e0       	ldi	r18, 0x01	; 1
+    1532:	30 e0       	ldi	r19, 0x00	; 0
+    1534:	02 c0       	rjmp	.+4      	; 0x153a <PORTD_set_pin_dir+0x70>
+    1536:	22 0f       	add	r18, r18
+    1538:	33 1f       	adc	r19, r19
+    153a:	4a 95       	dec	r20
+    153c:	e2 f7       	brpl	.-8      	; 0x1536 <PORTD_set_pin_dir+0x6c>
+    153e:	26 2b       	or	r18, r22
+    1540:	fc 01       	movw	r30, r24
+    1542:	20 83       	st	Z, r18
+		break;
+    1544:	2a c0       	rjmp	.+84     	; 0x159a <PORTD_set_pin_dir+0xd0>
+	case PORT_DIR_OFF:
+		DDRD &= ~(1 << pin);
+    1546:	8a e2       	ldi	r24, 0x2A	; 42
+    1548:	90 e0       	ldi	r25, 0x00	; 0
+    154a:	2a e2       	ldi	r18, 0x2A	; 42
+    154c:	30 e0       	ldi	r19, 0x00	; 0
+    154e:	f9 01       	movw	r30, r18
+    1550:	20 81       	ld	r18, Z
+    1552:	62 2f       	mov	r22, r18
+    1554:	29 81       	ldd	r18, Y+1	; 0x01
+    1556:	42 2f       	mov	r20, r18
+    1558:	50 e0       	ldi	r21, 0x00	; 0
+    155a:	21 e0       	ldi	r18, 0x01	; 1
+    155c:	30 e0       	ldi	r19, 0x00	; 0
+    155e:	02 c0       	rjmp	.+4      	; 0x1564 <PORTD_set_pin_dir+0x9a>
+    1560:	22 0f       	add	r18, r18
+    1562:	33 1f       	adc	r19, r19
+    1564:	4a 95       	dec	r20
+    1566:	e2 f7       	brpl	.-8      	; 0x1560 <PORTD_set_pin_dir+0x96>
+    1568:	20 95       	com	r18
+    156a:	26 23       	and	r18, r22
+    156c:	fc 01       	movw	r30, r24
+    156e:	20 83       	st	Z, r18
+
+		PORTD |= 1 << pin;
+    1570:	8b e2       	ldi	r24, 0x2B	; 43
+    1572:	90 e0       	ldi	r25, 0x00	; 0
+    1574:	2b e2       	ldi	r18, 0x2B	; 43
+    1576:	30 e0       	ldi	r19, 0x00	; 0
+    1578:	f9 01       	movw	r30, r18
+    157a:	20 81       	ld	r18, Z
+    157c:	62 2f       	mov	r22, r18
+    157e:	29 81       	ldd	r18, Y+1	; 0x01
+    1580:	42 2f       	mov	r20, r18
+    1582:	50 e0       	ldi	r21, 0x00	; 0
+    1584:	21 e0       	ldi	r18, 0x01	; 1
+    1586:	30 e0       	ldi	r19, 0x00	; 0
+    1588:	02 c0       	rjmp	.+4      	; 0x158e <PORTD_set_pin_dir+0xc4>
+    158a:	22 0f       	add	r18, r18
+    158c:	33 1f       	adc	r19, r19
+    158e:	4a 95       	dec	r20
+    1590:	e2 f7       	brpl	.-8      	; 0x158a <PORTD_set_pin_dir+0xc0>
+    1592:	26 2b       	or	r18, r22
+    1594:	fc 01       	movw	r30, r24
+    1596:	20 83       	st	Z, r18
+		break;
+    1598:	00 00       	nop
+	default:
+		break;
+	}
+}
+    159a:	00 00       	nop
+    159c:	0f 90       	pop	r0
+    159e:	0f 90       	pop	r0
+    15a0:	df 91       	pop	r29
+    15a2:	cf 91       	pop	r28
+    15a4:	08 95       	ret
+
+000015a6 <PORTD_set_pin_level>:
+ * \param[in] pin       The pin number for device
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+    15a6:	cf 93       	push	r28
+    15a8:	df 93       	push	r29
+    15aa:	00 d0       	rcall	.+0      	; 0x15ac <PORTD_set_pin_level+0x6>
+    15ac:	cd b7       	in	r28, 0x3d	; 61
+    15ae:	de b7       	in	r29, 0x3e	; 62
+    15b0:	89 83       	std	Y+1, r24	; 0x01
+    15b2:	6a 83       	std	Y+2, r22	; 0x02
+	if (level) {
+    15b4:	8a 81       	ldd	r24, Y+2	; 0x02
+    15b6:	88 23       	and	r24, r24
+    15b8:	a9 f0       	breq	.+42     	; 0x15e4 <PORTD_set_pin_level+0x3e>
+		PORTD |= 1 << pin;
+    15ba:	8b e2       	ldi	r24, 0x2B	; 43
+    15bc:	90 e0       	ldi	r25, 0x00	; 0
+    15be:	2b e2       	ldi	r18, 0x2B	; 43
+    15c0:	30 e0       	ldi	r19, 0x00	; 0
+    15c2:	f9 01       	movw	r30, r18
+    15c4:	20 81       	ld	r18, Z
+    15c6:	62 2f       	mov	r22, r18
+    15c8:	29 81       	ldd	r18, Y+1	; 0x01
+    15ca:	42 2f       	mov	r20, r18
+    15cc:	50 e0       	ldi	r21, 0x00	; 0
+    15ce:	21 e0       	ldi	r18, 0x01	; 1
+    15d0:	30 e0       	ldi	r19, 0x00	; 0
+    15d2:	02 c0       	rjmp	.+4      	; 0x15d8 <PORTD_set_pin_level+0x32>
+    15d4:	22 0f       	add	r18, r18
+    15d6:	33 1f       	adc	r19, r19
+    15d8:	4a 95       	dec	r20
+    15da:	e2 f7       	brpl	.-8      	; 0x15d4 <PORTD_set_pin_level+0x2e>
+    15dc:	26 2b       	or	r18, r22
+    15de:	fc 01       	movw	r30, r24
+    15e0:	20 83       	st	Z, r18
+	} else {
+		PORTD &= ~(1 << pin);
+	}
+}
+    15e2:	15 c0       	rjmp	.+42     	; 0x160e <PORTD_set_pin_level+0x68>
+static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTD |= 1 << pin;
+	} else {
+		PORTD &= ~(1 << pin);
+    15e4:	8b e2       	ldi	r24, 0x2B	; 43
+    15e6:	90 e0       	ldi	r25, 0x00	; 0
+    15e8:	2b e2       	ldi	r18, 0x2B	; 43
+    15ea:	30 e0       	ldi	r19, 0x00	; 0
+    15ec:	f9 01       	movw	r30, r18
+    15ee:	20 81       	ld	r18, Z
+    15f0:	62 2f       	mov	r22, r18
+    15f2:	29 81       	ldd	r18, Y+1	; 0x01
+    15f4:	42 2f       	mov	r20, r18
+    15f6:	50 e0       	ldi	r21, 0x00	; 0
+    15f8:	21 e0       	ldi	r18, 0x01	; 1
+    15fa:	30 e0       	ldi	r19, 0x00	; 0
+    15fc:	02 c0       	rjmp	.+4      	; 0x1602 <PORTD_set_pin_level+0x5c>
+    15fe:	22 0f       	add	r18, r18
+    1600:	33 1f       	adc	r19, r19
+    1602:	4a 95       	dec	r20
+    1604:	e2 f7       	brpl	.-8      	; 0x15fe <PORTD_set_pin_level+0x58>
+    1606:	20 95       	com	r18
+    1608:	26 23       	and	r18, r22
+    160a:	fc 01       	movw	r30, r24
+    160c:	20 83       	st	Z, r18
+	}
+}
+    160e:	00 00       	nop
+    1610:	0f 90       	pop	r0
+    1612:	0f 90       	pop	r0
+    1614:	df 91       	pop	r29
+    1616:	cf 91       	pop	r28
+    1618:	08 95       	ret
+
+0000161a <PWM1_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PWM1_set_dir(const enum port_dir dir)
+{
+    161a:	cf 93       	push	r28
+    161c:	df 93       	push	r29
+    161e:	1f 92       	push	r1
+    1620:	cd b7       	in	r28, 0x3d	; 61
+    1622:	de b7       	in	r29, 0x3e	; 62
+    1624:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_dir(3, dir);
+    1626:	69 81       	ldd	r22, Y+1	; 0x01
+    1628:	83 e0       	ldi	r24, 0x03	; 3
+    162a:	0e 94 e1 07 	call	0xfc2	; 0xfc2 <PORTB_set_pin_dir>
+}
+    162e:	00 00       	nop
+    1630:	0f 90       	pop	r0
+    1632:	df 91       	pop	r29
+    1634:	cf 91       	pop	r28
+    1636:	08 95       	ret
+
+00001638 <PWM1_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PWM1_set_level(const bool level)
+{
+    1638:	cf 93       	push	r28
+    163a:	df 93       	push	r29
+    163c:	1f 92       	push	r1
+    163e:	cd b7       	in	r28, 0x3d	; 61
+    1640:	de b7       	in	r29, 0x3e	; 62
+    1642:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_level(3, level);
+    1644:	69 81       	ldd	r22, Y+1	; 0x01
+    1646:	83 e0       	ldi	r24, 0x03	; 3
+    1648:	0e 94 4f 08 	call	0x109e	; 0x109e <PORTB_set_pin_level>
+}
+    164c:	00 00       	nop
+    164e:	0f 90       	pop	r0
+    1650:	df 91       	pop	r29
+    1652:	cf 91       	pop	r28
+    1654:	08 95       	ret
+
+00001656 <TRIG_F_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void TRIG_F_set_dir(const enum port_dir dir)
+{
+    1656:	cf 93       	push	r28
+    1658:	df 93       	push	r29
+    165a:	1f 92       	push	r1
+    165c:	cd b7       	in	r28, 0x3d	; 61
+    165e:	de b7       	in	r29, 0x3e	; 62
+    1660:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_dir(0, dir);
+    1662:	69 81       	ldd	r22, Y+1	; 0x01
+    1664:	80 e0       	ldi	r24, 0x00	; 0
+    1666:	0e 94 23 09 	call	0x1246	; 0x1246 <PORTC_set_pin_dir>
+}
+    166a:	00 00       	nop
+    166c:	0f 90       	pop	r0
+    166e:	df 91       	pop	r29
+    1670:	cf 91       	pop	r28
+    1672:	08 95       	ret
+
+00001674 <TRIG_F_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void TRIG_F_set_level(const bool level)
+{
+    1674:	cf 93       	push	r28
+    1676:	df 93       	push	r29
+    1678:	1f 92       	push	r1
+    167a:	cd b7       	in	r28, 0x3d	; 61
+    167c:	de b7       	in	r29, 0x3e	; 62
+    167e:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_level(0, level);
+    1680:	69 81       	ldd	r22, Y+1	; 0x01
+    1682:	80 e0       	ldi	r24, 0x00	; 0
+    1684:	0e 94 91 09 	call	0x1322	; 0x1322 <PORTC_set_pin_level>
+}
+    1688:	00 00       	nop
+    168a:	0f 90       	pop	r0
+    168c:	df 91       	pop	r29
+    168e:	cf 91       	pop	r28
+    1690:	08 95       	ret
+
+00001692 <ECHO_F_set_pull_mode>:
+ * modes are defined by device used
+ *
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void ECHO_F_set_pull_mode(const enum port_pull_mode pull_mode)
+{
+    1692:	cf 93       	push	r28
+    1694:	df 93       	push	r29
+    1696:	1f 92       	push	r1
+    1698:	cd b7       	in	r28, 0x3d	; 61
+    169a:	de b7       	in	r29, 0x3e	; 62
+    169c:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_pull_mode(1, pull_mode);
+    169e:	69 81       	ldd	r22, Y+1	; 0x01
+    16a0:	81 e0       	ldi	r24, 0x01	; 1
+    16a2:	0e 94 89 08 	call	0x1112	; 0x1112 <PORTC_set_pin_pull_mode>
+}
+    16a6:	00 00       	nop
+    16a8:	0f 90       	pop	r0
+    16aa:	df 91       	pop	r29
+    16ac:	cf 91       	pop	r28
+    16ae:	08 95       	ret
+
+000016b0 <ECHO_F_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void ECHO_F_set_dir(const enum port_dir dir)
+{
+    16b0:	cf 93       	push	r28
+    16b2:	df 93       	push	r29
+    16b4:	1f 92       	push	r1
+    16b6:	cd b7       	in	r28, 0x3d	; 61
+    16b8:	de b7       	in	r29, 0x3e	; 62
+    16ba:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_dir(1, dir);
+    16bc:	69 81       	ldd	r22, Y+1	; 0x01
+    16be:	81 e0       	ldi	r24, 0x01	; 1
+    16c0:	0e 94 23 09 	call	0x1246	; 0x1246 <PORTC_set_pin_dir>
+}
+    16c4:	00 00       	nop
+    16c6:	0f 90       	pop	r0
+    16c8:	df 91       	pop	r29
+    16ca:	cf 91       	pop	r28
+    16cc:	08 95       	ret
+
+000016ce <ECHO_L_set_pull_mode>:
+ * modes are defined by device used
+ *
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void ECHO_L_set_pull_mode(const enum port_pull_mode pull_mode)
+{
+    16ce:	cf 93       	push	r28
+    16d0:	df 93       	push	r29
+    16d2:	1f 92       	push	r1
+    16d4:	cd b7       	in	r28, 0x3d	; 61
+    16d6:	de b7       	in	r29, 0x3e	; 62
+    16d8:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_pull_mode(2, pull_mode);
+    16da:	69 81       	ldd	r22, Y+1	; 0x01
+    16dc:	82 e0       	ldi	r24, 0x02	; 2
+    16de:	0e 94 89 08 	call	0x1112	; 0x1112 <PORTC_set_pin_pull_mode>
+}
+    16e2:	00 00       	nop
+    16e4:	0f 90       	pop	r0
+    16e6:	df 91       	pop	r29
+    16e8:	cf 91       	pop	r28
+    16ea:	08 95       	ret
+
+000016ec <ECHO_L_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void ECHO_L_set_dir(const enum port_dir dir)
+{
+    16ec:	cf 93       	push	r28
+    16ee:	df 93       	push	r29
+    16f0:	1f 92       	push	r1
+    16f2:	cd b7       	in	r28, 0x3d	; 61
+    16f4:	de b7       	in	r29, 0x3e	; 62
+    16f6:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_dir(2, dir);
+    16f8:	69 81       	ldd	r22, Y+1	; 0x01
+    16fa:	82 e0       	ldi	r24, 0x02	; 2
+    16fc:	0e 94 23 09 	call	0x1246	; 0x1246 <PORTC_set_pin_dir>
+}
+    1700:	00 00       	nop
+    1702:	0f 90       	pop	r0
+    1704:	df 91       	pop	r29
+    1706:	cf 91       	pop	r28
+    1708:	08 95       	ret
+
+0000170a <TRIG_L_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void TRIG_L_set_dir(const enum port_dir dir)
+{
+    170a:	cf 93       	push	r28
+    170c:	df 93       	push	r29
+    170e:	1f 92       	push	r1
+    1710:	cd b7       	in	r28, 0x3d	; 61
+    1712:	de b7       	in	r29, 0x3e	; 62
+    1714:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_dir(3, dir);
+    1716:	69 81       	ldd	r22, Y+1	; 0x01
+    1718:	83 e0       	ldi	r24, 0x03	; 3
+    171a:	0e 94 23 09 	call	0x1246	; 0x1246 <PORTC_set_pin_dir>
+}
+    171e:	00 00       	nop
+    1720:	0f 90       	pop	r0
+    1722:	df 91       	pop	r29
+    1724:	cf 91       	pop	r28
+    1726:	08 95       	ret
+
+00001728 <TRIG_L_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void TRIG_L_set_level(const bool level)
+{
+    1728:	cf 93       	push	r28
+    172a:	df 93       	push	r29
+    172c:	1f 92       	push	r1
+    172e:	cd b7       	in	r28, 0x3d	; 61
+    1730:	de b7       	in	r29, 0x3e	; 62
+    1732:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_level(3, level);
+    1734:	69 81       	ldd	r22, Y+1	; 0x01
+    1736:	83 e0       	ldi	r24, 0x03	; 3
+    1738:	0e 94 91 09 	call	0x1322	; 0x1322 <PORTC_set_pin_level>
+}
+    173c:	00 00       	nop
+    173e:	0f 90       	pop	r0
+    1740:	df 91       	pop	r29
+    1742:	cf 91       	pop	r28
+    1744:	08 95       	ret
+
+00001746 <PC4_set_pull_mode>:
+ * modes are defined by device used
+ *
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void PC4_set_pull_mode(const enum port_pull_mode pull_mode)
+{
+    1746:	cf 93       	push	r28
+    1748:	df 93       	push	r29
+    174a:	1f 92       	push	r1
+    174c:	cd b7       	in	r28, 0x3d	; 61
+    174e:	de b7       	in	r29, 0x3e	; 62
+    1750:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_pull_mode(4, pull_mode);
+    1752:	69 81       	ldd	r22, Y+1	; 0x01
+    1754:	84 e0       	ldi	r24, 0x04	; 4
+    1756:	0e 94 89 08 	call	0x1112	; 0x1112 <PORTC_set_pin_pull_mode>
+}
+    175a:	00 00       	nop
+    175c:	0f 90       	pop	r0
+    175e:	df 91       	pop	r29
+    1760:	cf 91       	pop	r28
+    1762:	08 95       	ret
+
+00001764 <PC5_set_pull_mode>:
+ * modes are defined by device used
+ *
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void PC5_set_pull_mode(const enum port_pull_mode pull_mode)
+{
+    1764:	cf 93       	push	r28
+    1766:	df 93       	push	r29
+    1768:	1f 92       	push	r1
+    176a:	cd b7       	in	r28, 0x3d	; 61
+    176c:	de b7       	in	r29, 0x3e	; 62
+    176e:	89 83       	std	Y+1, r24	; 0x01
+	PORTC_set_pin_pull_mode(5, pull_mode);
+    1770:	69 81       	ldd	r22, Y+1	; 0x01
+    1772:	85 e0       	ldi	r24, 0x05	; 5
+    1774:	0e 94 89 08 	call	0x1112	; 0x1112 <PORTC_set_pin_pull_mode>
+}
+    1778:	00 00       	nop
+    177a:	0f 90       	pop	r0
+    177c:	df 91       	pop	r29
+    177e:	cf 91       	pop	r28
+    1780:	08 95       	ret
+
+00001782 <ECHO_R_set_pull_mode>:
+ * modes are defined by device used
+ *
+ * \param[in] pull_mode Pin pull mode
+ */
+static inline void ECHO_R_set_pull_mode(const enum port_pull_mode pull_mode)
+{
+    1782:	cf 93       	push	r28
+    1784:	df 93       	push	r29
+    1786:	1f 92       	push	r1
+    1788:	cd b7       	in	r28, 0x3d	; 61
+    178a:	de b7       	in	r29, 0x3e	; 62
+    178c:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_pull_mode(1, pull_mode);
+    178e:	69 81       	ldd	r22, Y+1	; 0x01
+    1790:	81 e0       	ldi	r24, 0x01	; 1
+    1792:	0e 94 cb 09 	call	0x1396	; 0x1396 <PORTD_set_pin_pull_mode>
+}
+    1796:	00 00       	nop
+    1798:	0f 90       	pop	r0
+    179a:	df 91       	pop	r29
+    179c:	cf 91       	pop	r28
+    179e:	08 95       	ret
+
+000017a0 <ECHO_R_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void ECHO_R_set_dir(const enum port_dir dir)
+{
+    17a0:	cf 93       	push	r28
+    17a2:	df 93       	push	r29
+    17a4:	1f 92       	push	r1
+    17a6:	cd b7       	in	r28, 0x3d	; 61
+    17a8:	de b7       	in	r29, 0x3e	; 62
+    17aa:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_dir(1, dir);
+    17ac:	69 81       	ldd	r22, Y+1	; 0x01
+    17ae:	81 e0       	ldi	r24, 0x01	; 1
+    17b0:	0e 94 65 0a 	call	0x14ca	; 0x14ca <PORTD_set_pin_dir>
+}
+    17b4:	00 00       	nop
+    17b6:	0f 90       	pop	r0
+    17b8:	df 91       	pop	r29
+    17ba:	cf 91       	pop	r28
+    17bc:	08 95       	ret
+
+000017be <TRIG_R_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void TRIG_R_set_dir(const enum port_dir dir)
+{
+    17be:	cf 93       	push	r28
+    17c0:	df 93       	push	r29
+    17c2:	1f 92       	push	r1
+    17c4:	cd b7       	in	r28, 0x3d	; 61
+    17c6:	de b7       	in	r29, 0x3e	; 62
+    17c8:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_dir(2, dir);
+    17ca:	69 81       	ldd	r22, Y+1	; 0x01
+    17cc:	82 e0       	ldi	r24, 0x02	; 2
+    17ce:	0e 94 65 0a 	call	0x14ca	; 0x14ca <PORTD_set_pin_dir>
+}
+    17d2:	00 00       	nop
+    17d4:	0f 90       	pop	r0
+    17d6:	df 91       	pop	r29
+    17d8:	cf 91       	pop	r28
+    17da:	08 95       	ret
+
+000017dc <TRIG_R_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void TRIG_R_set_level(const bool level)
+{
+    17dc:	cf 93       	push	r28
+    17de:	df 93       	push	r29
+    17e0:	1f 92       	push	r1
+    17e2:	cd b7       	in	r28, 0x3d	; 61
+    17e4:	de b7       	in	r29, 0x3e	; 62
+    17e6:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(2, level);
+    17e8:	69 81       	ldd	r22, Y+1	; 0x01
+    17ea:	82 e0       	ldi	r24, 0x02	; 2
+    17ec:	0e 94 d3 0a 	call	0x15a6	; 0x15a6 <PORTD_set_pin_level>
+}
+    17f0:	00 00       	nop
+    17f2:	0f 90       	pop	r0
+    17f4:	df 91       	pop	r29
+    17f6:	cf 91       	pop	r28
+    17f8:	08 95       	ret
+
+000017fa <PWM2_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void PWM2_set_dir(const enum port_dir dir)
+{
+    17fa:	cf 93       	push	r28
+    17fc:	df 93       	push	r29
+    17fe:	1f 92       	push	r1
+    1800:	cd b7       	in	r28, 0x3d	; 61
+    1802:	de b7       	in	r29, 0x3e	; 62
+    1804:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_dir(3, dir);
+    1806:	69 81       	ldd	r22, Y+1	; 0x01
+    1808:	83 e0       	ldi	r24, 0x03	; 3
+    180a:	0e 94 65 0a 	call	0x14ca	; 0x14ca <PORTD_set_pin_dir>
+}
+    180e:	00 00       	nop
+    1810:	0f 90       	pop	r0
+    1812:	df 91       	pop	r29
+    1814:	cf 91       	pop	r28
+    1816:	08 95       	ret
+
+00001818 <PWM2_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void PWM2_set_level(const bool level)
+{
+    1818:	cf 93       	push	r28
+    181a:	df 93       	push	r29
+    181c:	1f 92       	push	r1
+    181e:	cd b7       	in	r28, 0x3d	; 61
+    1820:	de b7       	in	r29, 0x3e	; 62
+    1822:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(3, level);
+    1824:	69 81       	ldd	r22, Y+1	; 0x01
+    1826:	83 e0       	ldi	r24, 0x03	; 3
+    1828:	0e 94 d3 0a 	call	0x15a6	; 0x15a6 <PORTD_set_pin_level>
+}
+    182c:	00 00       	nop
+    182e:	0f 90       	pop	r0
+    1830:	df 91       	pop	r29
+    1832:	cf 91       	pop	r28
+    1834:	08 95       	ret
+
+00001836 <IN1_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void IN1_set_dir(const enum port_dir dir)
+{
+    1836:	cf 93       	push	r28
+    1838:	df 93       	push	r29
+    183a:	1f 92       	push	r1
+    183c:	cd b7       	in	r28, 0x3d	; 61
+    183e:	de b7       	in	r29, 0x3e	; 62
+    1840:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_dir(6, dir);
+    1842:	69 81       	ldd	r22, Y+1	; 0x01
+    1844:	86 e0       	ldi	r24, 0x06	; 6
+    1846:	0e 94 65 0a 	call	0x14ca	; 0x14ca <PORTD_set_pin_dir>
+}
+    184a:	00 00       	nop
+    184c:	0f 90       	pop	r0
+    184e:	df 91       	pop	r29
+    1850:	cf 91       	pop	r28
+    1852:	08 95       	ret
+
+00001854 <IN1_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN1_set_level(const bool level)
+{
+    1854:	cf 93       	push	r28
+    1856:	df 93       	push	r29
+    1858:	1f 92       	push	r1
+    185a:	cd b7       	in	r28, 0x3d	; 61
+    185c:	de b7       	in	r29, 0x3e	; 62
+    185e:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(6, level);
+    1860:	69 81       	ldd	r22, Y+1	; 0x01
+    1862:	86 e0       	ldi	r24, 0x06	; 6
+    1864:	0e 94 d3 0a 	call	0x15a6	; 0x15a6 <PORTD_set_pin_level>
+}
+    1868:	00 00       	nop
+    186a:	0f 90       	pop	r0
+    186c:	df 91       	pop	r29
+    186e:	cf 91       	pop	r28
+    1870:	08 95       	ret
+
+00001872 <IN2_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void IN2_set_dir(const enum port_dir dir)
+{
+    1872:	cf 93       	push	r28
+    1874:	df 93       	push	r29
+    1876:	1f 92       	push	r1
+    1878:	cd b7       	in	r28, 0x3d	; 61
+    187a:	de b7       	in	r29, 0x3e	; 62
+    187c:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_dir(7, dir);
+    187e:	69 81       	ldd	r22, Y+1	; 0x01
+    1880:	87 e0       	ldi	r24, 0x07	; 7
+    1882:	0e 94 65 0a 	call	0x14ca	; 0x14ca <PORTD_set_pin_dir>
+}
+    1886:	00 00       	nop
+    1888:	0f 90       	pop	r0
+    188a:	df 91       	pop	r29
+    188c:	cf 91       	pop	r28
+    188e:	08 95       	ret
+
+00001890 <IN2_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN2_set_level(const bool level)
+{
+    1890:	cf 93       	push	r28
+    1892:	df 93       	push	r29
+    1894:	1f 92       	push	r1
+    1896:	cd b7       	in	r28, 0x3d	; 61
+    1898:	de b7       	in	r29, 0x3e	; 62
+    189a:	89 83       	std	Y+1, r24	; 0x01
+	PORTD_set_pin_level(7, level);
+    189c:	69 81       	ldd	r22, Y+1	; 0x01
+    189e:	87 e0       	ldi	r24, 0x07	; 7
+    18a0:	0e 94 d3 0a 	call	0x15a6	; 0x15a6 <PORTD_set_pin_level>
+}
+    18a4:	00 00       	nop
+    18a6:	0f 90       	pop	r0
+    18a8:	df 91       	pop	r29
+    18aa:	cf 91       	pop	r28
+    18ac:	08 95       	ret
+
+000018ae <IN3_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void IN3_set_dir(const enum port_dir dir)
+{
+    18ae:	cf 93       	push	r28
+    18b0:	df 93       	push	r29
+    18b2:	1f 92       	push	r1
+    18b4:	cd b7       	in	r28, 0x3d	; 61
+    18b6:	de b7       	in	r29, 0x3e	; 62
+    18b8:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_dir(1, dir);
+    18ba:	69 81       	ldd	r22, Y+1	; 0x01
+    18bc:	81 e0       	ldi	r24, 0x01	; 1
+    18be:	0e 94 e1 07 	call	0xfc2	; 0xfc2 <PORTB_set_pin_dir>
+}
+    18c2:	00 00       	nop
+    18c4:	0f 90       	pop	r0
+    18c6:	df 91       	pop	r29
+    18c8:	cf 91       	pop	r28
+    18ca:	08 95       	ret
+
+000018cc <IN3_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN3_set_level(const bool level)
+{
+    18cc:	cf 93       	push	r28
+    18ce:	df 93       	push	r29
+    18d0:	1f 92       	push	r1
+    18d2:	cd b7       	in	r28, 0x3d	; 61
+    18d4:	de b7       	in	r29, 0x3e	; 62
+    18d6:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_level(1, level);
+    18d8:	69 81       	ldd	r22, Y+1	; 0x01
+    18da:	81 e0       	ldi	r24, 0x01	; 1
+    18dc:	0e 94 4f 08 	call	0x109e	; 0x109e <PORTB_set_pin_level>
+}
+    18e0:	00 00       	nop
+    18e2:	0f 90       	pop	r0
+    18e4:	df 91       	pop	r29
+    18e6:	cf 91       	pop	r28
+    18e8:	08 95       	ret
+
+000018ea <IN4_set_dir>:
+ *                      PORT_DIR_OUT = Data direction out
+ *                      PORT_DIR_OFF = Disables the pin
+ *                      (low power state)
+ */
+static inline void IN4_set_dir(const enum port_dir dir)
+{
+    18ea:	cf 93       	push	r28
+    18ec:	df 93       	push	r29
+    18ee:	1f 92       	push	r1
+    18f0:	cd b7       	in	r28, 0x3d	; 61
+    18f2:	de b7       	in	r29, 0x3e	; 62
+    18f4:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_dir(2, dir);
+    18f6:	69 81       	ldd	r22, Y+1	; 0x01
+    18f8:	82 e0       	ldi	r24, 0x02	; 2
+    18fa:	0e 94 e1 07 	call	0xfc2	; 0xfc2 <PORTB_set_pin_dir>
+}
+    18fe:	00 00       	nop
+    1900:	0f 90       	pop	r0
+    1902:	df 91       	pop	r29
+    1904:	cf 91       	pop	r28
+    1906:	08 95       	ret
+
+00001908 <IN4_set_level>:
+ *
+ * \param[in] level true  = Pin level set to "high" state
+ *                  false = Pin level set to "low" state
+ */
+static inline void IN4_set_level(const bool level)
+{
+    1908:	cf 93       	push	r28
+    190a:	df 93       	push	r29
+    190c:	1f 92       	push	r1
+    190e:	cd b7       	in	r28, 0x3d	; 61
+    1910:	de b7       	in	r29, 0x3e	; 62
+    1912:	89 83       	std	Y+1, r24	; 0x01
+	PORTB_set_pin_level(2, level);
+    1914:	69 81       	ldd	r22, Y+1	; 0x01
+    1916:	82 e0       	ldi	r24, 0x02	; 2
+    1918:	0e 94 4f 08 	call	0x109e	; 0x109e <PORTB_set_pin_level>
+}
+    191c:	00 00       	nop
+    191e:	0f 90       	pop	r0
+    1920:	df 91       	pop	r29
+    1922:	cf 91       	pop	r28
+    1924:	08 95       	ret
+
+00001926 <sysctrl_init>:
+ * \param[in] hw The pointer to hardware instance
+ *
+ * \return Initialization status.
+ */
+static inline int8_t sysctrl_init()
+{
+    1926:	cf 93       	push	r28
+    1928:	df 93       	push	r29
+    192a:	cd b7       	in	r28, 0x3d	; 61
+    192c:	de b7       	in	r29, 0x3e	; 62
+	/* Set up system clock prescaler according to configuration */
+	protected_write_io((void *)&CLKPR, 1 << CLKPCE, (0 << CLKPS3) | (0 << CLKPS2) | (0 << CLKPS1) | (0 << CLKPS0));
+    192e:	40 e0       	ldi	r20, 0x00	; 0
+    1930:	60 e8       	ldi	r22, 0x80	; 128
+    1932:	81 e6       	ldi	r24, 0x61	; 97
+    1934:	90 e0       	ldi	r25, 0x00	; 0
+    1936:	0e 94 34 0d 	call	0x1a68	; 0x1a68 <protected_write_io>
+
+	SMCR = (0 << SM2) | (0 << SM1) | (0 << SM0) | // Idle
+    193a:	83 e5       	ldi	r24, 0x53	; 83
+    193c:	90 e0       	ldi	r25, 0x00	; 0
+    193e:	fc 01       	movw	r30, r24
+    1940:	10 82       	st	Z, r1
+	       (0 << SE);
+
+	MCUCR = (0 << PUD);
+    1942:	85 e5       	ldi	r24, 0x55	; 85
+    1944:	90 e0       	ldi	r25, 0x00	; 0
+    1946:	fc 01       	movw	r30, r24
+    1948:	10 82       	st	Z, r1
+
+	return 0;
+    194a:	80 e0       	ldi	r24, 0x00	; 0
+}
+    194c:	df 91       	pop	r29
+    194e:	cf 91       	pop	r28
+    1950:	08 95       	ret
+
+00001952 <mcu_init>:
+#define MCU_RESET_CAUSE_EXT (1 << EXTRF)
+#define MCU_RESET_CAUSE_BOR (1 << BORF)
+#define MCU_RESET_CAUSE_WDT (1 << WDRF)
+
+static inline void mcu_init(void)
+{
+    1952:	cf 93       	push	r28
+    1954:	df 93       	push	r29
+    1956:	cd b7       	in	r28, 0x3d	; 61
+    1958:	de b7       	in	r29, 0x3e	; 62
+	/* On AVR devices all peripherals are enabled from power on reset, this
+	 * disables all peripherals to save power. Driver shall enable
+	 * peripheral if used */
+
+	PRR = (1 << PRSPI) | (1 << PRTIM2) | (1 << PRTIM0) | (1 << PRTIM1) | (1 << PRTWI) | (1 << PRUSART0) | (1 << PRADC);
+    195a:	84 e6       	ldi	r24, 0x64	; 100
+    195c:	90 e0       	ldi	r25, 0x00	; 0
+    195e:	2f ee       	ldi	r18, 0xEF	; 239
+    1960:	fc 01       	movw	r30, r24
+    1962:	20 83       	st	Z, r18
+
+	/* Set all pins to low power mode */
+	PORTB_set_port_dir(0xff, PORT_DIR_OFF);
+    1964:	62 e0       	ldi	r22, 0x02	; 2
+    1966:	8f ef       	ldi	r24, 0xFF	; 255
+    1968:	0e 94 99 07 	call	0xf32	; 0xf32 <PORTB_set_port_dir>
+	PORTC_set_port_dir(0x7f, PORT_DIR_OFF);
+    196c:	62 e0       	ldi	r22, 0x02	; 2
+    196e:	8f e7       	ldi	r24, 0x7F	; 127
+    1970:	0e 94 db 08 	call	0x11b6	; 0x11b6 <PORTC_set_port_dir>
+	PORTD_set_port_dir(0xff, PORT_DIR_OFF);
+    1974:	62 e0       	ldi	r22, 0x02	; 2
+    1976:	8f ef       	ldi	r24, 0xFF	; 255
+    1978:	0e 94 1d 0a 	call	0x143a	; 0x143a <PORTD_set_port_dir>
+}
+    197c:	00 00       	nop
+    197e:	df 91       	pop	r29
+    1980:	cf 91       	pop	r28
+    1982:	08 95       	ret
+
+00001984 <ADC_0_initialization>:
+#include "driver_init.h"
+#include <system.h>
+
+/* Configure pins and initialize registers */
+void ADC_0_initialization(void)
+{
+    1984:	cf 93       	push	r28
+    1986:	df 93       	push	r29
+    1988:	cd b7       	in	r28, 0x3d	; 61
+    198a:	de b7       	in	r29, 0x3e	; 62
+
+	// Disable pull-up.
+	PC4_set_pull_mode(PORT_PULL_OFF);
+    198c:	80 e0       	ldi	r24, 0x00	; 0
+    198e:	0e 94 a3 0b 	call	0x1746	; 0x1746 <PC4_set_pull_mode>
+
+	// Disable pull-up.
+	PC5_set_pull_mode(PORT_PULL_OFF);
+    1992:	80 e0       	ldi	r24, 0x00	; 0
+    1994:	0e 94 b2 0b 	call	0x1764	; 0x1764 <PC5_set_pull_mode>
+
+	ADC_0_init();
+    1998:	0e 94 fc 06 	call	0xdf8	; 0xdf8 <ADC_0_init>
+}
+    199c:	00 00       	nop
+    199e:	df 91       	pop	r29
+    19a0:	cf 91       	pop	r28
+    19a2:	08 95       	ret
+
+000019a4 <PWM_1_initialization>:
+
+void PWM_1_initialization(void)
+{
+    19a4:	cf 93       	push	r28
+    19a6:	df 93       	push	r29
+    19a8:	cd b7       	in	r28, 0x3d	; 61
+    19aa:	de b7       	in	r29, 0x3e	; 62
+
+	PWM_1_init();
+    19ac:	0e 94 3b 0d 	call	0x1a76	; 0x1a76 <PWM_1_init>
+}
+    19b0:	00 00       	nop
+    19b2:	df 91       	pop	r29
+    19b4:	cf 91       	pop	r28
+    19b6:	08 95       	ret
+
+000019b8 <system_init>:
+
+/**
+ * \brief System initialization
+ */
+void system_init()
+{
+    19b8:	cf 93       	push	r28
+    19ba:	df 93       	push	r29
+    19bc:	cd b7       	in	r28, 0x3d	; 61
+    19be:	de b7       	in	r29, 0x3e	; 62
+	mcu_init();
+    19c0:	0e 94 a9 0c 	call	0x1952	; 0x1952 <mcu_init>
+
+	/* PORT setting on PB3 */
+
+	// Set pin direction to output
+	PWM1_set_dir(PORT_DIR_OUT);
+    19c4:	81 e0       	ldi	r24, 0x01	; 1
+    19c6:	0e 94 0d 0b 	call	0x161a	; 0x161a <PWM1_set_dir>
+
+	PWM1_set_level(
+    19ca:	80 e0       	ldi	r24, 0x00	; 0
+    19cc:	0e 94 1c 0b 	call	0x1638	; 0x1638 <PWM1_set_level>
+	    false);
+
+	/* PORT setting on PC0 */
+
+	// Set pin direction to output
+	TRIG_F_set_dir(PORT_DIR_OUT);
+    19d0:	81 e0       	ldi	r24, 0x01	; 1
+    19d2:	0e 94 2b 0b 	call	0x1656	; 0x1656 <TRIG_F_set_dir>
+
+	TRIG_F_set_level(
+    19d6:	80 e0       	ldi	r24, 0x00	; 0
+    19d8:	0e 94 3a 0b 	call	0x1674	; 0x1674 <TRIG_F_set_level>
+	    false);
+
+	/* PORT setting on PC1 */
+
+	// Set pin direction to input
+	ECHO_F_set_dir(PORT_DIR_IN);
+    19dc:	80 e0       	ldi	r24, 0x00	; 0
+    19de:	0e 94 58 0b 	call	0x16b0	; 0x16b0 <ECHO_F_set_dir>
+
+	ECHO_F_set_pull_mode(
+    19e2:	80 e0       	ldi	r24, 0x00	; 0
+    19e4:	0e 94 49 0b 	call	0x1692	; 0x1692 <ECHO_F_set_pull_mode>
+	    PORT_PULL_OFF);
+
+	/* PORT setting on PC2 */
+
+	// Set pin direction to input
+	ECHO_L_set_dir(PORT_DIR_IN);
+    19e8:	80 e0       	ldi	r24, 0x00	; 0
+    19ea:	0e 94 76 0b 	call	0x16ec	; 0x16ec <ECHO_L_set_dir>
+
+	ECHO_L_set_pull_mode(
+    19ee:	80 e0       	ldi	r24, 0x00	; 0
+    19f0:	0e 94 67 0b 	call	0x16ce	; 0x16ce <ECHO_L_set_pull_mode>
+	    PORT_PULL_OFF);
+
+	/* PORT setting on PC3 */
+
+	// Set pin direction to output
+	TRIG_L_set_dir(PORT_DIR_OUT);
+    19f4:	81 e0       	ldi	r24, 0x01	; 1
+    19f6:	0e 94 85 0b 	call	0x170a	; 0x170a <TRIG_L_set_dir>
+
+	TRIG_L_set_level(
+    19fa:	80 e0       	ldi	r24, 0x00	; 0
+    19fc:	0e 94 94 0b 	call	0x1728	; 0x1728 <TRIG_L_set_level>
+	    false);
+
+	/* PORT setting on PD1 */
+
+	// Set pin direction to input
+	ECHO_R_set_dir(PORT_DIR_IN);
+    1a00:	80 e0       	ldi	r24, 0x00	; 0
+    1a02:	0e 94 d0 0b 	call	0x17a0	; 0x17a0 <ECHO_R_set_dir>
+
+	ECHO_R_set_pull_mode(
+    1a06:	81 e0       	ldi	r24, 0x01	; 1
+    1a08:	0e 94 c1 0b 	call	0x1782	; 0x1782 <ECHO_R_set_pull_mode>
+	    PORT_PULL_UP);
+
+	/* PORT setting on PD2 */
+
+	// Set pin direction to output
+	TRIG_R_set_dir(PORT_DIR_OUT);
+    1a0c:	81 e0       	ldi	r24, 0x01	; 1
+    1a0e:	0e 94 df 0b 	call	0x17be	; 0x17be <TRIG_R_set_dir>
+
+	TRIG_R_set_level(
+    1a12:	80 e0       	ldi	r24, 0x00	; 0
+    1a14:	0e 94 ee 0b 	call	0x17dc	; 0x17dc <TRIG_R_set_level>
+	    false);
+
+	/* PORT setting on PD3 */
+
+	// Set pin direction to output
+	PWM2_set_dir(PORT_DIR_OUT);
+    1a18:	81 e0       	ldi	r24, 0x01	; 1
+    1a1a:	0e 94 fd 0b 	call	0x17fa	; 0x17fa <PWM2_set_dir>
+
+	PWM2_set_level(
+    1a1e:	80 e0       	ldi	r24, 0x00	; 0
+    1a20:	0e 94 0c 0c 	call	0x1818	; 0x1818 <PWM2_set_level>
+	    false);
+
+	/* PORT setting on PD4 */
+
+	// Set pin direction to output
+	IN1_set_dir(PORT_DIR_OUT);
+    1a24:	81 e0       	ldi	r24, 0x01	; 1
+    1a26:	0e 94 1b 0c 	call	0x1836	; 0x1836 <IN1_set_dir>
+
+	IN1_set_level(
+    1a2a:	80 e0       	ldi	r24, 0x00	; 0
+    1a2c:	0e 94 2a 0c 	call	0x1854	; 0x1854 <IN1_set_level>
+	    false);
+
+	/* PORT setting on PD5 */
+
+	// Set pin direction to output
+	IN2_set_dir(PORT_DIR_OUT);
+    1a30:	81 e0       	ldi	r24, 0x01	; 1
+    1a32:	0e 94 39 0c 	call	0x1872	; 0x1872 <IN2_set_dir>
+
+	IN2_set_level(
+    1a36:	80 e0       	ldi	r24, 0x00	; 0
+    1a38:	0e 94 48 0c 	call	0x1890	; 0x1890 <IN2_set_level>
+	    false);
+
+	/* PORT setting on PD6 */
+
+	// Set pin direction to output
+	IN3_set_dir(PORT_DIR_OUT);
+    1a3c:	81 e0       	ldi	r24, 0x01	; 1
+    1a3e:	0e 94 57 0c 	call	0x18ae	; 0x18ae <IN3_set_dir>
+
+	IN3_set_level(
+    1a42:	80 e0       	ldi	r24, 0x00	; 0
+    1a44:	0e 94 66 0c 	call	0x18cc	; 0x18cc <IN3_set_level>
+	    false);
+
+	/* PORT setting on PD7 */
+
+	// Set pin direction to output
+	IN4_set_dir(PORT_DIR_OUT);
+    1a48:	81 e0       	ldi	r24, 0x01	; 1
+    1a4a:	0e 94 75 0c 	call	0x18ea	; 0x18ea <IN4_set_dir>
+
+	IN4_set_level(
+    1a4e:	80 e0       	ldi	r24, 0x00	; 0
+    1a50:	0e 94 84 0c 	call	0x1908	; 0x1908 <IN4_set_level>
+	    // <id> pad_initial_level
+	    // <false"> Low
+	    // <true"> High
+	    false);
+
+	sysctrl_init();
+    1a54:	0e 94 93 0c 	call	0x1926	; 0x1926 <sysctrl_init>
+
+	ADC_0_initialization();
+    1a58:	0e 94 c2 0c 	call	0x1984	; 0x1984 <ADC_0_initialization>
+
+	PWM_1_initialization();
+    1a5c:	0e 94 d2 0c 	call	0x19a4	; 0x19a4 <PWM_1_initialization>
+}
+    1a60:	00 00       	nop
+    1a62:	df 91       	pop	r29
+    1a64:	cf 91       	pop	r28
+    1a66:	08 95       	ret
+
+00001a68 <protected_write_io>:
+#if defined(__GNUC__)
+	/*
+	 * We need to disable interrupts globally before the protected
+	 * sequence. In order to do that we must save SREG first.
+	 */
+	in      r18,    _SFR_IO_ADDR(SREG)
+    1a68:	2f b7       	in	r18, 0x3f	; 63
+	cli
+    1a6a:	f8 94       	cli
+  
+#ifdef RAMPZ
+	out     _SFR_IO_ADDR(RAMPZ), r1         // Clear bits 23:16 of Z
+#endif
+	movw    r30, r24                // Load addr into Z
+    1a6c:	fc 01       	movw	r30, r24
+	st      Z, r22                  // Write protection bit to I/O register
+    1a6e:	60 83       	st	Z, r22
+	st      Z, r20                  // Write value to I/O register
+    1a70:	40 83       	st	Z, r20
+	out     _SFR_IO_ADDR(SREG), r18
+    1a72:	2f bf       	out	0x3f, r18	; 63
+
+	ret                             // Return to caller
+    1a74:	08 95       	ret
+
+00001a76 <PWM_1_init>:
+ * if this is supported by the device's clock system.
+ *
+ * \return Initialization status.
+ */
+int8_t PWM_1_init()
+{
+    1a76:	cf 93       	push	r28
+    1a78:	df 93       	push	r29
+    1a7a:	cd b7       	in	r28, 0x3d	; 61
+    1a7c:	de b7       	in	r29, 0x3e	; 62
+
+	/* Enable TC2 */
+	PRR &= ~(1 << PRTIM2);
+    1a7e:	84 e6       	ldi	r24, 0x64	; 100
+    1a80:	90 e0       	ldi	r25, 0x00	; 0
+    1a82:	24 e6       	ldi	r18, 0x64	; 100
+    1a84:	30 e0       	ldi	r19, 0x00	; 0
+    1a86:	f9 01       	movw	r30, r18
+    1a88:	20 81       	ld	r18, Z
+    1a8a:	2f 7b       	andi	r18, 0xBF	; 191
+    1a8c:	fc 01       	movw	r30, r24
+    1a8e:	20 83       	st	Z, r18
+
+	TCCR2A = (1 << COM2A1) | (0 << COM2A0)   /* Set OCA on up-couting, clear OCA on down-counting */
+    1a90:	80 eb       	ldi	r24, 0xB0	; 176
+    1a92:	90 e0       	ldi	r25, 0x00	; 0
+    1a94:	23 ea       	ldi	r18, 0xA3	; 163
+    1a96:	fc 01       	movw	r30, r24
+    1a98:	20 83       	st	Z, r18
+	         | (1 << COM2B1) | (0 << COM2B0) /* Set OCB on up-couting, clear OCB on down-counting */
+	         | (1 << WGM21) | (1 << WGM20);  /* TC8 Mode 1 Phase Correct */
+
+	TCCR2B = 0                                          /* TC8 Mode 1 Phase Correct */
+    1a9a:	81 eb       	ldi	r24, 0xB1	; 177
+    1a9c:	90 e0       	ldi	r25, 0x00	; 0
+    1a9e:	23 e0       	ldi	r18, 0x03	; 3
+    1aa0:	fc 01       	movw	r30, r24
+    1aa2:	20 83       	st	Z, r18
+
+//	 TIMSK2 = 0 << OCIE2B /* Output Compare B Match Interrupt Enable: disabled */
+//   		 | 0 << OCIE2A /* Output Compare A Match Interrupt Enable: disabled */
+//			 | 0 << TOIE2; /* Overflow Interrupt Enable: disabled */
+
+	OCR2A = 0x00; /* Output compare A: 0x64 */
+    1aa4:	83 eb       	ldi	r24, 0xB3	; 179
+    1aa6:	90 e0       	ldi	r25, 0x00	; 0
+    1aa8:	fc 01       	movw	r30, r24
+    1aaa:	10 82       	st	Z, r1
+	DDRB = 0xff;
+    1aac:	84 e2       	ldi	r24, 0x24	; 36
+    1aae:	90 e0       	ldi	r25, 0x00	; 0
+    1ab0:	2f ef       	ldi	r18, 0xFF	; 255
+    1ab2:	fc 01       	movw	r30, r24
+    1ab4:	20 83       	st	Z, r18
+	OCR2B = 0x00; /* Output compare B: 0x64 */
+    1ab6:	84 eb       	ldi	r24, 0xB4	; 180
+    1ab8:	90 e0       	ldi	r25, 0x00	; 0
+    1aba:	fc 01       	movw	r30, r24
+    1abc:	10 82       	st	Z, r1
+
+	return 0;
+    1abe:	80 e0       	ldi	r24, 0x00	; 0
+}
+    1ac0:	df 91       	pop	r29
+    1ac2:	cf 91       	pop	r28
+    1ac4:	08 95       	ret
+
+00001ac6 <__subsf3>:
+    1ac6:	50 58       	subi	r21, 0x80	; 128
+
+00001ac8 <__addsf3>:
+    1ac8:	bb 27       	eor	r27, r27
+    1aca:	aa 27       	eor	r26, r26
+    1acc:	0e 94 7b 0d 	call	0x1af6	; 0x1af6 <__addsf3x>
+    1ad0:	0c 94 b1 0e 	jmp	0x1d62	; 0x1d62 <__fp_round>
+    1ad4:	0e 94 a3 0e 	call	0x1d46	; 0x1d46 <__fp_pscA>
+    1ad8:	38 f0       	brcs	.+14     	; 0x1ae8 <__addsf3+0x20>
+    1ada:	0e 94 aa 0e 	call	0x1d54	; 0x1d54 <__fp_pscB>
+    1ade:	20 f0       	brcs	.+8      	; 0x1ae8 <__addsf3+0x20>
+    1ae0:	39 f4       	brne	.+14     	; 0x1af0 <__addsf3+0x28>
+    1ae2:	9f 3f       	cpi	r25, 0xFF	; 255
+    1ae4:	19 f4       	brne	.+6      	; 0x1aec <__addsf3+0x24>
+    1ae6:	26 f4       	brtc	.+8      	; 0x1af0 <__addsf3+0x28>
+    1ae8:	0c 94 a0 0e 	jmp	0x1d40	; 0x1d40 <__fp_nan>
+    1aec:	0e f4       	brtc	.+2      	; 0x1af0 <__addsf3+0x28>
+    1aee:	e0 95       	com	r30
+    1af0:	e7 fb       	bst	r30, 7
+    1af2:	0c 94 9a 0e 	jmp	0x1d34	; 0x1d34 <__fp_inf>
+
+00001af6 <__addsf3x>:
+    1af6:	e9 2f       	mov	r30, r25
+    1af8:	0e 94 c2 0e 	call	0x1d84	; 0x1d84 <__fp_split3>
+    1afc:	58 f3       	brcs	.-42     	; 0x1ad4 <__addsf3+0xc>
+    1afe:	ba 17       	cp	r27, r26
+    1b00:	62 07       	cpc	r22, r18
+    1b02:	73 07       	cpc	r23, r19
+    1b04:	84 07       	cpc	r24, r20
+    1b06:	95 07       	cpc	r25, r21
+    1b08:	20 f0       	brcs	.+8      	; 0x1b12 <__addsf3x+0x1c>
+    1b0a:	79 f4       	brne	.+30     	; 0x1b2a <__addsf3x+0x34>
+    1b0c:	a6 f5       	brtc	.+104    	; 0x1b76 <__addsf3x+0x80>
+    1b0e:	0c 94 e4 0e 	jmp	0x1dc8	; 0x1dc8 <__fp_zero>
+    1b12:	0e f4       	brtc	.+2      	; 0x1b16 <__addsf3x+0x20>
+    1b14:	e0 95       	com	r30
+    1b16:	0b 2e       	mov	r0, r27
+    1b18:	ba 2f       	mov	r27, r26
+    1b1a:	a0 2d       	mov	r26, r0
+    1b1c:	0b 01       	movw	r0, r22
+    1b1e:	b9 01       	movw	r22, r18
+    1b20:	90 01       	movw	r18, r0
+    1b22:	0c 01       	movw	r0, r24
+    1b24:	ca 01       	movw	r24, r20
+    1b26:	a0 01       	movw	r20, r0
+    1b28:	11 24       	eor	r1, r1
+    1b2a:	ff 27       	eor	r31, r31
+    1b2c:	59 1b       	sub	r21, r25
+    1b2e:	99 f0       	breq	.+38     	; 0x1b56 <__addsf3x+0x60>
+    1b30:	59 3f       	cpi	r21, 0xF9	; 249
+    1b32:	50 f4       	brcc	.+20     	; 0x1b48 <__addsf3x+0x52>
+    1b34:	50 3e       	cpi	r21, 0xE0	; 224
+    1b36:	68 f1       	brcs	.+90     	; 0x1b92 <__addsf3x+0x9c>
+    1b38:	1a 16       	cp	r1, r26
+    1b3a:	f0 40       	sbci	r31, 0x00	; 0
+    1b3c:	a2 2f       	mov	r26, r18
+    1b3e:	23 2f       	mov	r18, r19
+    1b40:	34 2f       	mov	r19, r20
+    1b42:	44 27       	eor	r20, r20
+    1b44:	58 5f       	subi	r21, 0xF8	; 248
+    1b46:	f3 cf       	rjmp	.-26     	; 0x1b2e <__addsf3x+0x38>
+    1b48:	46 95       	lsr	r20
+    1b4a:	37 95       	ror	r19
+    1b4c:	27 95       	ror	r18
+    1b4e:	a7 95       	ror	r26
+    1b50:	f0 40       	sbci	r31, 0x00	; 0
+    1b52:	53 95       	inc	r21
+    1b54:	c9 f7       	brne	.-14     	; 0x1b48 <__addsf3x+0x52>
+    1b56:	7e f4       	brtc	.+30     	; 0x1b76 <__addsf3x+0x80>
+    1b58:	1f 16       	cp	r1, r31
+    1b5a:	ba 0b       	sbc	r27, r26
+    1b5c:	62 0b       	sbc	r22, r18
+    1b5e:	73 0b       	sbc	r23, r19
+    1b60:	84 0b       	sbc	r24, r20
+    1b62:	ba f0       	brmi	.+46     	; 0x1b92 <__addsf3x+0x9c>
+    1b64:	91 50       	subi	r25, 0x01	; 1
+    1b66:	a1 f0       	breq	.+40     	; 0x1b90 <__addsf3x+0x9a>
+    1b68:	ff 0f       	add	r31, r31
+    1b6a:	bb 1f       	adc	r27, r27
+    1b6c:	66 1f       	adc	r22, r22
+    1b6e:	77 1f       	adc	r23, r23
+    1b70:	88 1f       	adc	r24, r24
+    1b72:	c2 f7       	brpl	.-16     	; 0x1b64 <__addsf3x+0x6e>
+    1b74:	0e c0       	rjmp	.+28     	; 0x1b92 <__addsf3x+0x9c>
+    1b76:	ba 0f       	add	r27, r26
+    1b78:	62 1f       	adc	r22, r18
+    1b7a:	73 1f       	adc	r23, r19
+    1b7c:	84 1f       	adc	r24, r20
+    1b7e:	48 f4       	brcc	.+18     	; 0x1b92 <__addsf3x+0x9c>
+    1b80:	87 95       	ror	r24
+    1b82:	77 95       	ror	r23
+    1b84:	67 95       	ror	r22
+    1b86:	b7 95       	ror	r27
+    1b88:	f7 95       	ror	r31
+    1b8a:	9e 3f       	cpi	r25, 0xFE	; 254
+    1b8c:	08 f0       	brcs	.+2      	; 0x1b90 <__addsf3x+0x9a>
+    1b8e:	b0 cf       	rjmp	.-160    	; 0x1af0 <__addsf3+0x28>
+    1b90:	93 95       	inc	r25
+    1b92:	88 0f       	add	r24, r24
+    1b94:	08 f0       	brcs	.+2      	; 0x1b98 <__addsf3x+0xa2>
+    1b96:	99 27       	eor	r25, r25
+    1b98:	ee 0f       	add	r30, r30
+    1b9a:	97 95       	ror	r25
+    1b9c:	87 95       	ror	r24
+    1b9e:	08 95       	ret
+
+00001ba0 <__cmpsf2>:
+    1ba0:	0e 94 76 0e 	call	0x1cec	; 0x1cec <__fp_cmp>
+    1ba4:	08 f4       	brcc	.+2      	; 0x1ba8 <__cmpsf2+0x8>
+    1ba6:	81 e0       	ldi	r24, 0x01	; 1
+    1ba8:	08 95       	ret
+
+00001baa <__divsf3>:
+    1baa:	0e 94 e9 0d 	call	0x1bd2	; 0x1bd2 <__divsf3x>
+    1bae:	0c 94 b1 0e 	jmp	0x1d62	; 0x1d62 <__fp_round>
+    1bb2:	0e 94 aa 0e 	call	0x1d54	; 0x1d54 <__fp_pscB>
+    1bb6:	58 f0       	brcs	.+22     	; 0x1bce <__divsf3+0x24>
+    1bb8:	0e 94 a3 0e 	call	0x1d46	; 0x1d46 <__fp_pscA>
+    1bbc:	40 f0       	brcs	.+16     	; 0x1bce <__divsf3+0x24>
+    1bbe:	29 f4       	brne	.+10     	; 0x1bca <__divsf3+0x20>
+    1bc0:	5f 3f       	cpi	r21, 0xFF	; 255
+    1bc2:	29 f0       	breq	.+10     	; 0x1bce <__divsf3+0x24>
+    1bc4:	0c 94 9a 0e 	jmp	0x1d34	; 0x1d34 <__fp_inf>
+    1bc8:	51 11       	cpse	r21, r1
+    1bca:	0c 94 e5 0e 	jmp	0x1dca	; 0x1dca <__fp_szero>
+    1bce:	0c 94 a0 0e 	jmp	0x1d40	; 0x1d40 <__fp_nan>
+
+00001bd2 <__divsf3x>:
+    1bd2:	0e 94 c2 0e 	call	0x1d84	; 0x1d84 <__fp_split3>
+    1bd6:	68 f3       	brcs	.-38     	; 0x1bb2 <__divsf3+0x8>
+
+00001bd8 <__divsf3_pse>:
+    1bd8:	99 23       	and	r25, r25
+    1bda:	b1 f3       	breq	.-20     	; 0x1bc8 <__divsf3+0x1e>
+    1bdc:	55 23       	and	r21, r21
+    1bde:	91 f3       	breq	.-28     	; 0x1bc4 <__divsf3+0x1a>
+    1be0:	95 1b       	sub	r25, r21
+    1be2:	55 0b       	sbc	r21, r21
+    1be4:	bb 27       	eor	r27, r27
+    1be6:	aa 27       	eor	r26, r26
+    1be8:	62 17       	cp	r22, r18
+    1bea:	73 07       	cpc	r23, r19
+    1bec:	84 07       	cpc	r24, r20
+    1bee:	38 f0       	brcs	.+14     	; 0x1bfe <__divsf3_pse+0x26>
+    1bf0:	9f 5f       	subi	r25, 0xFF	; 255
+    1bf2:	5f 4f       	sbci	r21, 0xFF	; 255
+    1bf4:	22 0f       	add	r18, r18
+    1bf6:	33 1f       	adc	r19, r19
+    1bf8:	44 1f       	adc	r20, r20
+    1bfa:	aa 1f       	adc	r26, r26
+    1bfc:	a9 f3       	breq	.-22     	; 0x1be8 <__divsf3_pse+0x10>
+    1bfe:	35 d0       	rcall	.+106    	; 0x1c6a <__divsf3_pse+0x92>
+    1c00:	0e 2e       	mov	r0, r30
+    1c02:	3a f0       	brmi	.+14     	; 0x1c12 <__divsf3_pse+0x3a>
+    1c04:	e0 e8       	ldi	r30, 0x80	; 128
+    1c06:	32 d0       	rcall	.+100    	; 0x1c6c <__divsf3_pse+0x94>
+    1c08:	91 50       	subi	r25, 0x01	; 1
+    1c0a:	50 40       	sbci	r21, 0x00	; 0
+    1c0c:	e6 95       	lsr	r30
+    1c0e:	00 1c       	adc	r0, r0
+    1c10:	ca f7       	brpl	.-14     	; 0x1c04 <__divsf3_pse+0x2c>
+    1c12:	2b d0       	rcall	.+86     	; 0x1c6a <__divsf3_pse+0x92>
+    1c14:	fe 2f       	mov	r31, r30
+    1c16:	29 d0       	rcall	.+82     	; 0x1c6a <__divsf3_pse+0x92>
+    1c18:	66 0f       	add	r22, r22
+    1c1a:	77 1f       	adc	r23, r23
+    1c1c:	88 1f       	adc	r24, r24
+    1c1e:	bb 1f       	adc	r27, r27
+    1c20:	26 17       	cp	r18, r22
+    1c22:	37 07       	cpc	r19, r23
+    1c24:	48 07       	cpc	r20, r24
+    1c26:	ab 07       	cpc	r26, r27
+    1c28:	b0 e8       	ldi	r27, 0x80	; 128
+    1c2a:	09 f0       	breq	.+2      	; 0x1c2e <__divsf3_pse+0x56>
+    1c2c:	bb 0b       	sbc	r27, r27
+    1c2e:	80 2d       	mov	r24, r0
+    1c30:	bf 01       	movw	r22, r30
+    1c32:	ff 27       	eor	r31, r31
+    1c34:	93 58       	subi	r25, 0x83	; 131
+    1c36:	5f 4f       	sbci	r21, 0xFF	; 255
+    1c38:	3a f0       	brmi	.+14     	; 0x1c48 <__divsf3_pse+0x70>
+    1c3a:	9e 3f       	cpi	r25, 0xFE	; 254
+    1c3c:	51 05       	cpc	r21, r1
+    1c3e:	78 f0       	brcs	.+30     	; 0x1c5e <__divsf3_pse+0x86>
+    1c40:	0c 94 9a 0e 	jmp	0x1d34	; 0x1d34 <__fp_inf>
+    1c44:	0c 94 e5 0e 	jmp	0x1dca	; 0x1dca <__fp_szero>
+    1c48:	5f 3f       	cpi	r21, 0xFF	; 255
+    1c4a:	e4 f3       	brlt	.-8      	; 0x1c44 <__divsf3_pse+0x6c>
+    1c4c:	98 3e       	cpi	r25, 0xE8	; 232
+    1c4e:	d4 f3       	brlt	.-12     	; 0x1c44 <__divsf3_pse+0x6c>
+    1c50:	86 95       	lsr	r24
+    1c52:	77 95       	ror	r23
+    1c54:	67 95       	ror	r22
+    1c56:	b7 95       	ror	r27
+    1c58:	f7 95       	ror	r31
+    1c5a:	9f 5f       	subi	r25, 0xFF	; 255
+    1c5c:	c9 f7       	brne	.-14     	; 0x1c50 <__divsf3_pse+0x78>
+    1c5e:	88 0f       	add	r24, r24
+    1c60:	91 1d       	adc	r25, r1
+    1c62:	96 95       	lsr	r25
+    1c64:	87 95       	ror	r24
+    1c66:	97 f9       	bld	r25, 7
+    1c68:	08 95       	ret
+    1c6a:	e1 e0       	ldi	r30, 0x01	; 1
+    1c6c:	66 0f       	add	r22, r22
+    1c6e:	77 1f       	adc	r23, r23
+    1c70:	88 1f       	adc	r24, r24
+    1c72:	bb 1f       	adc	r27, r27
+    1c74:	62 17       	cp	r22, r18
+    1c76:	73 07       	cpc	r23, r19
+    1c78:	84 07       	cpc	r24, r20
+    1c7a:	ba 07       	cpc	r27, r26
+    1c7c:	20 f0       	brcs	.+8      	; 0x1c86 <__divsf3_pse+0xae>
+    1c7e:	62 1b       	sub	r22, r18
+    1c80:	73 0b       	sbc	r23, r19
+    1c82:	84 0b       	sbc	r24, r20
+    1c84:	ba 0b       	sbc	r27, r26
+    1c86:	ee 1f       	adc	r30, r30
+    1c88:	88 f7       	brcc	.-30     	; 0x1c6c <__divsf3_pse+0x94>
+    1c8a:	e0 95       	com	r30
+    1c8c:	08 95       	ret
+
+00001c8e <__fixunssfsi>:
+    1c8e:	0e 94 ca 0e 	call	0x1d94	; 0x1d94 <__fp_splitA>
+    1c92:	88 f0       	brcs	.+34     	; 0x1cb6 <__fixunssfsi+0x28>
+    1c94:	9f 57       	subi	r25, 0x7F	; 127
+    1c96:	98 f0       	brcs	.+38     	; 0x1cbe <__fixunssfsi+0x30>
+    1c98:	b9 2f       	mov	r27, r25
+    1c9a:	99 27       	eor	r25, r25
+    1c9c:	b7 51       	subi	r27, 0x17	; 23
+    1c9e:	b0 f0       	brcs	.+44     	; 0x1ccc <__fixunssfsi+0x3e>
+    1ca0:	e1 f0       	breq	.+56     	; 0x1cda <__fixunssfsi+0x4c>
+    1ca2:	66 0f       	add	r22, r22
+    1ca4:	77 1f       	adc	r23, r23
+    1ca6:	88 1f       	adc	r24, r24
+    1ca8:	99 1f       	adc	r25, r25
+    1caa:	1a f0       	brmi	.+6      	; 0x1cb2 <__fixunssfsi+0x24>
+    1cac:	ba 95       	dec	r27
+    1cae:	c9 f7       	brne	.-14     	; 0x1ca2 <__fixunssfsi+0x14>
+    1cb0:	14 c0       	rjmp	.+40     	; 0x1cda <__fixunssfsi+0x4c>
+    1cb2:	b1 30       	cpi	r27, 0x01	; 1
+    1cb4:	91 f0       	breq	.+36     	; 0x1cda <__fixunssfsi+0x4c>
+    1cb6:	0e 94 e4 0e 	call	0x1dc8	; 0x1dc8 <__fp_zero>
+    1cba:	b1 e0       	ldi	r27, 0x01	; 1
+    1cbc:	08 95       	ret
+    1cbe:	0c 94 e4 0e 	jmp	0x1dc8	; 0x1dc8 <__fp_zero>
+    1cc2:	67 2f       	mov	r22, r23
+    1cc4:	78 2f       	mov	r23, r24
+    1cc6:	88 27       	eor	r24, r24
+    1cc8:	b8 5f       	subi	r27, 0xF8	; 248
+    1cca:	39 f0       	breq	.+14     	; 0x1cda <__fixunssfsi+0x4c>
+    1ccc:	b9 3f       	cpi	r27, 0xF9	; 249
+    1cce:	cc f3       	brlt	.-14     	; 0x1cc2 <__fixunssfsi+0x34>
+    1cd0:	86 95       	lsr	r24
+    1cd2:	77 95       	ror	r23
+    1cd4:	67 95       	ror	r22
+    1cd6:	b3 95       	inc	r27
+    1cd8:	d9 f7       	brne	.-10     	; 0x1cd0 <__fixunssfsi+0x42>
+    1cda:	3e f4       	brtc	.+14     	; 0x1cea <__fixunssfsi+0x5c>
+    1cdc:	90 95       	com	r25
+    1cde:	80 95       	com	r24
+    1ce0:	70 95       	com	r23
+    1ce2:	61 95       	neg	r22
+    1ce4:	7f 4f       	sbci	r23, 0xFF	; 255
+    1ce6:	8f 4f       	sbci	r24, 0xFF	; 255
+    1ce8:	9f 4f       	sbci	r25, 0xFF	; 255
+    1cea:	08 95       	ret
+
+00001cec <__fp_cmp>:
+    1cec:	99 0f       	add	r25, r25
+    1cee:	00 08       	sbc	r0, r0
+    1cf0:	55 0f       	add	r21, r21
+    1cf2:	aa 0b       	sbc	r26, r26
+    1cf4:	e0 e8       	ldi	r30, 0x80	; 128
+    1cf6:	fe ef       	ldi	r31, 0xFE	; 254
+    1cf8:	16 16       	cp	r1, r22
+    1cfa:	17 06       	cpc	r1, r23
+    1cfc:	e8 07       	cpc	r30, r24
+    1cfe:	f9 07       	cpc	r31, r25
+    1d00:	c0 f0       	brcs	.+48     	; 0x1d32 <__fp_cmp+0x46>
+    1d02:	12 16       	cp	r1, r18
+    1d04:	13 06       	cpc	r1, r19
+    1d06:	e4 07       	cpc	r30, r20
+    1d08:	f5 07       	cpc	r31, r21
+    1d0a:	98 f0       	brcs	.+38     	; 0x1d32 <__fp_cmp+0x46>
+    1d0c:	62 1b       	sub	r22, r18
+    1d0e:	73 0b       	sbc	r23, r19
+    1d10:	84 0b       	sbc	r24, r20
+    1d12:	95 0b       	sbc	r25, r21
+    1d14:	39 f4       	brne	.+14     	; 0x1d24 <__fp_cmp+0x38>
+    1d16:	0a 26       	eor	r0, r26
+    1d18:	61 f0       	breq	.+24     	; 0x1d32 <__fp_cmp+0x46>
+    1d1a:	23 2b       	or	r18, r19
+    1d1c:	24 2b       	or	r18, r20
+    1d1e:	25 2b       	or	r18, r21
+    1d20:	21 f4       	brne	.+8      	; 0x1d2a <__fp_cmp+0x3e>
+    1d22:	08 95       	ret
+    1d24:	0a 26       	eor	r0, r26
+    1d26:	09 f4       	brne	.+2      	; 0x1d2a <__fp_cmp+0x3e>
+    1d28:	a1 40       	sbci	r26, 0x01	; 1
+    1d2a:	a6 95       	lsr	r26
+    1d2c:	8f ef       	ldi	r24, 0xFF	; 255
+    1d2e:	81 1d       	adc	r24, r1
+    1d30:	81 1d       	adc	r24, r1
+    1d32:	08 95       	ret
+
+00001d34 <__fp_inf>:
+    1d34:	97 f9       	bld	r25, 7
+    1d36:	9f 67       	ori	r25, 0x7F	; 127
+    1d38:	80 e8       	ldi	r24, 0x80	; 128
+    1d3a:	70 e0       	ldi	r23, 0x00	; 0
+    1d3c:	60 e0       	ldi	r22, 0x00	; 0
+    1d3e:	08 95       	ret
+
+00001d40 <__fp_nan>:
+    1d40:	9f ef       	ldi	r25, 0xFF	; 255
+    1d42:	80 ec       	ldi	r24, 0xC0	; 192
+    1d44:	08 95       	ret
+
+00001d46 <__fp_pscA>:
+    1d46:	00 24       	eor	r0, r0
+    1d48:	0a 94       	dec	r0
+    1d4a:	16 16       	cp	r1, r22
+    1d4c:	17 06       	cpc	r1, r23
+    1d4e:	18 06       	cpc	r1, r24
+    1d50:	09 06       	cpc	r0, r25
+    1d52:	08 95       	ret
+
+00001d54 <__fp_pscB>:
+    1d54:	00 24       	eor	r0, r0
+    1d56:	0a 94       	dec	r0
+    1d58:	12 16       	cp	r1, r18
+    1d5a:	13 06       	cpc	r1, r19
+    1d5c:	14 06       	cpc	r1, r20
+    1d5e:	05 06       	cpc	r0, r21
+    1d60:	08 95       	ret
+
+00001d62 <__fp_round>:
+    1d62:	09 2e       	mov	r0, r25
+    1d64:	03 94       	inc	r0
+    1d66:	00 0c       	add	r0, r0
+    1d68:	11 f4       	brne	.+4      	; 0x1d6e <__fp_round+0xc>
+    1d6a:	88 23       	and	r24, r24
+    1d6c:	52 f0       	brmi	.+20     	; 0x1d82 <__fp_round+0x20>
+    1d6e:	bb 0f       	add	r27, r27
+    1d70:	40 f4       	brcc	.+16     	; 0x1d82 <__fp_round+0x20>
+    1d72:	bf 2b       	or	r27, r31
+    1d74:	11 f4       	brne	.+4      	; 0x1d7a <__fp_round+0x18>
+    1d76:	60 ff       	sbrs	r22, 0
+    1d78:	04 c0       	rjmp	.+8      	; 0x1d82 <__fp_round+0x20>
+    1d7a:	6f 5f       	subi	r22, 0xFF	; 255
+    1d7c:	7f 4f       	sbci	r23, 0xFF	; 255
+    1d7e:	8f 4f       	sbci	r24, 0xFF	; 255
+    1d80:	9f 4f       	sbci	r25, 0xFF	; 255
+    1d82:	08 95       	ret
+
+00001d84 <__fp_split3>:
+    1d84:	57 fd       	sbrc	r21, 7
+    1d86:	90 58       	subi	r25, 0x80	; 128
+    1d88:	44 0f       	add	r20, r20
+    1d8a:	55 1f       	adc	r21, r21
+    1d8c:	59 f0       	breq	.+22     	; 0x1da4 <__fp_splitA+0x10>
+    1d8e:	5f 3f       	cpi	r21, 0xFF	; 255
+    1d90:	71 f0       	breq	.+28     	; 0x1dae <__fp_splitA+0x1a>
+    1d92:	47 95       	ror	r20
+
+00001d94 <__fp_splitA>:
+    1d94:	88 0f       	add	r24, r24
+    1d96:	97 fb       	bst	r25, 7
+    1d98:	99 1f       	adc	r25, r25
+    1d9a:	61 f0       	breq	.+24     	; 0x1db4 <__fp_splitA+0x20>
+    1d9c:	9f 3f       	cpi	r25, 0xFF	; 255
+    1d9e:	79 f0       	breq	.+30     	; 0x1dbe <__fp_splitA+0x2a>
+    1da0:	87 95       	ror	r24
+    1da2:	08 95       	ret
+    1da4:	12 16       	cp	r1, r18
+    1da6:	13 06       	cpc	r1, r19
+    1da8:	14 06       	cpc	r1, r20
+    1daa:	55 1f       	adc	r21, r21
+    1dac:	f2 cf       	rjmp	.-28     	; 0x1d92 <__fp_split3+0xe>
+    1dae:	46 95       	lsr	r20
+    1db0:	f1 df       	rcall	.-30     	; 0x1d94 <__fp_splitA>
+    1db2:	08 c0       	rjmp	.+16     	; 0x1dc4 <__fp_splitA+0x30>
+    1db4:	16 16       	cp	r1, r22
+    1db6:	17 06       	cpc	r1, r23
+    1db8:	18 06       	cpc	r1, r24
+    1dba:	99 1f       	adc	r25, r25
+    1dbc:	f1 cf       	rjmp	.-30     	; 0x1da0 <__fp_splitA+0xc>
+    1dbe:	86 95       	lsr	r24
+    1dc0:	71 05       	cpc	r23, r1
+    1dc2:	61 05       	cpc	r22, r1
+    1dc4:	08 94       	sec
+    1dc6:	08 95       	ret
+
+00001dc8 <__fp_zero>:
+    1dc8:	e8 94       	clt
+
+00001dca <__fp_szero>:
+    1dca:	bb 27       	eor	r27, r27
+    1dcc:	66 27       	eor	r22, r22
+    1dce:	77 27       	eor	r23, r23
+    1dd0:	cb 01       	movw	r24, r22
+    1dd2:	97 f9       	bld	r25, 7
+    1dd4:	08 95       	ret
+
+00001dd6 <__gesf2>:
+    1dd6:	0e 94 76 0e 	call	0x1cec	; 0x1cec <__fp_cmp>
+    1dda:	08 f4       	brcc	.+2      	; 0x1dde <__gesf2+0x8>
+    1ddc:	8f ef       	ldi	r24, 0xFF	; 255
+    1dde:	08 95       	ret
+
+00001de0 <__mulsf3>:
+    1de0:	0e 94 03 0f 	call	0x1e06	; 0x1e06 <__mulsf3x>
+    1de4:	0c 94 b1 0e 	jmp	0x1d62	; 0x1d62 <__fp_round>
+    1de8:	0e 94 a3 0e 	call	0x1d46	; 0x1d46 <__fp_pscA>
+    1dec:	38 f0       	brcs	.+14     	; 0x1dfc <__mulsf3+0x1c>
+    1dee:	0e 94 aa 0e 	call	0x1d54	; 0x1d54 <__fp_pscB>
+    1df2:	20 f0       	brcs	.+8      	; 0x1dfc <__mulsf3+0x1c>
+    1df4:	95 23       	and	r25, r21
+    1df6:	11 f0       	breq	.+4      	; 0x1dfc <__mulsf3+0x1c>
+    1df8:	0c 94 9a 0e 	jmp	0x1d34	; 0x1d34 <__fp_inf>
+    1dfc:	0c 94 a0 0e 	jmp	0x1d40	; 0x1d40 <__fp_nan>
+    1e00:	11 24       	eor	r1, r1
+    1e02:	0c 94 e5 0e 	jmp	0x1dca	; 0x1dca <__fp_szero>
+
+00001e06 <__mulsf3x>:
+    1e06:	0e 94 c2 0e 	call	0x1d84	; 0x1d84 <__fp_split3>
+    1e0a:	70 f3       	brcs	.-36     	; 0x1de8 <__mulsf3+0x8>
+
+00001e0c <__mulsf3_pse>:
+    1e0c:	95 9f       	mul	r25, r21
+    1e0e:	c1 f3       	breq	.-16     	; 0x1e00 <__mulsf3+0x20>
+    1e10:	95 0f       	add	r25, r21
+    1e12:	50 e0       	ldi	r21, 0x00	; 0
+    1e14:	55 1f       	adc	r21, r21
+    1e16:	62 9f       	mul	r22, r18
+    1e18:	f0 01       	movw	r30, r0
+    1e1a:	72 9f       	mul	r23, r18
+    1e1c:	bb 27       	eor	r27, r27
+    1e1e:	f0 0d       	add	r31, r0
+    1e20:	b1 1d       	adc	r27, r1
+    1e22:	63 9f       	mul	r22, r19
+    1e24:	aa 27       	eor	r26, r26
+    1e26:	f0 0d       	add	r31, r0
+    1e28:	b1 1d       	adc	r27, r1
+    1e2a:	aa 1f       	adc	r26, r26
+    1e2c:	64 9f       	mul	r22, r20
+    1e2e:	66 27       	eor	r22, r22
+    1e30:	b0 0d       	add	r27, r0
+    1e32:	a1 1d       	adc	r26, r1
+    1e34:	66 1f       	adc	r22, r22
+    1e36:	82 9f       	mul	r24, r18
+    1e38:	22 27       	eor	r18, r18
+    1e3a:	b0 0d       	add	r27, r0
+    1e3c:	a1 1d       	adc	r26, r1
+    1e3e:	62 1f       	adc	r22, r18
+    1e40:	73 9f       	mul	r23, r19
+    1e42:	b0 0d       	add	r27, r0
+    1e44:	a1 1d       	adc	r26, r1
+    1e46:	62 1f       	adc	r22, r18
+    1e48:	83 9f       	mul	r24, r19
+    1e4a:	a0 0d       	add	r26, r0
+    1e4c:	61 1d       	adc	r22, r1
+    1e4e:	22 1f       	adc	r18, r18
+    1e50:	74 9f       	mul	r23, r20
+    1e52:	33 27       	eor	r19, r19
+    1e54:	a0 0d       	add	r26, r0
+    1e56:	61 1d       	adc	r22, r1
+    1e58:	23 1f       	adc	r18, r19
+    1e5a:	84 9f       	mul	r24, r20
+    1e5c:	60 0d       	add	r22, r0
+    1e5e:	21 1d       	adc	r18, r1
+    1e60:	82 2f       	mov	r24, r18
+    1e62:	76 2f       	mov	r23, r22
+    1e64:	6a 2f       	mov	r22, r26
+    1e66:	11 24       	eor	r1, r1
+    1e68:	9f 57       	subi	r25, 0x7F	; 127
+    1e6a:	50 40       	sbci	r21, 0x00	; 0
+    1e6c:	9a f0       	brmi	.+38     	; 0x1e94 <__mulsf3_pse+0x88>
+    1e6e:	f1 f0       	breq	.+60     	; 0x1eac <__mulsf3_pse+0xa0>
+    1e70:	88 23       	and	r24, r24
+    1e72:	4a f0       	brmi	.+18     	; 0x1e86 <__mulsf3_pse+0x7a>
+    1e74:	ee 0f       	add	r30, r30
+    1e76:	ff 1f       	adc	r31, r31
+    1e78:	bb 1f       	adc	r27, r27
+    1e7a:	66 1f       	adc	r22, r22
+    1e7c:	77 1f       	adc	r23, r23
+    1e7e:	88 1f       	adc	r24, r24
+    1e80:	91 50       	subi	r25, 0x01	; 1
+    1e82:	50 40       	sbci	r21, 0x00	; 0
+    1e84:	a9 f7       	brne	.-22     	; 0x1e70 <__mulsf3_pse+0x64>
+    1e86:	9e 3f       	cpi	r25, 0xFE	; 254
+    1e88:	51 05       	cpc	r21, r1
+    1e8a:	80 f0       	brcs	.+32     	; 0x1eac <__mulsf3_pse+0xa0>
+    1e8c:	0c 94 9a 0e 	jmp	0x1d34	; 0x1d34 <__fp_inf>
+    1e90:	0c 94 e5 0e 	jmp	0x1dca	; 0x1dca <__fp_szero>
+    1e94:	5f 3f       	cpi	r21, 0xFF	; 255
+    1e96:	e4 f3       	brlt	.-8      	; 0x1e90 <__mulsf3_pse+0x84>
+    1e98:	98 3e       	cpi	r25, 0xE8	; 232
+    1e9a:	d4 f3       	brlt	.-12     	; 0x1e90 <__mulsf3_pse+0x84>
+    1e9c:	86 95       	lsr	r24
+    1e9e:	77 95       	ror	r23
+    1ea0:	67 95       	ror	r22
+    1ea2:	b7 95       	ror	r27
+    1ea4:	f7 95       	ror	r31
+    1ea6:	e7 95       	ror	r30
+    1ea8:	9f 5f       	subi	r25, 0xFF	; 255
+    1eaa:	c1 f7       	brne	.-16     	; 0x1e9c <__mulsf3_pse+0x90>
+    1eac:	fe 2b       	or	r31, r30
+    1eae:	88 0f       	add	r24, r24
+    1eb0:	91 1d       	adc	r25, r1
+    1eb2:	96 95       	lsr	r25
+    1eb4:	87 95       	ror	r24
+    1eb6:	97 f9       	bld	r25, 7
+    1eb8:	08 95       	ret
+
+00001eba <_exit>:
+    1eba:	f8 94       	cli
+
+00001ebc <__stop_program>:
+    1ebc:	ff cf       	rjmp	.-2      	; 0x1ebc <__stop_program>

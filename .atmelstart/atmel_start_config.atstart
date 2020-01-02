@@ -1,0 +1,218 @@
+format_version: '2'
+name: My Project
+versions:
+  api: '1.0'
+  backend: 1.6.148
+  commit: 605f106ab95776472e3febf2fac2471441fb1816
+  content: 1.0.1686
+  content_pack_name: acme-packs-all
+  format: '2'
+  frontend: 1.6.1894
+board:
+  identifier: CustomBoard
+  device: ATmega328P-PN
+details: null
+application: null
+middlewares: {}
+drivers:
+  CPU:
+    user_label: CPU
+    definition: 'Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::CPU::driver_config_definition::SYSCTRL::Drivers:SYSCTRL:'
+    functionality: System
+    api: 'Drivers:SYSCTRL:'
+    configuration:
+      async_input_speed: 32768
+      clkadc_oscillator: Input clock
+      clkasy_oscillator: Async input clock
+      clkcpu_oscillator: Input clock
+      clkio_oscillator: Input clock
+      clkptc_oscillator: Input clock
+      cpu_clock_source: CLKcpu
+      cpu_sreg_i: false
+      enable_async_input: true
+      enable_clkadc: true
+      enable_clkasy: true
+      enable_clkcpu: true
+      enable_clkio: true
+      enable_clkptc: true
+      enable_core_clock: true
+      enable_input: true
+      input_speed: 8000000
+      pm_ivsel: Interrupt vector placed at the beginning of main FLASH memory
+      pm_pud: false
+      pm_se: false
+      pm_sm: Idle
+      prescaler_divider: '1'
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: Core
+          input: Core
+          external: false
+          external_frequency: 0
+        configuration: {}
+  ADC_0:
+    user_label: ADC_0
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::ADC::driver_config_definition::ADC.Basic::Drivers:ADC:Basic
+    functionality: ADC
+    api: Drivers:ADC:Basic
+    configuration:
+      adcsra_adate: false
+      adcsra_aden: true
+      adcsra_adie: false
+      adcsra_adps: '4'
+      adcsrb_acme: false
+      adcsrb_adts: Free Running mode
+      admux_adlar: false
+      admux_mux: ADC Single Ended Input pin 4
+      admux_refs: AVCC with external capacitor at AREF pin
+    optional_signals:
+    - identifier: ADC_0:ADC/4
+      pad: PC4
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::optional_signal_definition::ADC.ADC.4
+      name: ADC/ADC/4
+      label: ADC/4
+    - identifier: ADC_0:ADC/5
+      pad: PC5
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::optional_signal_definition::ADC.ADC.5
+      name: ADC/ADC/5
+      label: ADC/5
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: ADC
+          input: CLKadc
+          external: false
+          external_frequency: 0
+        configuration:
+          adc_clock_source: CLKadc
+  PWM_1:
+    user_label: PWM_1
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::TC2::driver_config_definition::TC8.Mode.1.Phase.Correct::Drivers:PWM:Basic
+    functionality: PWM
+    api: Drivers:PWM:Basic
+    configuration:
+      callback_rate: 0
+      inc_overflow_irq: false
+      pwm_top: '0xff'
+      tc8_async_exclk: false
+      tc8_coma: Set OCA on up-couting, clear OCA on down-counting
+      tc8_comb: Set OCB on up-couting, clear OCB on down-counting
+      tc8_cs: IO clock divided by 256
+      tc8_ociea: false
+      tc8_ocieb: false
+      tc8_ocra: 100
+      tc8_ocrb: 100
+      tc8_toie: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC2
+          input: CLKio
+          external: false
+          external_frequency: 0
+        configuration:
+          tc2_clock_source: CLKio
+pads:
+  ECHO_R:
+    name: PD1
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD1
+    mode: Digital input
+    user_label: ECHO_R
+    configuration:
+      pad_pull_config: Pull-up
+  TRIG_R:
+    name: PD2
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD2
+    mode: Digital output
+    user_label: TRIG_R
+    configuration: null
+  PWM2:
+    name: PD3
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD3
+    mode: Digital output
+    user_label: PWM2
+    configuration: null
+  IN1:
+    name: PD4
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD4
+    mode: Digital output
+    user_label: IN1
+    configuration: null
+  IN2:
+    name: PD5
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD5
+    mode: Digital output
+    user_label: IN2
+    configuration: null
+  IN3:
+    name: PD6
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD6
+    mode: Digital output
+    user_label: IN3
+    configuration: null
+  IN4:
+    name: PD7
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PD7
+    mode: Digital output
+    user_label: IN4
+    configuration: null
+  PWM1:
+    name: PB3
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PB3
+    mode: Digital output
+    user_label: PWM1
+    configuration: null
+  TRIG_F:
+    name: PC0
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PC0
+    mode: Digital output
+    user_label: TRIG_F
+    configuration: null
+  ECHO_F:
+    name: PC1
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PC1
+    mode: Digital input
+    user_label: ECHO_F
+    configuration: null
+  ECHO_L:
+    name: PC2
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PC2
+    mode: Digital input
+    user_label: ECHO_L
+    configuration: null
+  TRIG_L:
+    name: PC3
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PC3
+    mode: Digital output
+    user_label: TRIG_L
+    configuration: null
+  PC4:
+    name: PC4
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PC4
+    mode: Analog
+    user_label: PC4
+    configuration: null
+  PC5:
+    name: PC5
+    definition: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::pad::PC5
+    mode: Analog
+    user_label: PC5
+    configuration: null
+toolchain_options:
+- definition:
+    identifier: Atmel:ATMega48_88_168_328_drivers:1.0.0::ATmega328P-PN::environment_definition::All:Atmel.Studio:7.0.0
+  configuration:
+    compiler_config:
+      avrgcc_compiler_miscellaneous_OtherFlags: -std=gnu99
+    linker_config:
+      avrgcc_linker_miscellaneous_LinkerFlags: ''
